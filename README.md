@@ -26,7 +26,7 @@ Create your APP on : https://apps.exactonline.com/be/fr-BE/V2/Manage/
 
 <h3>STEP 2</h3>
 
-	 composer require aibianchi/exact-online-bundle "2.3"
+	 composer require aibianchi/exact-online-bundle
 	
 <h3>STEP 3</h3>
 
