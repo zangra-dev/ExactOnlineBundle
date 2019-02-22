@@ -12,7 +12,12 @@ Exact Online doc: https://support.exactonline.com/community/s/knowledge-base#All
 <h1>Requirements</h1>
 Guzzle 6
 
-branch for Symfony version 2.3 and php7.0
+branch for:
+
+Symfony version 3.4
+
+php version 7.1
+
 <hr/>
 
 <h3>STEP 1</h3>
