@@ -1,23 +1,72 @@
 <?php
-
+declare(strict_types=1);
 
 namespace aibianchi\ExactOnlineBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 
 
 /**
   * @author Bianchi Jefferson <Jefferson@aibianchi.com>
  */
+
+/**
+ * @ORM\Table(name="exact")
+ * @ORM\Entity(repositoryClass="aibianchi\ExactOnlineBundle\Repository\ExactRepository")
+ */
 class Exact
 {
 
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
     private $id;
+
+    /**
+     * @var text $accessToken
+     *
+     * @ORM\Column(name="access_token", type="text")
+     */
 	private $accessToken;
-    private $tokenType;
+
+    /**
+     * @var text $code
+     *
+     * @ORM\Column(name="code", type="text")
+     */
     private $code;
+
+    /**
+     * @var integer $tokenExpires
+     *
+     * @ORM\Column(name="token_expires", type="integer")
+     */
     private $tokenExpires;
+
+    /**
+     * @var text $refreshToken
+     *
+     * @ORM\Column(name="refresh_token", type="text")
+     */
     private $refreshToken;
+
+
+    /**
+     * @var boolean $enabled
+     *
+     * @ORM\Column(name="enabled", type="boolean")
+     */
     private $enabled;
+
+     /**
+     * @var datetime $createdAt
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
     private $createdAt;
 
 
@@ -25,11 +74,8 @@ class Exact
     {
         $this->enabled   = true;
         $this->createdAt = new \DateTime('now');
-        
+
     }
-
-   
-
 
     /**
      * @return mixed
@@ -67,26 +113,6 @@ class Exact
     public function setAccessToken($accessToken)
     {
         $this->accessToken = $accessToken;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTokenType()
-    {
-        return $this->tokenType;
-    }
-
-    /**
-     * @param mixed $tokenType
-     *
-     * @return self
-     */
-    public function setTokenType($tokenType)
-    {
-        $this->tokenType = $tokenType;
 
         return $this;
     }

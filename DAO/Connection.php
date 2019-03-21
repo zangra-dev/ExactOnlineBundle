@@ -37,7 +37,7 @@ class Connection{
 
     private static $em;
     private static $instance;
-    
+
 
 
 
@@ -62,8 +62,6 @@ class Connection{
         return static::$instance;
     }
 
-
-
     /*
     *  Exact api will post on redirect URL
     */
@@ -74,7 +72,7 @@ class Connection{
                     "client_id"     => self::$exactClientId,
                     "redirect_uri"  => self::$redirectUrl,
                     "response_type" => "code",
-                    "force_login"   => "1",    
+                    "force_login"   => "1",
             );
             $query  = http_build_query($param);
 
@@ -101,12 +99,12 @@ class Connection{
 
         $body   = $response->getBody();
         $obj    = json_decode((string) $body);
-        self::persistExact($obj);       
+        self::persistExact($obj);
     }
 
     private static function persistExact($obj){
 
-    	$Exact  = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
+    	$Exact  = self::$em->getRepository(Exact::class)->findLast();
     	if ($Exact != null){
     			$code = $Exact->getCode();
     	}else{
@@ -128,7 +126,7 @@ class Connection{
     public static function refreshAccessToken()
     {
 
-        $Exact  = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
+        $Exact  = self::$em->getRepository(Exact::class)->findLast();
         $url    = self::$baseUrl.self::$tokenUrl;
         $client =  new Client();
 
@@ -143,13 +141,13 @@ class Connection{
         $body   = $response->getBody();
         $obj    = json_decode((string) $body);
         self::persistExact($obj);
-       
+
     }
 
 
     public static function isExpired(){
 
-        $Exact      = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
+        $Exact      = self::$em->getRepository(Exact::class)->findLast();
         if ($Exact == null){
             return true;
         }
@@ -173,19 +171,19 @@ class Connection{
             'Prefer'        => 'return=representation',
             "X-aibianchi"   => "Exact Online Bundle <https://github.com/AI-Bianchi/ExactOnlineBundle/>"
         ]);
-         $Exact   = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
+         $Exact   = self::$em->getRepository(Exact::class)->findLast();
 
          if ($Exact->getAccessToken() == null) {
 
             throw new ApiException('Access token was not initialized', 498);
         }
-    
+
         if (!empty($params)) {
             $endpoint .= '?' . http_build_query($params);
         }
 
         $headers['Authorization'] = 'Bearer '.$Exact->getAccessToken();
-        
+
         return  $request = new Request($method, $endpoint, $headers, $body);
     }
 
@@ -204,7 +202,7 @@ class Connection{
                 $url      = self::$baseUrl.self::$apiUrl."/".self::getDivision()."/".$url;
             }
                 $client   = new Client();
-                $Exact    = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
+                $Exact    = self::$em->getRepository(Exact::class)->findLast();
 
                 $request  = self::createRequest($method, $url, $json);
                 $response = $client->send($request);
@@ -249,7 +247,7 @@ class Connection{
                     }
                 }
             return $json;
-            
+
         } catch (\ApiException $e) {
               throw new ApiException($e->getMessage(), $e->getStatusCode());
         }
