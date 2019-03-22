@@ -6,8 +6,6 @@ services:
     aibianchi\ExactOnlineBundle\Command\ExactSyncCommand:
         tags:
             - { name: 'console', command: 'exact:token:refresh' }
-        arguments:
-            - "@phpunit.repository.exact.token.refresh"
     exact_online.manager:
           class: aibianchi\ExactOnlineBundle\Manager\ExactManager
           arguments: ['@doctrine.orm.entity_manager']
