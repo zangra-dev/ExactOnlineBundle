@@ -3,6 +3,6 @@
         "aibianchi\\ExactOnlineBundle\\ExactOnlineBundle": ["all"]
     },
     "copy-from-recipe": {
-        "Resources/config/recipes/": "%CONFIG_DIR%/"
+        "config/": "%CONFIG_DIR%/"
     }
 }
