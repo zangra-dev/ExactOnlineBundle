@@ -69,15 +69,13 @@ You need to update your database:
 
 In your controller :
 
-     public function indexAction(Request $request)
+    use aibianchi\ExactOnlineBundle\Manager\ExactManager;
+
+     public function indexAction(Request $request, ExactManager $exactManager)
     {
         // the code sended by exact online when the first auth
         $code = $request->query->get('code');
-
-        // get service
-        $exactManager = $this->get("exact_online.manager");
-        // init service with code
-        $exactManager->init($code);
+        $exactManager->init($code, "belgium"); // select your country account ( france; belgium; nederland)
     }
 
 Next go to http:// YOUR URL.com/ExactRequest
