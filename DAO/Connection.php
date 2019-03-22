@@ -102,7 +102,7 @@ class Connection{
         self::persistExact($obj);
     }
 
-    private static function persistExact($obj){
+    private static function persistExact($obj, $country){
 
     	$Exact  = self::$em->getRepository(Exact::class)->findLast();
     	if ($Exact != null){
@@ -116,6 +116,7 @@ class Connection{
         $exact->setCode($code);
         $exact->setTokenExpires($obj->expires_in);
         $exact->setRefreshToken($obj->refresh_token);
+        $exact->setCountry($country);
 
         self::$em->Persist($exact);
         self::$em->flush();
@@ -123,10 +124,10 @@ class Connection{
     }
 
 
-    public static function refreshAccessToken()
+    public static function refreshAccessToken($country)
     {
 
-        $Exact  = self::$em->getRepository(Exact::class)->findLast();
+        $Exact  = self::$em->getRepository(Exact::class)->findLastByCountry($country);
         $url    = self::$baseUrl.self::$tokenUrl;
         $client =  new Client();
 
@@ -140,7 +141,7 @@ class Connection{
         ));
         $body   = $response->getBody();
         $obj    = json_decode((string) $body);
-        self::persistExact($obj);
+        self::persistExact($obj, $country);
 
     }
 

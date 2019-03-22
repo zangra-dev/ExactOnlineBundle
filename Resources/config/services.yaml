@@ -3,6 +3,11 @@ services:
          autowire: true
          autoconfigure: true
          public: true
+    aibianchi\ExactOnlineBundle\Command\ExactSyncCommand:
+        tags:
+            - { name: 'console', command: 'exact:token:refresh' }
+        arguments:
+            - "@phpunit.repository.exact.token.refresh"
     exact_online.manager:
           class: aibianchi\ExactOnlineBundle\Manager\ExactManager
           arguments: ['@doctrine.orm.entity_manager']
@@ -13,3 +18,4 @@ services:
         - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
         - { name: monolog.logger, channel: exactAPI }
     aibianchi\ExactOnlineBundle\Manager\ExactManager: '@exact_online.manager'
+

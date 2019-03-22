@@ -69,6 +69,13 @@ class Exact
      */
     private $createdAt;
 
+    /**
+     * @var text $country
+     *
+     * @ORM\Column(name="country", type="text")
+     */
+    private $country;
+
 
     public function __construct()
     {
@@ -96,6 +103,29 @@ class Exact
 
         return $this;
     }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param mixed $country
+     *
+     * @return self
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
 
     /**
      * @return mixed
