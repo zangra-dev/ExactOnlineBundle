@@ -32,10 +32,10 @@ class ExactManager {
     /**
     * @return void
     */
-	public function init($code){
+	public function init($code, $country){
 
         try{
-    		Connection::setConfig($this->config, $this->em);
+    		Connection::setConfig($this->config["$country"], $this->em);
 
             if (Connection::isExpired()){
 

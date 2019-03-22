@@ -30,7 +30,35 @@ Create your APP on : https://apps.exactonline.com/be/fr-BE/V2/Manage/
 
 <h3>STEP 3</h3>
 
-******Work for multi account
+Now you can use multi account ( by country )
+
+config/package/exact_online.yaml
+
+    exact_online:
+      belgium:
+        baseUrl:      https://start.exactonline.be/
+        apiUrl:       api/v1
+        authUrl:      api/oauth2/auth
+        tokenUrl:     api/oauth2/token
+        redirectUrl:  https://YOURURL/ExactRequest
+        clientId:     YOURID
+        clientSecret: YOURSECRET
+      france:
+        baseUrl:      https://start.exactonline.fr/
+        apiUrl:       api/v1
+        authUrl:      api/oauth2/auth
+        tokenUrl:     api/oauth2/token
+        redirectUrl:  https://YOURURL/ExactRequest
+        clientId:     YOURID
+        clientSecret: YOURSECRET
+      nerderland:
+        baseUrl:      https://start.exactonline.nl/
+        apiUrl:       api/v1
+        authUrl:      api/oauth2/auth
+        tokenUrl:     api/oauth2/token
+        redirectUrl:  https://YOURURL/ExactRequest
+        clientId:     YOURID
+        clientSecret: YOURSECRET
 
 <h3>STEP 4</h3>
 You need to update your database:

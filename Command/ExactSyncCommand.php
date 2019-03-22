@@ -15,21 +15,23 @@ use aibianchi\ExactOnlineBundle\DAO\Exception\ApiException;
  * @email Jefferson@aibianchi.com
  */
 class ExactSyncCommand extends Command {
+
     private $exactManager;
     private $logger;
-        public function __construct($exactManager, LoggerInterface $logger)
-    {
+
+    public function __construct($exactManager, LoggerInterface $logger){
+
         $this->logger = $logger;
         $this->exactManager = $exactManager;
         parent::__construct();
     }
 
-    protected function configure()
-    {
+    protected function configure(){
         $this
             ->setName('exact:token:refresh')
             ->setDescription('refresh token every 9 minutes(cron job)');
     }
+
     protected function execute(InputInterface $input, OutputInterface $output){
 
         $logger = $this->logger;
