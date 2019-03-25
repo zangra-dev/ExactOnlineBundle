@@ -52,7 +52,7 @@ class ExactSyncCommand extends Command {
 
         if ( !in_array($country, $listCountry) ){
             $output->writeln("<error>$country is unauthorized </error>");
-            $output->writeln("<info>Please select a correct countrt in this list:</info>");
+            $output->writeln("<info>Please select a correct country in this list:</info>");
             print_r($listCountry);
             exit;
         }
