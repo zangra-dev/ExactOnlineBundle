@@ -37,13 +37,13 @@ class ExactManager {
         try{
     		Connection::setConfig($this->config["$country"], $this->em);
 
-            if (Connection::isExpired()){
+            if (Connection::isExpired($country)){
 
                 if ($code == null){
-                    Connection::getAuthorization();
+                    Connection::getAuthorization($country);
                 }
                 Connection::setCode($code);
-                Connection::getAccessToken();
+                Connection::getAccessToken($country);
             }
 
         }catch (ApiException $e) {
@@ -79,7 +79,7 @@ class ExactManager {
     public function persist($entity){
 
         $json = $entity->toJson();
-        Connection::Request($entity->getUrl(), "POST", $json);
+        Connection::Request($entity->getUrl(), "POST", $json, $country);
 
     }
 
