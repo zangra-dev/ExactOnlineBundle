@@ -20,7 +20,8 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->arrayNode('belgium')
+
+                ->arrayNode('Belgium')
                     ->children()
                         ->scalarNode('baseUrl')->defaultValue('')->end()
                         ->scalarNode('apiUrl')->defaultValue('')->end()
@@ -32,7 +33,7 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
 
-                ->arrayNode('france')
+                ->arrayNode('France')
                    ->children()
                         ->scalarNode('baseUrl')->defaultValue('')->end()
                         ->scalarNode('apiUrl')->defaultValue('')->end()
@@ -44,7 +45,19 @@ class Configuration implements ConfigurationInterface
                    ->end()
                 ->end()
 
-                ->arrayNode('nerderland')
+                ->arrayNode('Nerderland')
+                    ->children()
+                        ->scalarNode('baseUrl')->defaultValue('')->end()
+                        ->scalarNode('apiUrl')->defaultValue('')->end()
+                        ->scalarNode('authUrl')->defaultValue('')->end()
+                        ->scalarNode('tokenUrl')->defaultValue('')->end()
+                        ->scalarNode('redirectUrl')->defaultValue('')->end()
+                        ->scalarNode('clientId')->defaultValue('')->end()
+                        ->scalarNode('clientSecret')->defaultValue('')->end()
+                   ->end()
+                ->end()
+
+                ->arrayNode('Spain')
                     ->children()
                         ->scalarNode('baseUrl')->defaultValue('')->end()
                         ->scalarNode('apiUrl')->defaultValue('')->end()

@@ -35,7 +35,7 @@ Now you can use multi account ( by country )
 config/package/exact_online.yaml
 
     exact_online:
-      belgium:
+      Belgium:
         baseUrl:      https://start.exactonline.be/
         apiUrl:       api/v1
         authUrl:      api/oauth2/auth
@@ -43,7 +43,7 @@ config/package/exact_online.yaml
         redirectUrl:  https://YOURURL/ExactRequest
         clientId:     YOURID
         clientSecret: YOURSECRET
-      france:
+      France:
         baseUrl:      https://start.exactonline.fr/
         apiUrl:       api/v1
         authUrl:      api/oauth2/auth
@@ -51,8 +51,16 @@ config/package/exact_online.yaml
         redirectUrl:  https://YOURURL/ExactRequest
         clientId:     YOURID
         clientSecret: YOURSECRET
-      nerderland:
+      Nerderland:
         baseUrl:      https://start.exactonline.nl/
+        apiUrl:       api/v1
+        authUrl:      api/oauth2/auth
+        tokenUrl:     api/oauth2/token
+        redirectUrl:  https://YOURURL/ExactRequest
+        clientId:     YOURID
+        clientSecret: YOURSECRET
+      Spain:
+        baseUrl:      https://start.exactonline.es/
         apiUrl:       api/v1
         authUrl:      api/oauth2/auth
         tokenUrl:     api/oauth2/token
@@ -75,7 +83,7 @@ In your controller :
     {
         // the code sended by exact online when the first auth
         $code = $request->query->get('code');
-        $exactManager->init($code, "belgium"); // select your country account ( france; belgium; nederland)
+        $exactManager->init($code, "belgium"); // select your country account (Belgium; France; Nederland; Spain)
     }
 
 Next go to http:// YOUR URL.com/ExactRequest
@@ -92,7 +100,7 @@ for exemple:
 refhreshToken.sh:
 
 	#!/bin/bash
-	php /*DIRECTORY OF YOUR PROJECT*/app/console exact:token:refresh belgium #(select your contry)
+	php /*DIRECTORY OF YOUR PROJECT*/app/console exact:token:refresh Belgium #(select your contry)
 
 chmod 775 refhreshToken.sh
 

@@ -47,7 +47,7 @@ class ExactSyncCommand extends Command {
         $logger = $this->logger;
         $logger->info("Waiting for refresh token...");
 
-        $listCountry = array ("belgium","france","nederland");
+        $listCountry = array ("Belgium","France","Nederland", "Spain");
         $country = $input->getArgument('country');
 
         if ( !in_array($country, $listCountry) ){

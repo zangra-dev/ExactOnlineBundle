@@ -54,7 +54,7 @@ class ExactManager {
 	}
 
     public function refreshToken($country){
-
+        dump($this->config);
         Connection::setConfig($this->config["$country"], $this->em);
         Connection::refreshAccessToken($country);
     }
