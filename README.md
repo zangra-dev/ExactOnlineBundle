@@ -92,7 +92,7 @@ for exemple:
 refhreshToken.sh:
 
 	#!/bin/bash
-	php /*DIRECTORY OF YOUR PROJECT*/app/console exact:token:refresh
+	php /*DIRECTORY OF YOUR PROJECT*/app/console exact:token:refresh belgium #(select your contry)
 
 chmod 775 refhreshToken.sh
 
