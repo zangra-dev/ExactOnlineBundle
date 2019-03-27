@@ -106,7 +106,7 @@ class Connection{
 
     private static function persistExact($obj){
 
-    	$Exact  = self::$em->getRepository(Exact::class)->findLastByCountry($country);
+    	$Exact  = self::$em->getRepository(Exact::class)->findLastByCountry(self::$country);
     	if ($Exact != null){
     			$code = $Exact->getCode();
     	}else{
