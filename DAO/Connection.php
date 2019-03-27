@@ -43,7 +43,7 @@ class Connection{
 
 
 
-    public static function setConfig(array $config, EntityManager $em){
+    public static function setConfig(string $country, array $config, EntityManager $em){
 
         self::$em                           = $em;
         self::$baseUrl                      = $config['baseUrl'];
@@ -53,6 +53,7 @@ class Connection{
         self::$redirectUrl                  = $config['redirectUrl'];
         self::$exactClientId                = $config['clientId'];
         self::$exactClientSecret            = $config['clientSecret'];
+        self::$country = $country;
     }
 
     public static function getInstance()

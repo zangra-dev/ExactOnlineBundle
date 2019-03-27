@@ -35,7 +35,7 @@ class ExactManager {
 	public function init($code, $country){
 
         try{
-    		Connection::setConfig($this->config["$country"], $this->em);
+    		Connection::setConfig($country, $this->config["$country"], $this->em);
 
             if (Connection::isExpired($country)){
 
@@ -54,8 +54,7 @@ class ExactManager {
 	}
 
     public function refreshToken($country){
-        dump($this->config);
-        Connection::setConfig($this->config["$country"], $this->em);
+        Connection::setConfig($country, $this->config["$country"], $this->em);
         Connection::refreshAccessToken($country);
     }
 
