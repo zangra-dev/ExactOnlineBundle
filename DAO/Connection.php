@@ -12,7 +12,6 @@ use aibianchi\ExactOnlineBundle\DAO\Exception\ApiException;
 use aibianchi\ExactOnlineBundle\Model\Base\Me;
 use aibianchi\ExactOnlineBundle\Entity\Exact;
 
-
 /**
  * Class Connection
  * Author: Jefferson Bianchi
@@ -20,8 +19,8 @@ use aibianchi\ExactOnlineBundle\Entity\Exact;
  * @package aibianchi\ExactOnlineBundle\DAO
  *
  */
-class Connection{
-
+class Connection
+{
     private static $container;
 
     private static $baseUrl;
@@ -39,21 +38,23 @@ class Connection{
     private static $instance;
     private static $country;
 
+    private static $DEBUG_MODE = true;
 
 
 
 
-    public static function setConfig(string $country, array $config, EntityManager $em){
 
+    public static function setConfig(string $country, array $config, EntityManager $em)
+    {
+        self::$country                      = $country;
         self::$em                           = $em;
-        self::$baseUrl                      = $config['baseUrl'];
-        self::$apiUrl                       = $config['apiUrl'];
-        self::$authUrl                      = $config['authUrl'];
-        self::$tokenUrl                     = $config['tokenUrl'];
-        self::$redirectUrl                  = $config['redirectUrl'];
-        self::$exactClientId                = $config['clientId'];
-        self::$exactClientSecret            = $config['clientSecret'];
-        self::$country = $country;
+        self::$baseUrl                      = $config["$country"]['baseUrl'];
+        self::$apiUrl                       = $config["$country"]['apiUrl'];
+        self::$authUrl                      = $config["$country"]['authUrl'];
+        self::$tokenUrl                     = $config["$country"]['tokenUrl'];
+        self::$redirectUrl                  = $config["$country"]['redirectUrl'];
+        self::$exactClientId                = $config["$country"]['clientId'];
+        self::$exactClientSecret            = $config["$country"]['clientSecret'];
     }
 
     public static function getInstance()
@@ -67,30 +68,29 @@ class Connection{
     /*
     *  Exact api will post on redirect URL
     */
-    public static function getAuthorization($country){
-
-            self::$country = $country;
-            $url     =  self::$baseUrl.self::$authUrl;
-            $param   = array(
+    public static function getAuthorization()
+    {
+        $url     =  self::$baseUrl.self::$authUrl;
+        $param   = array(
                     "client_id"     => self::$exactClientId,
                     "redirect_uri"  => self::$redirectUrl,
                     "response_type" => "code",
                     "force_login"   => "1",
             );
-            $query  = http_build_query($param);
+        $query  = http_build_query($param);
 
-            header('Location: '.$url.'?'.$query, TRUE, 302);
-            die('Redirect');
-
+        header('Location: '.$url.'?'.$query, true, 302);
+        die('Redirect');
     }
 
 
-    public static function getAccessToken($country){
-
-        self::$country = $country;
+    public static function getAccessToken()
+    {
         $url      = self::$baseUrl.self::$tokenUrl;
         $client   =  new Client();
-        $response = $client->post($url, array(
+        $response = $client->post(
+            $url,
+            array(
             'form_params' => array(
                 'code'          => self::$code,
                 'client_id'     => self::$exactClientId,
@@ -105,13 +105,13 @@ class Connection{
         self::persistExact($obj);
     }
 
-    private static function persistExact($obj){
-
-    	$Exact  = self::$em->getRepository(Exact::class)->findLastByCountry(self::$country);
-    	if ($Exact != null){
-    			$code = $Exact->getCode();
-    	}else{
-                $code = self::$code;
+    private static function persistExact($obj)
+    {
+        $Exact  = self::$em->getRepository(Exact::class)->findLastByCountry(self::$country);
+        if ($Exact != null) {
+            $code = $Exact->getCode();
+        } else {
+            $code = self::$code;
         }
 
         $exact  = new Exact();
@@ -123,7 +123,6 @@ class Connection{
 
         self::$em->Persist($exact);
         self::$em->flush();
-
     }
 
 
@@ -145,29 +144,28 @@ class Connection{
         $body   = $response->getBody();
         $obj    = json_decode((string) $body);
         self::persistExact($obj);
-
     }
 
 
-    public static function isExpired(){
-
+    public static function isExpired()
+    {
         $Exact      = self::$em->getRepository(Exact::class)->findLastByCountry(self::$country);
-        if ($Exact == null){
+        if ($Exact == null) {
             return true;
         }
         $createAt   = $Exact->getCreatedAt();
         $now        = new \DateTime("now");
         $expiresIn  = $Exact->getTokenExpires();
-        $seconds    = ( $now->getTimeStamp() ) - ( $createAt->getTimeStamp() );
+        $seconds    = ($now->getTimeStamp()) - ($createAt->getTimeStamp());
 
-        if ($expiresIn-60<$seconds){
+        if ($expiresIn-60<$seconds) {
             return true;
         }
 
         return false;
     }
 
-    private static function createRequest($method = 'GET', $endpoint, $body = null, array $params = [], array $headers = [])
+    private static function createRequest(string $method = 'GET', $endpoint, $body = null, array $params = [], array $headers = [])
     {
         $headers = array_merge($headers, [
             'Accept'        => 'application/json;odata=verbose,text/plain',
@@ -175,10 +173,9 @@ class Connection{
             'Prefer'        => 'return=representation',
             "X-aibianchi"   => "Exact Online Bundle <https://github.com/AI-Bianchi/ExactOnlineBundle/>"
         ]);
-         $Exact   = self::$em->getRepository(Exact::class)->findLastByCountry(self::$country);
+        $Exact   = self::$em->getRepository(Exact::class)->findLastByCountry(self::$country);
 
-         if ($Exact->getAccessToken() == null) {
-
+        if ($Exact->getAccessToken() == null) {
             throw new ApiException('Access token was not initialized', 498);
         }
 
@@ -188,40 +185,48 @@ class Connection{
 
         $headers['Authorization'] = 'Bearer '.$Exact->getAccessToken();
 
-        return  $request = new Request($method, $endpoint, $headers, $body);
+        $request = new Request($method, $endpoint, $headers, $body);
+
+        if (self::$DEBUG_MODE) {
+            dump($request);
+        }
+
+        return $request;
     }
 
 
-    public static function Request($url, $method, $json = null){
-
-        if (self::isExpired()){
+    public static function Request(string $url, string $method, string $json = null)
+    {
+        if (self::isExpired()) {
             throw new ApiException('Token is expired.', 498);
         }
 
-        try{
-
-            if ($url == "current/Me"){
+        try {
+            if ($url == "current/Me") {
                 $url      = self::$baseUrl.self::$apiUrl."/".$url;
-            }else{
+            } else {
                 $url      = self::$baseUrl.self::$apiUrl."/".self::getDivision()."/".$url;
             }
-                $client   = new Client();
-                $request  = self::createRequest($method, $url, $json);
-                $response = $client->send($request);
-                $array    = self::parseResponse($response);
+            $client   = new Client();
+            $request  = self::createRequest($method, $url, $json);
+            $response = $client->send($request);
+            $array    = self::parseResponse($response);
 
-                if ($array == null){
-                    throw new ApiException("no data is present", 204);
-                }
+            if ($array == null) {
+                throw new ApiException("no data is present", 204);
+            }
 
-                return $array;
+            if (self::$DEBUG_MODE) {
+                dump($array);
+            }
 
+            return $array;
         } catch (ApiException $e) {
             throw new ApiException($e->getMessage(), $e->getStatusCode());
         }
     }
 
-    private static function parseResponse(Response $response, $returnSingleIfPossible = true)
+    private static function parseResponse(Response $response, bool $returnSingleIfPossible = true)
     {
         try {
             if ($response->getStatusCode() === 204) {
@@ -231,27 +236,25 @@ class Connection{
             Psr7\rewind_body($response);
             $json = json_decode($response->getBody()->getContents(), true);
 
-                if (is_array($json) ){
-                    if (array_key_exists('d', $json)) {
-                        if (array_key_exists('__next', $json['d'])) {
-                            $nextUrl = $json['d']['__next'];
-                        }
-                        else {
-                            $nextUrl = null;
-                        }
-                        if (array_key_exists('results', $json['d'])) {
-                            if ($returnSingleIfPossible && count($json['d']['results']) == 1) {
-                                return $json['d']['results'][0];
-                            }
-                            return $json['d']['results'];
-                        }
-                        return $json['d'];
+            if (is_array($json)) {
+                if (array_key_exists('d', $json)) {
+                    if (array_key_exists('__next', $json['d'])) {
+                        $nextUrl = $json['d']['__next'];
+                    } else {
+                        $nextUrl = null;
                     }
+                    if (array_key_exists('results', $json['d'])) {
+                        if ($returnSingleIfPossible && count($json['d']['results']) == 1) {
+                            return $json['d']['results'][0];
+                        }
+                        return $json['d']['results'];
+                    }
+                    return $json['d'];
                 }
+            }
             return $json;
-
         } catch (\ApiException $e) {
-              throw new ApiException($e->getMessage(), $e->getStatusCode());
+            throw new ApiException($e->getMessage(), $e->getStatusCode());
         }
     }
 
