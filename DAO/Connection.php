@@ -37,12 +37,13 @@ class Connection{
 
     private static $em;
     private static $instance;
-    
+    private static $country;
 
 
 
 
-    public static function setConfig(array $config, EntityManager $em){
+
+    public static function setConfig(string $country, array $config, EntityManager $em){
 
         self::$em                           = $em;
         self::$baseUrl                      = $config['baseUrl'];
@@ -52,6 +53,7 @@ class Connection{
         self::$redirectUrl                  = $config['redirectUrl'];
         self::$exactClientId                = $config['clientId'];
         self::$exactClientSecret            = $config['clientSecret'];
+        self::$country = $country;
     }
 
     public static function getInstance()
@@ -62,19 +64,18 @@ class Connection{
         return static::$instance;
     }
 
-
-
     /*
     *  Exact api will post on redirect URL
     */
-    public static function getAuthorization(){
+    public static function getAuthorization($country){
 
+            self::$country = $country;
             $url     =  self::$baseUrl.self::$authUrl;
             $param   = array(
                     "client_id"     => self::$exactClientId,
                     "redirect_uri"  => self::$redirectUrl,
                     "response_type" => "code",
-                    "force_login"   => "1",    
+                    "force_login"   => "1",
             );
             $query  = http_build_query($param);
 
@@ -84,9 +85,9 @@ class Connection{
     }
 
 
-    public static function getAccessToken(){
+    public static function getAccessToken($country){
 
-
+        self::$country = $country;
         $url      = self::$baseUrl.self::$tokenUrl;
         $client   =  new Client();
         $response = $client->post($url, array(
@@ -101,12 +102,12 @@ class Connection{
 
         $body   = $response->getBody();
         $obj    = json_decode((string) $body);
-        self::persistExact($obj);       
+        self::persistExact($obj);
     }
 
     private static function persistExact($obj){
 
-    	$Exact  = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
+    	$Exact  = self::$em->getRepository(Exact::class)->findLastByCountry(self::$country);
     	if ($Exact != null){
     			$code = $Exact->getCode();
     	}else{
@@ -118,6 +119,7 @@ class Connection{
         $exact->setCode($code);
         $exact->setTokenExpires($obj->expires_in);
         $exact->setRefreshToken($obj->refresh_token);
+        $exact->setCountry(self::$country);
 
         self::$em->Persist($exact);
         self::$em->flush();
@@ -125,10 +127,10 @@ class Connection{
     }
 
 
-    public static function refreshAccessToken()
+    public static function refreshAccessToken($country)
     {
-
-        $Exact  = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
+        self::$country = $country;
+        $Exact  = self::$em->getRepository(Exact::class)->findLastByCountry(self::$country);
         $url    = self::$baseUrl.self::$tokenUrl;
         $client =  new Client();
 
@@ -143,13 +145,13 @@ class Connection{
         $body   = $response->getBody();
         $obj    = json_decode((string) $body);
         self::persistExact($obj);
-       
+
     }
 
 
     public static function isExpired(){
 
-        $Exact      = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
+        $Exact      = self::$em->getRepository(Exact::class)->findLastByCountry(self::$country);
         if ($Exact == null){
             return true;
         }
@@ -173,19 +175,19 @@ class Connection{
             'Prefer'        => 'return=representation',
             "X-aibianchi"   => "Exact Online Bundle <https://github.com/AI-Bianchi/ExactOnlineBundle/>"
         ]);
-         $Exact   = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
+         $Exact   = self::$em->getRepository(Exact::class)->findLastByCountry(self::$country);
 
          if ($Exact->getAccessToken() == null) {
 
             throw new ApiException('Access token was not initialized', 498);
         }
-    
+
         if (!empty($params)) {
             $endpoint .= '?' . http_build_query($params);
         }
 
         $headers['Authorization'] = 'Bearer '.$Exact->getAccessToken();
-        
+
         return  $request = new Request($method, $endpoint, $headers, $body);
     }
 
@@ -204,8 +206,6 @@ class Connection{
                 $url      = self::$baseUrl.self::$apiUrl."/".self::getDivision()."/".$url;
             }
                 $client   = new Client();
-                $Exact    = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
-
                 $request  = self::createRequest($method, $url, $json);
                 $response = $client->send($request);
                 $array    = self::parseResponse($response);
@@ -249,7 +249,7 @@ class Connection{
                     }
                 }
             return $json;
-            
+
         } catch (\ApiException $e) {
               throw new ApiException($e->getMessage(), $e->getStatusCode());
         }

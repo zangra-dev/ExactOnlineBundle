@@ -1,0 +1,33 @@
+exact_online:
+  Belgium:
+    baseUrl:      https://start.exactonline.be/
+    apiUrl:       api/v1
+    authUrl:      api/oauth2/auth
+    tokenUrl:     api/oauth2/token
+    redirectUrl:  https://YOURURL/ExactRequest
+    clientId:     YOURID
+    clientSecret: YOURSECRET
+  France:
+    baseUrl:      https://start.exactonline.fr/
+    apiUrl:       api/v1
+    authUrl:      api/oauth2/auth
+    tokenUrl:     api/oauth2/token
+    redirectUrl:  https://YOURURL/ExactRequest
+    clientId:     YOURID
+    clientSecret: YOURSECRET
+  Nerderland:
+    baseUrl:      https://start.exactonline.nl/
+    apiUrl:       api/v1
+    authUrl:      api/oauth2/auth
+    tokenUrl:     api/oauth2/token
+    redirectUrl:  https://YOURURL/ExactRequest
+    clientId:     YOURID
+    clientSecret: YOURSECRET
+  Spain:
+    baseUrl:      https://start.exactonline.es/
+    apiUrl:       api/v1
+    authUrl:      api/oauth2/auth
+    tokenUrl:     api/oauth2/token
+    redirectUrl:  https://YOURURL/ExactRequest
+    clientId:     YOURID
+    clientSecret: YOURSECRET

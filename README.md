@@ -1,4 +1,4 @@
-<h1>Exact Online Bundle API</h1>
+<h1>Exact Online Bundle API </h1>
 
 Author:   Bianchi Jefferson
 
@@ -14,9 +14,9 @@ Guzzle 6
 
 branch for:
 
-Symfony version 3.4
+Symfony version 4.2.4
 
-php version 7.1
+php version 7.2
 
 <hr/>
 
@@ -26,50 +26,47 @@ Create your APP on : https://apps.exactonline.com/be/fr-BE/V2/Manage/
 
 <h3>STEP 2</h3>
 
-	 composer require aibianchi/exact-online-bundle
-	
+	 composer require aibianchi/exact-online-bundle "4.2.4"
+
 <h3>STEP 3</h3>
 
-Add following lines in:
-AppKernel.php:
+Now you can use multi account ( by country )
 
-	public function registerBundles()
-	{
-		$bundles = array(
-		...
-			new aibianchi\ExactOnlinebundle\ExactOnlineBundle(),
-		...
-		);
-	}
-	 
-config.yml:
+config/package/exact_online.yaml
 
-	exact_online:
-		baseUrl:      %exact.baseUrl%
-		apiUrl:       %exact.apiUrl%
-		authUrl:      %exact.authUrl%
-		tokenUrl:     %exact.tokenUrl%
-		redirectUrl:  %exact.redirectUrl%
-		clientId:     %exact.clientId%
-		clientSecret: %exact.clientSecret%
-    
-parameter.yml:
-    
-    exact.baseUrl: https://start.exactonline.be/
-    exact.apiUrl: api/v1
-    exact.authUrl: api/oauth2/auth
-    exact.tokenUrl: api/oauth2/token
-    exact.redirectUrl: http:// YOUR URL.com/ExactRequest
-    exact.clientId: YOUR CLIENT ID
-    exact.clientSecret: YOUR CLIENT SECRET
-
-routing.yml:
-
-		exact_online_auth:
-			path:     /ExactRequest
-			defaults: { _controller: YOURBUNDLE:Default:index }
- 
-<h5>Note</h5> BaseUrl is link for your country so if you from Nederlands you need to modify extension https://start.exactonline.nl)
+    exact_online:
+      Belgium:
+        baseUrl:      https://start.exactonline.be/
+        apiUrl:       api/v1
+        authUrl:      api/oauth2/auth
+        tokenUrl:     api/oauth2/token
+        redirectUrl:  https://YOURURL/ExactRequest
+        clientId:     YOURID
+        clientSecret: YOURSECRET
+      France:
+        baseUrl:      https://start.exactonline.fr/
+        apiUrl:       api/v1
+        authUrl:      api/oauth2/auth
+        tokenUrl:     api/oauth2/token
+        redirectUrl:  https://YOURURL/ExactRequest
+        clientId:     YOURID
+        clientSecret: YOURSECRET
+      Nerderland:
+        baseUrl:      https://start.exactonline.nl/
+        apiUrl:       api/v1
+        authUrl:      api/oauth2/auth
+        tokenUrl:     api/oauth2/token
+        redirectUrl:  https://YOURURL/ExactRequest
+        clientId:     YOURID
+        clientSecret: YOURSECRET
+      Spain:
+        baseUrl:      https://start.exactonline.es/
+        apiUrl:       api/v1
+        authUrl:      api/oauth2/auth
+        tokenUrl:     api/oauth2/token
+        redirectUrl:  https://YOURURL/ExactRequest
+        clientId:     YOURID
+        clientSecret: YOURSECRET
 
 <h3>STEP 4</h3>
 You need to update your database:
@@ -80,21 +77,19 @@ You need to update your database:
 
 In your controller :
 
-     public function indexAction(Request $request)
+    use aibianchi\ExactOnlineBundle\Manager\ExactManager;
+
+     public function indexAction(Request $request, ExactManager $exactManager)
     {
         // the code sended by exact online when the first auth
         $code = $request->query->get('code');
-        
-        // get service
-        $exactManager = $this->get("exact_online.manager");
-        // init service with code
-        $exactManager->init($code);
+        $exactManager->init($code, "belgium"); // select your country account (Belgium; France; Nederland; Spain)
     }
 
 Next go to http:// YOUR URL.com/ExactRequest
 Your authentication login will be required, this session will expire after 10 minutes
-If you want to keep this session active, you need to use cron job with a php command app/console exact:refresh:token every 9 minutes 
-<h5>Note</h5> 
+If you want to keep this session active, you need to use cron job with a php command app/console exact:refresh:token every 9 minutes
+<h5>Note</h5>
 You have Only 1 minute after your first Authentication to create cron job because this session will expire
 
 
@@ -105,8 +100,8 @@ for exemple:
 refhreshToken.sh:
 
 	#!/bin/bash
-	php /*DIRECTORY OF YOUR PROJECT*/app/console exact:token:refresh
-	
+	php /*DIRECTORY OF YOUR PROJECT*/app/console exact:token:refresh Belgium #(select your contry)
+
 chmod 775 refhreshToken.sh
 
 	crontab -e
@@ -125,14 +120,14 @@ You will receive refresh token in your database every 9 minutes :)
 	$code = $request->query->get('code');
 	$exactManager = $this->get("exact_online.manager");
 	$exactManager->init($code);
-	
+
 <h3>getList($page, $maxPerPage)</h3> (with pagination)
 
 	$listAccount = $exactManager->getModel("Account")->getList(1,5);
 	foreach ($listAccount as $account){
 		dump($account);
 	}
-				
+
 <h3>findBy()</h3>
 
 	$criteria = array('AddressLine1' => 'Koningin Astridlaan 166');
@@ -141,13 +136,13 @@ You will receive refresh token in your database every 9 minutes :)
 	$limit    = 1 ;
 	$account  = $exactManager->getModel("Account")->findBy($criteria,$select,$orderBy,$limit);
 	dump($account);
-	
+
 <h3>find</h3>	(guid)
 
 	account = $exactManager->getModel("Account")->find("587707b8-94aa-426a-b7db-56d434d9e83a");
-	
+
 <h3>persist()</h3>
-	
+
 	$item = new Item();
 	$item->setCode(rand());
 	$item->setCostPriceStandard(5);
@@ -155,16 +150,16 @@ You will receive refresh token in your database every 9 minutes :)
 	$item->setIsSalesItem(true);
 	$item->setSalesVatCode('VN');
 	$exactManager->persist($item);
-	
+
 <h3>update()</h3>
 
 	$account = $exactManager->getModel("Account")->find("587707b8-94aa-426a-b7db-56d434d9e83a");
 	$account->setWebsite("https://aibianchi.com");
 	$exactManager->update($account);
-	
+
 <h3>remove()</h3>
 
 	$account = $exactManager->getModel("Account")->find("587707b8-94aa-426a-b7db-56d434d9e83a");
 	$exactManager->remove($account);
- 
+
 

@@ -17,7 +17,6 @@ class ExactManager {
     private $model;
     private $config;
     private $em;
-    private $logger;
 
 
     public function __construct(EntityManager $em){
@@ -26,39 +25,37 @@ class ExactManager {
 
     public function setConfig($config){
         $this->config = $config;
-        
+
 
     }
-
 
     /**
     * @return void
     */
-	public function init($code){
+	public function init($code, $country){
 
         try{
-    		Connection::setConfig($this->config, $this->em, $this->logger);
+    		Connection::setConfig($country, $this->config["$country"], $this->em);
 
-            if (Connection::isExpired()){
+            if (Connection::isExpired($country)){
 
                 if ($code == null){
-                    Connection::getAuthorization();
+                    Connection::getAuthorization($country);
                 }
                 Connection::setCode($code);
-                Connection::getAccessToken();
+                Connection::getAccessToken($country);
             }
 
         }catch (ApiException $e) {
                 throw new Exception("Can't initiate connection: ", $e->getCode());
-                  
+
         }
 
 	}
 
-    public function refreshToken(){
-        
-        Connection::setConfig($this->config, $this->em, $this->logger);
-        Connection::refreshAccessToken();
+    public function refreshToken($country){
+        Connection::setConfig($country, $this->config["$country"], $this->em);
+        Connection::refreshAccessToken($country);
     }
 
     /**
@@ -68,11 +65,11 @@ class ExactManager {
 
         try{
             $classname   = $cname = "aibianchi\\ExactOnlineBundle\\Model\\".$name;
-            $this->model = new $classname(); 
+            $this->model = new $classname();
             return $this;
         }catch (ApiException $e) {
             throw new ApiException("Model doesn't existe : ", $e->getStatusCode());
-        }     
+        }
 	}
 
     /**
@@ -81,7 +78,7 @@ class ExactManager {
     public function persist($entity){
 
         $json = $entity->toJson();
-        Connection::Request($entity->getUrl(), "POST", $json);
+        Connection::Request($entity->getUrl(), "POST", $json, $country);
 
     }
 
@@ -115,13 +112,13 @@ class ExactManager {
     * @return integer
     */
     public function count(){
-        $url  =  $this->model->getUrl()."\\"."\$count";  
+        $url  =  $this->model->getUrl()."\\"."\$count";
         $data =  Connection::Request($url, "GET");
         return $data;
     }
 
     /**
-    * getList with pagination 
+    * getList with pagination
     * Warning: Usually this limit, also known as page size, is 60 records but it may vary per end point.
     * https://support.exactonline.com/community/s/knowledge-base#All-All-DNO-Content-resttips
     * @return Object Collection
@@ -168,14 +165,14 @@ class ExactManager {
         if ($limit>0){
             $url = $url."&\$top=".$limit;
         }
-        
+
         if ($orderby != null){
             $url = $url."&\$orderby=".key($orderby)." ".current($orderby);
         }
 
         $data =  Connection::Request($url, "GET");
 
-        return $this->isArrayCollection($this->model,$data);  
+        return $this->isArrayCollection($this->model,$data);
 
     }
 
@@ -238,10 +235,10 @@ class ExactManager {
                             $object->$setter($value);
                         }
                     }
-                array_push ($this->list, $object); 
+                array_push ($this->list, $object);
             }
-        return $this->list;  
-     
+        return $this->list;
+
     }
 }
 

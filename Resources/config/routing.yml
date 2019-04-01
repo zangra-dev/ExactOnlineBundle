@@ -1,3 +1,0 @@
-exact_online_auth:
-    path:     /ExactRequest
-    defaults: { _controller: ExactOnlineBundle:Default:index }
