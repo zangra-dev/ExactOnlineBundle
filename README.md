@@ -1,4 +1,4 @@
-<h1>Exact Online Bundle API - This branch is on dev</h1>
+<h1>Exact Online Bundle API </h1>
 
 Author:   Bianchi Jefferson
 
