@@ -38,7 +38,7 @@ class Connection
     private static $instance;
     private static $country;
 
-    private static $DEBUG_MODE = true;
+    private static $DEBUG_MODE = false;
 
 
 
