@@ -1,8 +1,9 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace aibianchi\ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
+
 /**
  * Class SalesOrder extends Model
  *
@@ -68,76 +69,76 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $WarehouseID Warehouse
  * @property string $YourRef The reference number of the customer
  */
-class SalesOrder extends Model 
+class SalesOrder extends Model
 {
-        protected $primaryKey = 'OrderID';
-        protected $saleOrderLines;
-        protected $OrderID;
-        protected $AmountDC;
-        protected $AmountFC;
-        protected $ApprovalStatus;
-        protected $ApprovalStatusDescription;
-        protected $Approved;
-        protected $Approver;
-        protected $ApproverFullName;
-        protected $Created;
-        protected $Creator;
-        protected $CreatorFullName;
-        protected $Currency;
-        protected $DeliverTo;
-        protected $DeliverToContactPerson;
-        protected $DeliverToContactPersonFullName;
-        protected $DeliverToName;
-        protected $DeliveryAddress;
-        protected $DeliveryDate;
-        protected $DeliveryStatus;
-        protected $DeliveryStatusDescription;
-        protected $Description;
-        protected $Division;
-        protected $Document;
-        protected $DocumentNumber;
-        protected $DocumentSubject;
-        protected $InvoiceStatus;
-        protected $InvoiceStatusDescription;
-        protected $InvoiceTo;
-        protected $InvoiceToContactPerson;
-        protected $InvoiceToContactPersonFullName;
-        protected $InvoiceToName;
-        protected $Modified;
-        protected $Modifier;
-        protected $ModifierFullName;
-        protected $OrderDate;
-        protected $OrderedBy;
-        protected $OrderedByContactPerson;
-        protected $OrderedByContactPersonFullName;
-        protected $OrderedByName;
-        protected $OrderNumber;
-        protected $PaymentCondition;
-        protected $PaymentConditionDescription;
-        protected $PaymentReference;
-        protected $Remarks;
-        protected $SalesOrderLines;
-        protected $Salesperson;
-        protected $SalespersonFullName;
-        protected $ShippingMethod;
-        protected $ShippingMethodDescription;
-        protected $Status;
-        protected $StatusDescription;
-        protected $TaxSchedule;
-        protected $TaxScheduleCode;
-        protected $TaxScheduleDescription;
-        protected $WarehouseCode;
-        protected $WarehouseDescription;
-        protected $WarehouseID;
-        protected $YourRef;
-        protected $url = 'salesorder/SalesOrders';
+    protected $primaryKey = 'OrderID';
+    protected $saleOrderLines;
+    protected $OrderID;
+    protected $AmountDC;
+    protected $AmountFC;
+    protected $ApprovalStatus;
+    protected $ApprovalStatusDescription;
+    protected $Approved;
+    protected $Approver;
+    protected $ApproverFullName;
+    protected $Created;
+    protected $Creator;
+    protected $CreatorFullName;
+    protected $Currency;
+    protected $DeliverTo;
+    protected $DeliverToContactPerson;
+    protected $DeliverToContactPersonFullName;
+    protected $DeliverToName;
+    protected $DeliveryAddress;
+    protected $DeliveryDate;
+    protected $DeliveryStatus;
+    protected $DeliveryStatusDescription;
+    protected $Description;
+    protected $Division;
+    protected $Document;
+    protected $DocumentNumber;
+    protected $DocumentSubject;
+    protected $InvoiceStatus;
+    protected $InvoiceStatusDescription;
+    protected $InvoiceTo;
+    protected $InvoiceToContactPerson;
+    protected $InvoiceToContactPersonFullName;
+    protected $InvoiceToName;
+    protected $Modified;
+    protected $Modifier;
+    protected $ModifierFullName;
+    protected $OrderDate;
+    protected $OrderedBy;
+    protected $OrderedByContactPerson;
+    protected $OrderedByContactPersonFullName;
+    protected $OrderedByName;
+    protected $OrderNumber;
+    protected $PaymentCondition;
+    protected $PaymentConditionDescription;
+    protected $PaymentReference;
+    protected $Remarks;
+    protected $SalesOrderLines;
+    protected $Salesperson;
+    protected $SalespersonFullName;
+    protected $ShippingMethod;
+    protected $ShippingMethodDescription;
+    protected $Status;
+    protected $StatusDescription;
+    protected $TaxSchedule;
+    protected $TaxScheduleCode;
+    protected $TaxScheduleDescription;
+    protected $WarehouseCode;
+    protected $WarehouseDescription;
+    protected $WarehouseID;
+    protected $YourRef;
+    protected $url = 'salesorder/SalesOrders';
 
-    public function __construct(){
-
+    public function __construct()
+    {
         $this->SalesOrderLines = array();
         $this->LineNumber= count($this->SalesOrderLines);
     }
-    
+
 
     /**
      * @return mixed
