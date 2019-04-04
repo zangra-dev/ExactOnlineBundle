@@ -180,6 +180,9 @@ class ExactManager
 
         if (is_integer(current($criteria))){
             $url = $this->model->getUrl()."\?"."\$filter=".key($criteria)." eq ".current($criteria)."";
+            $data =  Connection::Request($url, "GET");
+            return $this->isSingleObject($this->model, $data);
+
         }
 
         $data =  Connection::Request($url, "GET");
