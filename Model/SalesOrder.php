@@ -72,7 +72,6 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
 class SalesOrder extends Model
 {
     protected $primaryKey = 'OrderID';
-    protected $saleOrderLines;
     protected $OrderID;
     protected $AmountDC;
     protected $AmountFC;
@@ -133,11 +132,6 @@ class SalesOrder extends Model
     protected $YourRef;
     protected $url = 'salesorder/SalesOrders';
 
-    public function __construct()
-    {
-        $this->SalesOrderLines = array();
-        $this->LineNumber= count($this->SalesOrderLines);
-    }
 
 
     /**
@@ -156,26 +150,6 @@ class SalesOrder extends Model
     public function setPrimaryKey($primaryKey)
     {
         $this->primaryKey = $primaryKey;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSaleOrderLines()
-    {
-        return $this->saleOrderLines;
-    }
-
-    /**
-     * @param mixed $saleOrderLines
-     *
-     * @return self
-     */
-    public function setSaleOrderLines($saleOrderLines)
-    {
-        $this->saleOrderLines = $saleOrderLines;
 
         return $this;
     }

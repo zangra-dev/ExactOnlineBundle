@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace aibianchi\ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -56,7 +56,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $VATCodeDescription Description of VATCode
  * @property float $VATPercentage The vat percentage of the VAT code. This is the percentage at the moment the sales order is created. It's also used for the default calculation of VAT amounts and VAT base amounts
  */
-class SalesOrderLine extends Model 
+class SalesOrderLine extends Model
 {
         protected $ID;
         protected $AmountDC;
@@ -105,6 +105,10 @@ class SalesOrderLine extends Model
         protected $VATCodeDescription;
         protected $VATPercentage;
         protected $url = 'salesorder/SalesOrderLines';
+
+    public function __construct(){
+
+    }
 
     /**
      * @return mixed
