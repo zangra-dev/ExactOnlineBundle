@@ -106,10 +106,6 @@ class SalesOrderLine extends Model
         protected $VATPercentage;
         protected $url = 'salesorder/SalesOrderLines';
 
-    public function __construct(){
-
-    }
-
     /**
      * @return mixed
      */
