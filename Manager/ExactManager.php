@@ -140,6 +140,20 @@ class ExactManager
     }
 
     /**
+     * You could use raw url with ODATA format
+     * ex : $rawUrl = "$filter=(baseRate ge 60 and baseRate lt 300) and city eq 'Los Angeles'"
+     * @param  string $rawUrl
+     * @return array
+     */
+    public function findByRawUrl($rawUrl){
+
+        $url = $this->model->getUrl()."\?"."\$".$rawUrl;
+        $data =  Connection::Request($url, "GET");
+        return $this->isArrayCollection($this->model, $data);
+
+    }
+
+    /**
     *    array('field' => 'searchMe'),   // Criteria
     *    array('date' => 'desc'),        // Order by
     *    5,                              // limit
@@ -162,6 +176,13 @@ class ExactManager
 
         if ($orderby != null) {
             $url = $url."&\$orderby=".key($orderby)." ".current($orderby);
+        }
+
+        if (is_integer(current($criteria))){
+            $url = $this->model->getUrl()."\?"."\$filter=".key($criteria)." eq ".current($criteria)."";
+            $data =  Connection::Request($url, "GET");
+            return $this->isSingleObject($this->model, $data);
+
         }
 
         $data =  Connection::Request($url, "GET");

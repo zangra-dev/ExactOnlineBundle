@@ -14,16 +14,16 @@ abstract class Model {
 
          $json = array();
             foreach($this as $key => $value) {
-                
-                if ( ($key == "url") ){
+
+                if ( ($key == "url") || ($key == "primaryKey") ){
                 }else{
                      $json[$key] = $value;
                 }
             }
-            return json_encode($json); 
+            return json_encode($json);
 
     }
 
 }
 
-?> 
+?>

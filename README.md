@@ -14,7 +14,7 @@ Guzzle 6
 
 branch for:
 
-Symfony version 4.2.4
+Symfony version 4.2.5
 
 php version 7.2
 
@@ -26,7 +26,7 @@ Create your APP on : https://apps.exactonline.com/be/fr-BE/V2/Manage/
 
 <h3>STEP 2</h3>
 
-	 composer require aibianchi/exact-online-bundle "4.2.4"
+	 composer require aibianchi/exact-online-bundle
 
 <h3>STEP 3</h3>
 

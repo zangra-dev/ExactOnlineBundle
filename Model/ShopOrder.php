@@ -1,10 +1,11 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace aibianchi\ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class ShopOrder extends Model
+ * Class ShopOrder
  *
  * @package aibianchi\ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=ManufacturingShopOrders
@@ -55,7 +56,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property int $ShopOrderMaterialPlanCount Number of shop order material plans for this shop order
  * @property shopordermaterialplans $ShopOrderMaterialPlans Collection of Shop order Material plans
  * @property int $ShopOrderNumber Unique number to indentify the shop order
- * @property string $ShopOrderNumberString Unique number to indentify the shop order (as a string to allow OData filtering, e.g. $filter=substringof(protected $123;ShopOrderNumberString) eq true
+ * @property string $ShopOrderNumberString Unique number to indentify the shop order (as a string to allow OData filtering, e.g. $filter=substringof('123',ShopOrderNumberString) eq true
  * @property string $ShopOrderParent Shop order parent
  * @property int $ShopOrderParentNumber Shop order parent number
  * @property int $ShopOrderRoutingStepPlanCount Number of shop order routing step plans for this shop order
@@ -68,87 +69,69 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $Warehouse Reference to the Warehouse associated with the Shop order
  * @property string $YourRef Your reference (of the customer)
  */
-class ShopOrder extends Model 
+class ShopOrder extends Model
 {
-        protected $ID;
-        protected $CADDrawingURL;
-        protected $Costcenter;
-        protected $CostcenterDescription;
-        protected $Costunit;
-        protected $CostunitDescription;
-        protected $Created;
-        protected $Creator;
-        protected $CreatorFullName;
-        protected $Description;
-        protected $Division;
-        protected $EntryDate;
-        protected $IsBatch;
-        protected $IsFractionAllowedItem;
-        protected $IsInPlanning;
-        protected $IsOnHold;
-        protected $IsReleased;
-        protected $IsSerial;
-        protected $Item;
-        protected $ItemCode;
-        protected $ItemDescription;
-        protected $ItemPictureUrl;
-        protected $ItemVersion;
-        protected $ItemVersionDescription;
-        protected $Modified;
-        protected $Modifier;
-        protected $ModifierFullName;
-        protected $Notes;
-        protected $PlannedDate;
-        protected $PlannedQuantity;
-        protected $PlannedStartDate;
-        protected $ProducedQuantity;
-        protected $ProductionLeadDays;
-        protected $Project;
-        protected $ProjectDescription;
-        protected $ReadyToShipQuantity;
-        protected $SalesOrderLineCount;
-        protected $SalesOrderLines;
-        protected $ShopOrderByProductPlanBackflushCount;
-        protected $ShopOrderByProductPlanCount;
-        protected $ShopOrderMain;
-        protected $ShopOrderMainNumber;
-        protected $ShopOrderMaterialPlanBackflushCount;
-        protected $ShopOrderMaterialPlanCount;
-        protected $ShopOrderMaterialPlans;
-        protected $ShopOrderNumber;
-        protected $ShopOrderNumberString;
-        protected $ShopOrderParent;
-        protected $ShopOrderParentNumber;
-        protected $ShopOrderRoutingStepPlanCount;
-        protected $ShopOrderRoutingStepPlans;
-        protected $Status;
-        protected $SubShopOrderCount;
-        protected $Type;
-        protected $Unit;
-        protected $UnitDescription;
-        protected $Warehouse;
-        protected $YourRef;
-        protected $url = 'manufacturing/ShopOrders';
+    protected $ID;
+    protected $CADDrawingURL;
+    protected $Costcenter;
+    protected $CostcenterDescription;
+    protected $Costunit;
+    protected $CostunitDescription;
+    protected $Created;
+    protected $Creator;
+    protected $CreatorFullName;
+    protected $Description;
+    protected $Division;
+    protected $EntryDate;
+    protected $IsBatch;
+    protected $IsFractionAllowedItem;
+    protected $IsInPlanning;
+    protected $IsOnHold;
+    protected $IsReleased;
+    protected $IsSerial;
+    protected $Item;
+    protected $ItemCode;
+    protected $ItemDescription;
+    protected $ItemPictureUrl;
+    protected $ItemVersion;
+    protected $ItemVersionDescription;
+    protected $Modified;
+    protected $Modifier;
+    protected $ModifierFullName;
+    protected $Notes;
+    protected $PlannedDate;
+    protected $PlannedQuantity;
+    protected $PlannedStartDate;
+    protected $ProducedQuantity;
+    protected $ProductionLeadDays;
+    protected $Project;
+    protected $ProjectDescription;
+    protected $ReadyToShipQuantity;
+    protected $SalesOrderLineCount;
+    protected $SalesOrderLines;
+    protected $ShopOrderByProductPlanBackflushCount;
+    protected $ShopOrderByProductPlanCount;
+    protected $ShopOrderMain;
+    protected $ShopOrderMainNumber;
+    protected $ShopOrderMaterialPlanBackflushCount;
+    protected $ShopOrderMaterialPlanCount;
+    protected $ShopOrderMaterialPlans;
+    protected $ShopOrderNumber;
+    protected $ShopOrderNumberString;
+    protected $ShopOrderParent;
+    protected $ShopOrderParentNumber;
+    protected $ShopOrderRoutingStepPlanCount;
+    protected $ShopOrderRoutingStepPlans;
+    protected $Status;
+    protected $SubShopOrderCount;
+    protected $Type;
+    protected $Unit;
+    protected $UnitDescription;
+    protected $Warehouse;
+    protected $YourRef;
+    protected $url = 'manufacturing/ShopOrders';
 
-    /**
-     * @return mixed
-     */
-    public function get123()
-    {
-        return $this->123;
-    }
 
-    /**
-     * @param mixed $123
-     *
-     * @return self
-     */
-    public function set123($123)
-    {
-        $this->123 = $123;
-
-        return $this;
-    }
 
     /**
      * @return mixed
