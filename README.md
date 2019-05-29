@@ -131,7 +131,7 @@ You will receive refresh token in your database every 9 minutes :)
 <h3>findBy()</h3>
 
 	$criteria = array('AddressLine1' => 'Koningin Astridlaan 166');
-	$celect   = array ("AddressLine1", "BusinessType", "CountryName", "Created");
+	$select   = array ("AddressLine1", "BusinessType", "CountryName", "Created");
 	$orderBy  = array('Created' => 'desc');
 	$limit    = 1 ;
 	$account  = $exactManager->getModel("Account")->findBy($criteria,$select,$orderBy,$limit);
