@@ -83,7 +83,7 @@ In your controller :
     {
         // the code sended by exact online when the first auth
         $code = $request->query->get('code');
-        $exactManager->init($code, "belgium"); // select your country account (Belgium; France; Nederland; Spain)
+        $exactManager->init($code, "Belgium"); // select your country account (Belgium; France; Nederland; Spain)
     }
 
 Next go to http:// YOUR URL.com/ExactRequest
