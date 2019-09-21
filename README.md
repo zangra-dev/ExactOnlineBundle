@@ -84,18 +84,21 @@ In your controller :
         // the code sended by exact online when the first auth
         $code = $request->query->get('code');
         //$exactManager->init($code, "Belgium"); // use init for the first Authentification, after that you should to use refreshtoken();
-	$exactManager->refreshToken("Belgium");
+	      $exactManager->refreshToken("Belgium");
     }
-Next go to http:// YOUR URL.com/ExactRequest Your authentication login will be required, this session will expire after 10 minutes If you want to keep this session active, you need to replace function init() by refreshToken()
 
-<hr/>
+Next go to http:// YOUR URL.com/ExactRequest
+Your authentication login will be required, this session will expire after 10 minutes
+If you want to keep this session active, you need to replace function init() by refreshToken()
+
 <h1>Usage</h1>
 
 <h3>Init</h3>
 
 	$code = $request->query->get('code');
 	$exactManager = $this->get("exact_online.manager");
-	$exactManager->init($code, $country);
+	//$exactManager->init($code); // first init
+	$exactManager->refreshToken(); // after first init 
 
 <h3>getList($page, $maxPerPage)</h3> (with pagination)
 
@@ -107,7 +110,7 @@ Next go to http:// YOUR URL.com/ExactRequest Your authentication login will be r
 <h3>findBy()</h3>
 
 	$criteria = array('AddressLine1' => 'Koningin Astridlaan 166');
-	$celect   = array ("AddressLine1", "BusinessType", "CountryName", "Created");
+	$select   = array ("AddressLine1", "BusinessType", "CountryName", "Created");
 	$orderBy  = array('Created' => 'desc');
 	$limit    = 1 ;
 	$account  = $exactManager->getModel("Account")->findBy($criteria,$select,$orderBy,$limit);
