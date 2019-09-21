@@ -14,7 +14,7 @@ Guzzle 6
 
 branch for:
 
-Symfony version 4.2.5
+Symfony version 4.4
 
 php version 7.2
 
@@ -83,15 +83,14 @@ In your controller :
     {
         // the code sended by exact online when the first auth
         $code = $request->query->get('code');
-        $exactManager->init($code, "Belgium"); // select your country account (Belgium; France; Nederland; Spain)
+        //$exactManager->init($code, "Belgium"); // use init for the first Authentification, after that you should to use refreshtoken();
+	      $exactManager->refreshToken("Belgium");
     }
 
 Next go to http:// YOUR URL.com/ExactRequest
 Your authentication login will be required, this session will expire after 10 minutes
 If you want to keep this session active, you need to replace function init() by refreshToken()
-<h5>Note</h5>
 
-<hr/>
 <h1>Usage</h1>
 
 <h3>Init</h3>
