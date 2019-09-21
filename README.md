@@ -95,7 +95,7 @@ Next go to http:// YOUR URL.com/ExactRequest Your authentication login will be r
 
 	$code = $request->query->get('code');
 	$exactManager = $this->get("exact_online.manager");
-	$exactManager->init($code);
+	$exactManager->init($code, $country);
 
 <h3>getList($page, $maxPerPage)</h3> (with pagination)
 
