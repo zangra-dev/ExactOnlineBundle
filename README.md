@@ -14,7 +14,7 @@ Guzzle 6
 
 branch for:
 
-Symfony version 4.2.5
+Symfony version 4.4
 
 php version 7.2
 

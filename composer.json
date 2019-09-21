@@ -18,7 +18,7 @@
     ],
     "require" : {
         "php": "^7.2",
-        "symfony/framework-bundle": "^4.2.5",
+        "symfony/framework-bundle": "^4.4",
         "doctrine/doctrine-bundle": "*",
         "guzzlehttp/guzzle": "^6.2"
     },
