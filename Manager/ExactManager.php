@@ -5,6 +5,7 @@ namespace aibianchi\ExactOnlineBundle\Manager;
 use Doctrine\ORM\EntityManager;
 use aibianchi\ExactOnlineBundle\DAO\Connection;
 use aibianchi\ExactOnlineBundle\DAO\Exception\ApiException;
+use aibianchi\ExactOnlineBundle\Model\BillOfMaterialMaterial;
 
 /**
  * Exact Manager
@@ -26,7 +27,7 @@ class ExactManager {
 
     public function setConfig($config){
         $this->config = $config;
-        
+
 
     }
 
@@ -50,13 +51,13 @@ class ExactManager {
 
         }catch (ApiException $e) {
                 throw new Exception("Can't initiate connection: ", $e->getCode());
-                  
+
         }
 
 	}
 
     public function refreshToken(){
-        
+
         Connection::setConfig($this->config, $this->em, $this->logger);
         Connection::refreshAccessToken();
     }
@@ -68,11 +69,11 @@ class ExactManager {
 
         try{
             $classname   = $cname = "aibianchi\\ExactOnlineBundle\\Model\\".$name;
-            $this->model = new $classname(); 
+            $this->model = new $classname();
             return $this;
         }catch (ApiException $e) {
             throw new ApiException("Model doesn't existe : ", $e->getStatusCode());
-        }     
+        }
 	}
 
     /**
@@ -115,13 +116,13 @@ class ExactManager {
     * @return integer
     */
     public function count(){
-        $url  =  $this->model->getUrl()."\\"."\$count";  
+        $url  =  $this->model->getUrl()."\\"."\$count";
         $data =  Connection::Request($url, "GET");
         return $data;
     }
 
     /**
-    * getList with pagination 
+    * getList with pagination
     * Warning: Usually this limit, also known as page size, is 60 records but it may vary per end point.
     * https://support.exactonline.com/community/s/knowledge-base#All-All-DNO-Content-resttips
     * @return Object Collection
@@ -140,7 +141,14 @@ class ExactManager {
 
         $nbrPages = ceil($total/$maxPerPage);
         $skip     = ($page*$maxPerPage)-$maxPerPage;
-        $url      = $this->model->getUrl()."\\?"."\$skip=".$skip."&\$top=".$maxPerPage;
+
+        if ($this->model instanceof BillOfMaterialMaterial){
+            $url      = $this->model->getUrl()."\\?"."&\$top=".$maxPerPage;
+
+        }else{
+            $url      = $this->model->getUrl()."\\?"."\$skip=".$skip."&\$top=".$maxPerPage;
+        }
+
         $data     = Connection::Request($url, "GET");
 
         return $this->isArrayCollection($this->model,$data);
@@ -168,14 +176,14 @@ class ExactManager {
         if ($limit>0){
             $url = $url."&\$top=".$limit;
         }
-        
+
         if ($orderby != null){
             $url = $url."&\$orderby=".key($orderby)." ".current($orderby);
         }
 
         $data =  Connection::Request($url, "GET");
 
-        return $this->isArrayCollection($this->model,$data);  
+        return $this->isArrayCollection($this->model,$data);
 
     }
 
@@ -238,10 +246,10 @@ class ExactManager {
                             $object->$setter($value);
                         }
                     }
-                array_push ($this->list, $object); 
+                array_push ($this->list, $object);
             }
-        return $this->list;  
-     
+        return $this->list;
+
     }
 }
 
