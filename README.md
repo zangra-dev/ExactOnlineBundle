@@ -83,13 +83,10 @@ In your controller :
     {
         // the code sended by exact online when the first auth
         $code = $request->query->get('code');
-        $exactManager->init($code, "belgium"); // select your country account (Belgium; France; Nederland; Spain)
+        //$exactManager->init($code, "Belgium"); // use init for the first Authentification, after that you should to use refreshtoken();
+	$exactManager->refreshToken("Belgium");
     }
-
-Next go to http:// YOUR URL.com/ExactRequest
-Your authentication login will be required, this session will expire after 10 minutes
-If you want to keep this session active, you need to use cron job with a php command app/console exact:refresh:token every 9 minutes
-<h5>Note</h5>
+Next go to http:// YOUR URL.com/ExactRequest Your authentication login will be required, this session will expire after 10 minutes If you want to keep this session active, you need to replace function init() by refreshToken()
 
 <hr/>
 <h1>Usage</h1>
