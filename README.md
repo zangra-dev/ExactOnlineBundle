@@ -86,31 +86,11 @@ In your controller :
         $exactManager->init($code);
     }
 
-Next go to http:// YOUR URL.com/ExactRequest
-Your authentication login will be required, this session will expire after 10 minutes
-If you want to keep this session active, you need to use cron job with a php command app/console exact:refresh:token every 9 minutes 
+Next go to http:// YOUR URL.com/ExactRequest Your authentication login will be required, this session will expire after 10 minutes If you want to keep this session active, you need to replace function init() by refreshToken()
+
+
 <h5>Note</h5> 
 You have Only 1 minute after your first Authentication to create cron job because this session will expire
-
-
-
-for exemple:
-
-
-refhreshToken.sh:
-
-	#!/bin/bash
-	php /*DIRECTORY OF YOUR PROJECT*/app/console exact:token:refresh
-	
-chmod 775 refhreshToken.sh
-
-	crontab -e
-
-add this line:
-
-	*/9 * * * * /*DIRECTORY OF YOUR PROJECT*/refreshToken.sh
-
-You will receive refresh token in your database every 9 minutes :)
 
 <hr/>
 <h1>Usage</h1>
@@ -119,8 +99,8 @@ You will receive refresh token in your database every 9 minutes :)
 
 	$code = $request->query->get('code');
 	$exactManager = $this->get("exact_online.manager");
-	$exactManager->init($code);
-	
+	//$exactManager->init($code); //use it for the first Authentification
+	$exactManager->refreshToken(); // after first authentification use refreshToken everytime
 <h3>getList($page, $maxPerPage)</h3> (with pagination)
 
 	$listAccount = $exactManager->getModel("Account")->getList(1,5);
