@@ -35,10 +35,10 @@ class ExactManager {
     /**
     * @return void
     */
-	public function init($code){
+    public function init($code){
 
         try{
-    		Connection::setConfig($this->config, $this->em, $this->logger);
+            Connection::setConfig($this->config, $this->em, $this->logger);
 
             if (Connection::isExpired()){
 
@@ -54,7 +54,7 @@ class ExactManager {
 
         }
 
-	}
+    }
 
     public function refreshToken(){
 
@@ -65,7 +65,7 @@ class ExactManager {
     /**
     * @return Object
     */
-	public function getModel($name){
+    public function getModel($name){
 
         try{
             $classname   = $cname = "aibianchi\\ExactOnlineBundle\\Model\\".$name;
@@ -74,7 +74,7 @@ class ExactManager {
         }catch (ApiException $e) {
             throw new ApiException("Model doesn't existe : ", $e->getStatusCode());
         }
-	}
+    }
 
     /**
     * @return void
@@ -103,8 +103,8 @@ class ExactManager {
     * @return void
     */
     public function update($entity){
-
-        $json     = $entity->toJson();
+        $skipNullValues = true;
+        $json     = $entity->toJson($skipNullValues);
         $keyField = $this->getKeyField();
         $getter   = "get".$keyField;
         $url      = $entity->getUrl()."(guid'".$entity->$getter()."')";
@@ -144,6 +144,7 @@ class ExactManager {
 
         if ($this->model instanceof BillOfMaterialMaterial){
             $url      = $this->model->getUrl()."\\?"."&\$top=".$maxPerPage;
+
         }else{
             $url      = $this->model->getUrl()."\\?"."\$skip=".$skip."&\$top=".$maxPerPage;
         }
@@ -162,7 +163,10 @@ class ExactManager {
     */
     public function findBy(array $criteria, array $select = null, array $orderby = null, $limit  = 5){
 
-        $url = $this->model->getUrl()."\?"."\$filter=".key($criteria)." eq '".current($criteria)."'";
+        // Check if current criteria (value) is a guid
+        $guidString = $this->assertGuid(current($criteria)) ? 'guid' : '';
+
+        $url = $this->model->getUrl()."\?"."\$filter=".key($criteria)." eq ".$guidString."'".current($criteria)."'";
 
         if ($select != null){
             $url = $url."&\$select=";
@@ -247,8 +251,21 @@ class ExactManager {
                     }
                 array_push ($this->list, $object);
             }
-        return $this->list;
 
+        return $this->list;
+    }
+
+    /**
+     * Assert passewd value is a GUID.
+     *
+     * @param  string $guid A GUID string probably.
+     * @return bool
+     */
+    private function assertGuid($guid)
+    {
+        $UUIDv4 = '/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i';
+
+        return 1 === preg_match($UUIDv4, $guid);
     }
 }
 
