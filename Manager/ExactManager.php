@@ -212,7 +212,7 @@ class ExactManager {
     private function getKeyField(){
 
         if ( method_exists($this->model, "getPrimaryKey" ) ){
-            $primaryKey = $entity->getPrimaryKey();
+            $primaryKey = $this->model->getPrimaryKey();
         }else{
             $primaryKey = "ID";
         }
