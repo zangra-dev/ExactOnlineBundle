@@ -1,13 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
 namespace ExactOnlineBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
-  * @author Bianchi Jefferson <Jefferson@aibianchi.com>
+ * @author Bianchi Jefferson <jefferson@zangra.com>
  */
 
 /**
@@ -16,9 +16,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Exact
 {
-
     /**
-     * @var integer $id
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -27,61 +26,58 @@ class Exact
     private $id;
 
     /**
-     * @var text $accessToken
+     * @var text
      *
      * @ORM\Column(name="access_token", type="text")
      */
-	private $accessToken;
+    private $accessToken;
 
     /**
-     * @var text $code
+     * @var text
      *
      * @ORM\Column(name="code", type="text")
      */
     private $code;
 
     /**
-     * @var integer $tokenExpires
+     * @var int
      *
      * @ORM\Column(name="token_expires", type="integer")
      */
     private $tokenExpires;
 
     /**
-     * @var text $refreshToken
+     * @var text
      *
      * @ORM\Column(name="refresh_token", type="text")
      */
     private $refreshToken;
 
-
     /**
-     * @var boolean $enabled
+     * @var bool
      *
      * @ORM\Column(name="enabled", type="boolean")
      */
     private $enabled;
 
-     /**
-     * @var datetime $createdAt
+    /**
+     * @var datetime
      *
      * @ORM\Column(name="created_at", type="datetime")
      */
     private $createdAt;
 
     /**
-     * @var text $country
+     * @var text
      *
      * @ORM\Column(name="country", type="text")
      */
     private $country;
 
-
     public function __construct()
     {
-        $this->enabled   = true;
+        $this->enabled = true;
         $this->createdAt = new \DateTime('now');
-
     }
 
     /**
@@ -104,8 +100,6 @@ class Exact
         return $this;
     }
 
-
-
     /**
      * @return mixed
      */
@@ -125,7 +119,6 @@ class Exact
 
         return $this;
     }
-
 
     /**
      * @return mixed
@@ -247,5 +240,3 @@ class Exact
         return $this;
     }
 }
-
-?>

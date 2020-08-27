@@ -3,48 +3,48 @@
 namespace ExactOnlineBundle\Model;
 
 use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class DirectDebitMandate extends Model
+ * Class DirectDebitMandate extends Model.
  *
- * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=cashflowDirectDebitMandates
  *
- * @property string $ID Primary key
- * @property string $Account Account the mandate belongs to
- * @property string $BankAccount Bank account the mandate applies to
+ * @property string $ID               Primary key
+ * @property string $Account          Account the mandate belongs to
+ * @property string $BankAccount      Bank account the mandate applies to
  * @property string $CancellationDate Cancellation date
- * @property string $Created Creation date
- * @property string $Creator User ID of creator
- * @property string $Description Description
- * @property int $Division Division code
- * @property int $FirstSend Indicates the first collection hasn't been sent/confirmed with this mandate.
- * @property int $Indicates if the mandate is the main, you can have only one main mandate
- * @property string $Modified Last modified date
- * @property string $Modifier User ID of modifier
- * @property int $PaymentType Payment type. 0 = one-off payment, 1 = recurrent payment, 2 = AdHoc (UK only)
- * @property string $Reference Reference
- * @property string $SignatureDate Signature date
- * @property int $Type Type of mandate 0 = core, 1 = B2B, 2 = bottomline (UK only)
+ * @property string $Created          Creation date
+ * @property string $Creator          User ID of creator
+ * @property string $Description      Description
+ * @property int    $Division         Division code
+ * @property int    $FirstSend        Indicates the first collection hasn't been sent/confirmed with this mandate.
+ * @property int    $Indicates        if the mandate is the main, you can have only one main mandate
+ * @property string $Modified         Last modified date
+ * @property string $Modifier         User ID of modifier
+ * @property int    $PaymentType      Payment type. 0 = one-off payment, 1 = recurrent payment, 2 = AdHoc (UK only)
+ * @property string $Reference        Reference
+ * @property string $SignatureDate    Signature date
+ * @property int    $Type             Type of mandate 0 = core, 1 = B2B, 2 = bottomline (UK only)
  */
 class DirectDebitMandate extends Model
 {
-        protected $ID;
-        protected $Account;
-        protected $BankAccount;
-        protected $CancellationDate;
-        protected $Created;
-        protected $Creator;
-        protected $Description;
-        protected $Division;
-        protected $FirstSend;
-        protected $Main;
-        protected $Modified;
-        protected $Modifier;
-        protected $PaymentType;
-        protected $Reference;
-        protected $SignatureDate;
-        protected $Type;
-        protected $url = 'cashflow/DirectDebitMandates';
+    protected $ID;
+    protected $Account;
+    protected $BankAccount;
+    protected $CancellationDate;
+    protected $Created;
+    protected $Creator;
+    protected $Description;
+    protected $Division;
+    protected $FirstSend;
+    protected $Main;
+    protected $Modified;
+    protected $Modifier;
+    protected $PaymentType;
+    protected $Reference;
+    protected $SignatureDate;
+    protected $Type;
+    protected $url = 'cashflow/DirectDebitMandates';
 
     /**
      * @return mixed
@@ -386,4 +386,3 @@ class DirectDebitMandate extends Model
         return $this;
     }
 }
-

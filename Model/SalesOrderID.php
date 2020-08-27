@@ -3,10 +3,10 @@
 namespace ExactOnlineBundle\Model;
 
 use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class SalesOrderID extends Model
+ * Class SalesOrderID extends Model.
  *
- * @package ExactOnlineBundle\Model;
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=SalesInvoiceSalesOrderIDget123
  *
  * @property string $ID
@@ -15,7 +15,6 @@ class SalesOrderID extends Model
 {
     protected $ID;
     protected $url = 'salesinvoice/SalesOrderID';
-
 
     /**
      * @return mixed

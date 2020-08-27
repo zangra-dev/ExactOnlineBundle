@@ -2,27 +2,22 @@
 
 namespace ExactOnlineBundle\Repository;
 
-use Doctrine\ORM\Mapping;
 use Doctrine\ORM\EntityRepository;
-use ExactOnlineBundle\Entity\Exact;
-
 
 /**
- * Author: Jefferson Bianchi
- * Email : Jefferson@aibianchi.com
+ * Author: Jefferson Bianchi / Maxime Lambot
+ * Email : jefferson@zangra.com / maxime@zangra.com.
  */
 final class ExactRepository extends EntityRepository
 {
-    public function findLastByCountry($country){
-
+    public function findLastByCountry($country)
+    {
         $qb = $this->createQueryBuilder('e');
-        $qb->setMaxResults( 1 );
+        $qb->setMaxResults(1);
         $qb->where('e.country = :country');
         $qb->setParameter('country', $country);
         $qb->orderBy('e.id', 'DESC');
 
         return $qb->getQuery()->getOneOrNullResult();
-
     }
-
 }

@@ -3,122 +3,122 @@
 namespace ExactOnlineBundle\Model;
 
 use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class Address extends Model
+ * Class Address extends Model.
  *
- * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=CRMAddresses
  *
- * @property string $ID Primary key
- * @property string $Account Account linked to the address
- * @property bool $AccountIsSupplier Indicates if the account is a supplier
- * @property string $AccountName Name of the account
- * @property string $AddressLine1 First address line
- * @property string $AddressLine2 Second address line
- * @property string $AddressLine3 Third address line
- * @property string $City City
- * @property string $Contact Contact linked to Address
- * @property string $ContactName Contact name
- * @property string $Country Country code
- * @property string $CountryName Country name
- * @property string $Created Creation date
- * @property string $Creator User ID of creator
- * @property string $CreatorFullName Name of creator
- * @property int $Division Division code
- * @property string $Fax Fax number
- * @property bool $FreeBoolField_01 Free boolean field 1
- * @property bool $FreeBoolField_02 Free boolean field 2
- * @property bool $FreeBoolField_03 Free boolean field 3
- * @property bool $FreeBoolField_04 Free boolean field 4
- * @property bool $FreeBoolField_05 Free boolean field 5
- * @property string $FreeDateField_01 Free date field 1
- * @property string $FreeDateField_02 Free date field 2
- * @property string $FreeDateField_03 Free date field 3
- * @property string $FreeDateField_04 Free date field 4
- * @property string $FreeDateField_05 Free date field 5
- * @property float $FreeNumberField_01 Free number field 1
- * @property float $FreeNumberField_02 Free number field 2
- * @property float $FreeNumberField_03 Free number field 3
- * @property float $FreeNumberField_04 Free number field 4
- * @property float $FreeNumberField_05 Free number field 5
- * @property string $FreeTextField_01 Free text field 1
- * @property string $FreeTextField_02 Free text field 2
- * @property string $FreeTextField_03 Free text field 3
- * @property string $FreeTextField_04 Free text field 4
- * @property string $FreeTextField_05 Free text field 5
- * @property string $Mailbox Mailbox
- * @property bool $Main Indicates if the address is the main address for this type
- * @property string $Modified Last modified date
- * @property string $Modifier User ID of modifier
- * @property string $ModifierFullName Name of modifier
- * @property string $NicNumber Last 5 digits of SIRET number which is an intern sequential number of 4 digits representing the identification of the localization of the office
- * @property string $Notes Notes for an address
- * @property string $Phone Phone number
- * @property string $PhoneExtension Phone extension
- * @property string $Postcode Postcode
- * @property string $State State
- * @property string $StateDescription Name of the State
- * @property int $Type The type of address. Visit=1, Postal=2, Invoice=3, Delivery=4
- * @property string $Warehouse The warehouse linked to the address, if a warehouse is linked the account will be empty. Can only be filled for type=Delivery
- * @property string $WarehouseCode Code of the warehoude
+ * @property string $ID                   Primary key
+ * @property string $Account              Account linked to the address
+ * @property bool   $AccountIsSupplier    Indicates if the account is a supplier
+ * @property string $AccountName          Name of the account
+ * @property string $AddressLine1         First address line
+ * @property string $AddressLine2         Second address line
+ * @property string $AddressLine3         Third address line
+ * @property string $City                 City
+ * @property string $Contact              Contact linked to Address
+ * @property string $ContactName          Contact name
+ * @property string $Country              Country code
+ * @property string $CountryName          Country name
+ * @property string $Created              Creation date
+ * @property string $Creator              User ID of creator
+ * @property string $CreatorFullName      Name of creator
+ * @property int    $Division             Division code
+ * @property string $Fax                  Fax number
+ * @property bool   $FreeBoolField_01     Free boolean field 1
+ * @property bool   $FreeBoolField_02     Free boolean field 2
+ * @property bool   $FreeBoolField_03     Free boolean field 3
+ * @property bool   $FreeBoolField_04     Free boolean field 4
+ * @property bool   $FreeBoolField_05     Free boolean field 5
+ * @property string $FreeDateField_01     Free date field 1
+ * @property string $FreeDateField_02     Free date field 2
+ * @property string $FreeDateField_03     Free date field 3
+ * @property string $FreeDateField_04     Free date field 4
+ * @property string $FreeDateField_05     Free date field 5
+ * @property float  $FreeNumberField_01   Free number field 1
+ * @property float  $FreeNumberField_02   Free number field 2
+ * @property float  $FreeNumberField_03   Free number field 3
+ * @property float  $FreeNumberField_04   Free number field 4
+ * @property float  $FreeNumberField_05   Free number field 5
+ * @property string $FreeTextField_01     Free text field 1
+ * @property string $FreeTextField_02     Free text field 2
+ * @property string $FreeTextField_03     Free text field 3
+ * @property string $FreeTextField_04     Free text field 4
+ * @property string $FreeTextField_05     Free text field 5
+ * @property string $Mailbox              Mailbox
+ * @property bool   $Main                 Indicates if the address is the main address for this type
+ * @property string $Modified             Last modified date
+ * @property string $Modifier             User ID of modifier
+ * @property string $ModifierFullName     Name of modifier
+ * @property string $NicNumber            Last 5 digits of SIRET number which is an intern sequential number of 4 digits representing the identification of the localization of the office
+ * @property string $Notes                Notes for an address
+ * @property string $Phone                Phone number
+ * @property string $PhoneExtension       Phone extension
+ * @property string $Postcode             Postcode
+ * @property string $State                State
+ * @property string $StateDescription     Name of the State
+ * @property int    $Type                 The type of address. Visit=1, Postal=2, Invoice=3, Delivery=4
+ * @property string $Warehouse            The warehouse linked to the address, if a warehouse is linked the account will be empty. Can only be filled for type=Delivery
+ * @property string $WarehouseCode        Code of the warehoude
  * @property string $WarehouseDescription Description of the warehouse
  */
 class Address extends Model
 {
-        protected $ID;
-        protected $Account;
-        protected $AccountIsSupplier;
-        protected $AccountName;
-        protected $AddressLine1;
-        protected $AddressLine2;
-        protected $AddressLine3;
-        protected $City;
-        protected $Contact;
-        protected $ContactName;
-        protected $Country;
-        protected $CountryName;
-        protected $Created;
-        protected $Creator;
-        protected $CreatorFullName;
-        protected $Division;
-        protected $Fax;
-        protected $FreeBoolField_01;
-        protected $FreeBoolField_02;
-        protected $FreeBoolField_03;
-        protected $FreeBoolField_04;
-        protected $FreeBoolField_05;
-        protected $FreeDateField_01;
-        protected $FreeDateField_02;
-        protected $FreeDateField_03;
-        protected $FreeDateField_04;
-        protected $FreeDateField_05;
-        protected $FreeNumberField_01;
-        protected $FreeNumberField_02;
-        protected $FreeNumberField_03;
-        protected $FreeNumberField_04;
-        protected $FreeNumberField_05;
-        protected $FreeTextField_01;
-        protected $FreeTextField_02;
-        protected $FreeTextField_03;
-        protected $FreeTextField_04;
-        protected $FreeTextField_05;
-        protected $Mailbox;
-        protected $Main;
-        protected $Modified;
-        protected $Modifier;
-        protected $ModifierFullName;
-        protected $NicNumber;
-        protected $Notes;
-        protected $Phone;
-        protected $PhoneExtension;
-        protected $Postcode;
-        protected $State;
-        protected $StateDescription;
-        protected $Type;
-        protected $Warehouse;
-        protected $WarehouseCode;
-        protected $WarehouseDescription;
-        protected $url = 'crm/Addresses';
+    protected $ID;
+    protected $Account;
+    protected $AccountIsSupplier;
+    protected $AccountName;
+    protected $AddressLine1;
+    protected $AddressLine2;
+    protected $AddressLine3;
+    protected $City;
+    protected $Contact;
+    protected $ContactName;
+    protected $Country;
+    protected $CountryName;
+    protected $Created;
+    protected $Creator;
+    protected $CreatorFullName;
+    protected $Division;
+    protected $Fax;
+    protected $FreeBoolField_01;
+    protected $FreeBoolField_02;
+    protected $FreeBoolField_03;
+    protected $FreeBoolField_04;
+    protected $FreeBoolField_05;
+    protected $FreeDateField_01;
+    protected $FreeDateField_02;
+    protected $FreeDateField_03;
+    protected $FreeDateField_04;
+    protected $FreeDateField_05;
+    protected $FreeNumberField_01;
+    protected $FreeNumberField_02;
+    protected $FreeNumberField_03;
+    protected $FreeNumberField_04;
+    protected $FreeNumberField_05;
+    protected $FreeTextField_01;
+    protected $FreeTextField_02;
+    protected $FreeTextField_03;
+    protected $FreeTextField_04;
+    protected $FreeTextField_05;
+    protected $Mailbox;
+    protected $Main;
+    protected $Modified;
+    protected $Modifier;
+    protected $ModifierFullName;
+    protected $NicNumber;
+    protected $Notes;
+    protected $Phone;
+    protected $PhoneExtension;
+    protected $Postcode;
+    protected $State;
+    protected $StateDescription;
+    protected $Type;
+    protected $Warehouse;
+    protected $WarehouseCode;
+    protected $WarehouseDescription;
+    protected $url = 'crm/Addresses';
 
     /**
      * @return mixed

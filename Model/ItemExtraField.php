@@ -3,29 +3,26 @@
 namespace ExactOnlineBundle\Model;
 
 use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class ItemExtraField extends Model
+ * Class ItemExtraField extends Model.
  *
- * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=logisticsItemExtraField
  *
  * @property string $Description Description of item
- * @property ItemID $ItemID Primary key
- * @property string $Modified Last modified date
- * @property float $Number Number of Field Order
- * @property string $Value Value of the selected List
- *
+ * @property ItemID $ItemID      Primary key
+ * @property string $Modified    Last modified date
+ * @property float  $Number      Number of Field Order
+ * @property string $Value       Value of the selected List
  */
-
 class ItemExtraField extends Model
 {
-
-        protected $Description;
-        protected $ItemID;
-        protected $Modified;
-        protected $Number;
-        protected $Value;
-        protected $url = 'read/logistics/ItemExtraField';
+    protected $Description;
+    protected $ItemID;
+    protected $Modified;
+    protected $Number;
+    protected $Value;
+    protected $url = 'read/logistics/ItemExtraField';
 
     /**
      * @return mixed

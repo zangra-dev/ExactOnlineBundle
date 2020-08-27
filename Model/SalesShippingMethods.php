@@ -3,44 +3,44 @@
 namespace ExactOnlineBundle\Model;
 
 use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class Item extends Model
+ * Class Item extends Model.
  *
- * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=SalesShippingMethods
  *
- * @property string $ID Primary key
- * @property bool $Active Active
- * @property string $Code Code of the shipping method
- * @property string $Created Creation date
- * @property string $Creator User ID of creator
- * @property string $CreatorFullName Name of creator
- * @property string $Description Description of shipping method
- * @property int $Division Division code
- * @property string $Modified Last modified date
- * @property string $Modifier User ID of modifier
+ * @property string $ID               Primary key
+ * @property bool   $Active           Active
+ * @property string $Code             Code of the shipping method
+ * @property string $Created          Creation date
+ * @property string $Creator          User ID of creator
+ * @property string $CreatorFullName  Name of creator
+ * @property string $Description      Description of shipping method
+ * @property int    $Division         Division code
+ * @property string $Modified         Last modified date
+ * @property string $Modifier         User ID of modifier
  * @property string $ModifierFullName Name of modifier
- * @property string $Notes Notes
+ * @property string $Notes            Notes
  * @property string $ShippingRatesURL Shipping method rates URL
- * @property string $TrackingURL Tracking URL
+ * @property string $TrackingURL      Tracking URL
  */
 class SalesShippingMethods extends Model
 {
-        protected $ID;
-        protected $Active;
-        protected $Code;
-        protected $Created;
-        protected $Creator;
-        protected $CreatorFullName;
-        protected $Description;
-        protected $Division;
-        protected $Modified;
-        protected $Modifier;
-        protected $ModifierFullName;
-        protected $Notes;
-        protected $ShippingRatesURL;
-        protected $TrackingURL;
-        protected $url = 'sales/ShippingMethods';
+    protected $ID;
+    protected $Active;
+    protected $Code;
+    protected $Created;
+    protected $Creator;
+    protected $CreatorFullName;
+    protected $Description;
+    protected $Division;
+    protected $Modified;
+    protected $Modifier;
+    protected $ModifierFullName;
+    protected $Notes;
+    protected $ShippingRatesURL;
+    protected $TrackingURL;
+    protected $url = 'sales/ShippingMethods';
 
     /**
      * @return mixed

@@ -3,35 +3,34 @@
 namespace PExactOnlineBundle\Model;
 
 /**
- * Class SubscriptionType extends Model
+ * Class SubscriptionType extends Model.
  *
- * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=SubscriptionSubscriptionTypes
  *
- * @property string $ID Primary key
- * @property string $Code Code
- * @property string $Created Creation date
- * @property string $Creator User ID of the creator
- * @property string $CreatorFullName Name of the creator
- * @property string $Description Description
- * @property int $Division Division code
- * @property string $Modified Last modified date
- * @property string $Modifier User ID of the last modifier
+ * @property string $ID               Primary key
+ * @property string $Code             Code
+ * @property string $Created          Creation date
+ * @property string $Creator          User ID of the creator
+ * @property string $CreatorFullName  Name of the creator
+ * @property string $Description      Description
+ * @property int    $Division         Division code
+ * @property string $Modified         Last modified date
+ * @property string $Modifier         User ID of the last modifier
  * @property string $ModifierFullName Name of the last modifier
  */
 class SubscriptionType extends Model
 {
-        protected $ID;
-        protected $Code;
-        protected $Created;
-        protected $Creator;
-        protected $CreatorFullName;
-        protected $Description;
-        protected $Division;
-        protected $Modified;
-        protected $Modifier;
-        protected $ModifierFullName;
-        protected $url = 'subscription/SubscriptionTypes';
+    protected $ID;
+    protected $Code;
+    protected $Created;
+    protected $Creator;
+    protected $CreatorFullName;
+    protected $Description;
+    protected $Division;
+    protected $Modified;
+    protected $Modifier;
+    protected $ModifierFullName;
+    protected $url = 'subscription/SubscriptionTypes';
 
     /**
      * @return mixed

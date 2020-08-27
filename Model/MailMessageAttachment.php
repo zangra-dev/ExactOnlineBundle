@@ -3,26 +3,26 @@
 namespace ExactOnlineBundle\Model;
 
 use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class MailMessageAttachment extends Model
+ * Class MailMessageAttachment extends Model.
  *
- * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=mailboxMailMessageAttachments
  *
- * @property string $ID Primary key
- * @property string $Attachment For performance reasons Attachment is Write-Only. The blob can be downloaded using the supplied Url
+ * @property string $ID                 Primary key
+ * @property string $Attachment         For performance reasons Attachment is Write-Only. The blob can be downloaded using the supplied Url
  * @property string $AttachmentFileName File name of attachment
- * @property string $MailMessageID Reference to Mail message
- * @property int $Type Type of mail message attachment
+ * @property string $MailMessageID      Reference to Mail message
+ * @property int    $Type               Type of mail message attachment
  */
 class MailMessageAttachment extends Model
 {
-        protected $ID;
-        protected $Attachment;
-        protected $AttachmentFileName;
-        protected $MailMessageID;
-        protected $Type;
-        protected $url = 'mailbox/MailMessageAttachments';
+    protected $ID;
+    protected $Attachment;
+    protected $AttachmentFileName;
+    protected $MailMessageID;
+    protected $Type;
+    protected $url = 'mailbox/MailMessageAttachments';
 
     /**
      * @return mixed

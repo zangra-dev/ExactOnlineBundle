@@ -3,25 +3,24 @@
 namespace ExactOnlineBundle\Model;
 
 use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class OutstandingInvoicesOverview extends Model
+ * Class OutstandingInvoicesOverview extends Model.
  *
- * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=ReadFinancialOutstandingInvoicesOverview
  *
- * @property string $CurrencyCode Primary key
- * @property float $OutstandingPayableInvoiceAmount Total invoice amount to be paid
- * @property float $OutstandingPayableInvoiceCount Number of invoices to be paid
- * @property float $OutstandingReceivableInvoiceAmount Total invoice amount to be received
- * @property float $OutstandingReceivableInvoiceCount Number of invoices to be received
- * @property float $OverduePayableInvoiceAmount Total payable invoice amount that is overdue
- * @property float $OverduePayableInvoiceCount Number of payable invoices that are overdue
- * @property float $OverdueReceivableInvoiceAmount Total receivable invoice amount that is overdue
- * @property float $OverdueReceivableInvoiceCount Number of receivable invoices that are overdue
+ * @property string $CurrencyCode                       Primary key
+ * @property float  $OutstandingPayableInvoiceAmount    Total invoice amount to be paid
+ * @property float  $OutstandingPayableInvoiceCount     Number of invoices to be paid
+ * @property float  $OutstandingReceivableInvoiceAmount Total invoice amount to be received
+ * @property float  $OutstandingReceivableInvoiceCount  Number of invoices to be received
+ * @property float  $OverduePayableInvoiceAmount        Total payable invoice amount that is overdue
+ * @property float  $OverduePayableInvoiceCount         Number of payable invoices that are overdue
+ * @property float  $OverdueReceivableInvoiceAmount     Total receivable invoice amount that is overdue
+ * @property float  $OverdueReceivableInvoiceCount      Number of receivable invoices that are overdue
  */
 class OutstandingInvoicesOverview extends Model
 {
-
     protected $primaryKey = 'CurrencyCode';
     protected $CurrencyCode;
     protected $OutstandingPayableInvoiceAmount;
@@ -33,7 +32,6 @@ class OutstandingInvoicesOverview extends Model
     protected $OverdueReceivableInvoiceAmount;
     protected $OverdueReceivableInvoiceCount;
     protected $url = 'read/financial/OutstandingInvoicesOverview';
-
 
     /**
      * @return mixed

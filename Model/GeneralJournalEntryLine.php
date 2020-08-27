@@ -3,54 +3,54 @@
 namespace ExactOnlineBundle\Model;
 
 use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class GeneralJournalEntryLine extends Model
+ * Class GeneralJournalEntryLine extends Model.
  *
- * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=GeneralJournalEntryGeneralJournalEntryLines
  *
- * @property string $ID Primary key
- * @property string $Account Reference to account
- * @property float $AmountFC Amount in the currency of the transaction. If an 'Including' VAT code is used this amount includes the VAT amount.
- * @property float $AmountVATFC Vat amount in the currency of the transaction. If you want to set this in a POST you have to specify VATCode as well.
- * @property string $Asset Reference to asset
- * @property string $CostCenter Reference to cost center
- * @property string $CostUnit Reference to cost unit
- * @property string $Date Entry date
- * @property string $Description Description
- * @property string $Document Reference to document
- * @property string $EntryID Reference to header of the entry
- * @property string $GLAccount General ledger account
- * @property string $Notes Extra remarks
+ * @property string $ID            Primary key
+ * @property string $Account       Reference to account
+ * @property float  $AmountFC      Amount in the currency of the transaction. If an 'Including' VAT code is used this amount includes the VAT amount.
+ * @property float  $AmountVATFC   Vat amount in the currency of the transaction. If you want to set this in a POST you have to specify VATCode as well.
+ * @property string $Asset         Reference to asset
+ * @property string $CostCenter    Reference to cost center
+ * @property string $CostUnit      Reference to cost unit
+ * @property string $Date          Entry date
+ * @property string $Description   Description
+ * @property string $Document      Reference to document
+ * @property string $EntryID       Reference to header of the entry
+ * @property string $GLAccount     General ledger account
+ * @property string $Notes         Extra remarks
  * @property string $OffsetID
- * @property int $OurRef Our ref of general journal entry
- * @property string $Project Reference to project
- * @property float $Quantity
- * @property string $VATCode VATCode can only be used if the general journal has VAT enabled. VAT Lines will be automatically created if the VATCode is specified when creating a new general journal entry.
- * @property float $VATPercentage Vat percentage
+ * @property int    $OurRef        Our ref of general journal entry
+ * @property string $Project       Reference to project
+ * @property float  $Quantity
+ * @property string $VATCode       VATCode can only be used if the general journal has VAT enabled. VAT Lines will be automatically created if the VATCode is specified when creating a new general journal entry.
+ * @property float  $VATPercentage Vat percentage
  */
 class GeneralJournalEntryLine extends Model
 {
-        protected $ID;
-        protected $Account;
-        protected $AmountFC;
-        protected $AmountVATFC;
-        protected $Asset;
-        protected $CostCenter;
-        protected $CostUnit;
-        protected $Date;
-        protected $Description;
-        protected $Document;
-        protected $EntryID;
-        protected $GLAccount;
-        protected $Notes;
-        protected $OffsetID;
-        protected $OurRef;
-        protected $Project;
-        protected $Quantity;
-        protected $VATCode;
-        protected $VATPercentage;
-        protected $url = 'generaljournalentry/GeneralJournalEntryLines';
+    protected $ID;
+    protected $Account;
+    protected $AmountFC;
+    protected $AmountVATFC;
+    protected $Asset;
+    protected $CostCenter;
+    protected $CostUnit;
+    protected $Date;
+    protected $Description;
+    protected $Document;
+    protected $EntryID;
+    protected $GLAccount;
+    protected $Notes;
+    protected $OffsetID;
+    protected $OurRef;
+    protected $Project;
+    protected $Quantity;
+    protected $VATCode;
+    protected $VATPercentage;
+    protected $url = 'generaljournalentry/GeneralJournalEntryLines';
 
     /**
      * @return mixed

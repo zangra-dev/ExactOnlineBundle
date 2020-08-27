@@ -3,61 +3,60 @@
 namespace ExactOnlineBundle\Model;
 
 use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class PaymentCondition extends Model
+ * Class PaymentCondition extends Model.
  *
- * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=cashflowPaymentConditions
  *
- * @property string $ID Primary key
- * @property string $Code Code of the payment condition
- * @property string $Created Creation date
- * @property string $Creator User ID of creator
- * @property string $CreatorFullName Name of creator
- * @property string $CreditManagementScenario Default credit management scenario to be used for new payment terms
- * @property string $CreditManagementScenarioCode Code of CreditManagementScenario
+ * @property string $ID                                  Primary key
+ * @property string $Code                                Code of the payment condition
+ * @property string $Created                             Creation date
+ * @property string $Creator                             User ID of creator
+ * @property string $CreatorFullName                     Name of creator
+ * @property string $CreditManagementScenario            Default credit management scenario to be used for new payment terms
+ * @property string $CreditManagementScenarioCode        Code of CreditManagementScenario
  * @property string $CreditManagementScenarioDescription Description of CreditManagementScenario
- * @property string $Description Description of CreditManagementScenario
- * @property string $DiscountCalculation Indicates how the discount amount is calculated. Values: E = Excluding VAT, I = Including VAT
- * @property int $DiscountPaymentDays Number of days to pay within, to have the right to take the discount
- * @property float $DiscountPercentage Discount percentage
- * @property int $Division Division code
- * @property string $Modified Last modified date
- * @property string $Modifier User ID of modifier
- * @property string $ModifierFullName Name of modifier
- * @property int $PaymentDays Number of days to pay within, to have the right to take the discount
- * @property string $PaymentDiscountType Type of payment discount. Values: B = Settlement discount, K = Credit surcharge
- * @property int $PaymentEndOfMonths Number of days to be included in the due date calculation. Example: invoice date = 17/01 PaymentEndOfMonths = 2 => 31/03 PaymentDays = 15 => 15/04
- * @property string $PaymentMethod Method of payment. Values: B = On credit, I = Collection, K = Cash
- * @property float $Percentage Discount percentage
- * @property string $VATCalculation Indicates how the VAT amount is calculated Values: E = Excluding discount, I = Including discount
+ * @property string $Description                         Description of CreditManagementScenario
+ * @property string $DiscountCalculation                 Indicates how the discount amount is calculated. Values: E = Excluding VAT, I = Including VAT
+ * @property int    $DiscountPaymentDays                 Number of days to pay within, to have the right to take the discount
+ * @property float  $DiscountPercentage                  Discount percentage
+ * @property int    $Division                            Division code
+ * @property string $Modified                            Last modified date
+ * @property string $Modifier                            User ID of modifier
+ * @property string $ModifierFullName                    Name of modifier
+ * @property int    $PaymentDays                         Number of days to pay within, to have the right to take the discount
+ * @property string $PaymentDiscountType                 Type of payment discount. Values: B = Settlement discount, K = Credit surcharge
+ * @property int    $PaymentEndOfMonths                  Number of days to be included in the due date calculation. Example: invoice date = 17/01 PaymentEndOfMonths = 2 => 31/03 PaymentDays = 15 => 15/04
+ * @property string $PaymentMethod                       Method of payment. Values: B = On credit, I = Collection, K = Cash
+ * @property float  $Percentage                          Discount percentage
+ * @property string $VATCalculation                      Indicates how the VAT amount is calculated Values: E = Excluding discount, I = Including discount
  */
 class PaymentCondition extends Model
 {
-
-        protected $ID;
-        protected $Code;
-        protected $Created;
-        protected $Creator;
-        protected $CreatorFullName;
-        protected $CreditManagementScenario;
-        protected $CreditManagementScenarioCode;
-        protected $CreditManagementScenarioDescription;
-        protected $Description;
-        protected $DiscountCalculation;
-        protected $DiscountPaymentDays;
-        protected $DiscountPercentage;
-        protected $Division;
-        protected $Modified;
-        protected $Modifier;
-        protected $ModifierFullName;
-        protected $PaymentDays;
-        protected $PaymentDiscountType;
-        protected $PaymentEndOfMonths;
-        protected $PaymentMethod;
-        protected $Percentage;
-        protected $VATCalculation;
-        protected $url = 'cashflow/PaymentConditions';
+    protected $ID;
+    protected $Code;
+    protected $Created;
+    protected $Creator;
+    protected $CreatorFullName;
+    protected $CreditManagementScenario;
+    protected $CreditManagementScenarioCode;
+    protected $CreditManagementScenarioDescription;
+    protected $Description;
+    protected $DiscountCalculation;
+    protected $DiscountPaymentDays;
+    protected $DiscountPercentage;
+    protected $Division;
+    protected $Modified;
+    protected $Modifier;
+    protected $ModifierFullName;
+    protected $PaymentDays;
+    protected $PaymentDiscountType;
+    protected $PaymentEndOfMonths;
+    protected $PaymentMethod;
+    protected $Percentage;
+    protected $VATCalculation;
+    protected $url = 'cashflow/PaymentConditions';
 
     /**
      * @return mixed

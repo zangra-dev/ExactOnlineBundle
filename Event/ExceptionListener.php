@@ -8,24 +8,21 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 
-
-
 /**
- * Author: Jefferson Bianchi
- * Mail  : Jefferson@aibianchi.com
+ * Author: Jefferson Bianchi / Maxime Lambot
+ * Email : jefferson@zangra.com / maxime@zangra.com.
  */
-class ExceptionListener{
-
+class ExceptionListener
+{
     private $logger;
 
-    public function __construct(LoggerInterface $logger){
-
+    public function __construct(LoggerInterface $logger)
+    {
         $this->logger = $logger;
-
     }
 
-    public function onKernelException(GetResponseForExceptionEvent $event){
-
+    public function onKernelException(GetResponseForExceptionEvent $event)
+    {
         if (!$event->getException() instanceof ApiExceptionInterface) {
             return;
         }
@@ -34,11 +31,10 @@ class ExceptionListener{
         $event->setResponse($response);
 
         $this->log($event->getException());
-
     }
 
-    private function log(ApiExceptionInterface $exception){
-
+    private function log(ApiExceptionInterface $exception)
+    {
         $log = [
             'code' => $exception->getStatusCode(),
             'message' => $exception->getMessage(),
@@ -64,10 +60,5 @@ class ExceptionListener{
         }
 
         $this->logger->error(json_encode($log));
-
     }
-
 }
-
-
-?>

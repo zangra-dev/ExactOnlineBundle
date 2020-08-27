@@ -3,40 +3,40 @@
 namespace ExactOnlineBundle\Model;
 
 use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class InvoiceSalesOrder extends Model
+ * Class InvoiceSalesOrder extends Model.
  *
- * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=SalesInvoiceInvoiceSalesOrders
  *
- * @property string $ID Primary key
- * @property int $CreateMode Invoice creation mode- 0: Per customer 1: Per sales order
- * @property int $DeliveryNumber Stock entries entry number.
- * @property string $EndDate Stock entries entry end date.
- * @property string $Errors Errors in the process.
- * @property int $InvoiceMode Invoice quantity processing mode- 0:By quantity delivered 1:By quantity ordered.
- * @property string $JournalCode Code of Journal
- * @property int $NumberOfCreatedInvoices Number of invoices successfully created.
- * @property int $NumberOfFailedInvoices Number of invoices failed to create.
- * @property SalesOrderIDs $SalesOrderIDs Collection of Sales order IDs.
- * @property string $StartDate Stock entries entry start date.
- * @property string $UserInvoiceDate Possibility to override the InvoiceDate during creation of sales invoice from sales orders. Works only for integration with Intuit QuickBooks.
+ * @property string        $ID                      Primary key
+ * @property int           $CreateMode              Invoice creation mode- 0: Per customer 1: Per sales order
+ * @property int           $DeliveryNumber          Stock entries entry number.
+ * @property string        $EndDate                 Stock entries entry end date.
+ * @property string        $Errors                  Errors in the process.
+ * @property int           $InvoiceMode             Invoice quantity processing mode- 0:By quantity delivered 1:By quantity ordered.
+ * @property string        $JournalCode             Code of Journal
+ * @property int           $NumberOfCreatedInvoices Number of invoices successfully created.
+ * @property int           $NumberOfFailedInvoices  Number of invoices failed to create.
+ * @property SalesOrderIDs $SalesOrderIDs           Collection of Sales order IDs.
+ * @property string        $StartDate               Stock entries entry start date.
+ * @property string        $UserInvoiceDate         Possibility to override the InvoiceDate during creation of sales invoice from sales orders. Works only for integration with Intuit QuickBooks.
  */
 class InvoiceSalesOrder extends Model
 {
-        protected $ID;
-        protected $CreateMode;
-        protected $DeliveryNumber;
-        protected $EndDate;
-        protected $Errors;
-        protected $InvoiceMode;
-        protected $JournalCode;
-        protected $NumberOfCreatedInvoices;
-        protected $NumberOfFailedInvoices;
-        protected $SalesOrderIDs;
-        protected $StartDate;
-        protected $UserInvoiceDate;
-        protected $url = 'salesinvoice/InvoiceSalesOrders';
+    protected $ID;
+    protected $CreateMode;
+    protected $DeliveryNumber;
+    protected $EndDate;
+    protected $Errors;
+    protected $InvoiceMode;
+    protected $JournalCode;
+    protected $NumberOfCreatedInvoices;
+    protected $NumberOfFailedInvoices;
+    protected $SalesOrderIDs;
+    protected $StartDate;
+    protected $UserInvoiceDate;
+    protected $url = 'salesinvoice/InvoiceSalesOrders';
 
     /**
      * @return mixed

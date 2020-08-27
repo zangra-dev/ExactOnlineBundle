@@ -3,64 +3,64 @@
 namespace ExactOnlineBundle\Model;
 
 use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class BillOfMaterialVersion extends Model
+ * Class BillOfMaterialVersion extends Model.
  *
- * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=ManufacturingBillOfMaterialVersions
  *
- * @property string $ID Primary key
- * @property float $BatchQuantity Batch Quantity of Item Version
- * @property string $CadDrawingUrl Cad drawing URL
- * @property float $CalculatedCostPrice Calculated Cost Price of Item Version
- * @property string $Created Creation date
- * @property string $Creator User ID of creator
- * @property string $CreatorFullName Name of creator
- * @property string $Description Description of the item version
- * @property int $Division Division code
- * @property int $IsDefault Indicates if this is the default item version that will be assigned when a item is selected
- * @property string $Item Reference to Items table
- * @property string $ItemDescription Description of Item
- * @property string $Modified Last modified date
- * @property string $Modifier User ID of modifier
- * @property string $ModifierFullName Name of modifier
- * @property string $Notes Line notes
- * @property int $OrderLeadDays Order lead days for item
- * @property int $ProductionLeadDays Production lead time in days of Item version
- * @property int $Status Statuses of Item version: 10-Engineering change pending, 20-Engineering change approved, 30-Active & 40-Historic
- * @property string $StatusDescription Description of Status
- * @property int $Type Type of Item version: 10-Sales bill of material, 20-Manufacturing recipe
- * @property string $TypeDescription Description of Type
- * @property string $VersionDate Version date
- * @property int $VersionNumber Version Number
+ * @property string $ID                  Primary key
+ * @property float  $BatchQuantity       Batch Quantity of Item Version
+ * @property string $CadDrawingUrl       Cad drawing URL
+ * @property float  $CalculatedCostPrice Calculated Cost Price of Item Version
+ * @property string $Created             Creation date
+ * @property string $Creator             User ID of creator
+ * @property string $CreatorFullName     Name of creator
+ * @property string $Description         Description of the item version
+ * @property int    $Division            Division code
+ * @property int    $IsDefault           Indicates if this is the default item version that will be assigned when a item is selected
+ * @property string $Item                Reference to Items table
+ * @property string $ItemDescription     Description of Item
+ * @property string $Modified            Last modified date
+ * @property string $Modifier            User ID of modifier
+ * @property string $ModifierFullName    Name of modifier
+ * @property string $Notes               Line notes
+ * @property int    $OrderLeadDays       Order lead days for item
+ * @property int    $ProductionLeadDays  Production lead time in days of Item version
+ * @property int    $Status              Statuses of Item version: 10-Engineering change pending, 20-Engineering change approved, 30-Active & 40-Historic
+ * @property string $StatusDescription   Description of Status
+ * @property int    $Type                Type of Item version: 10-Sales bill of material, 20-Manufacturing recipe
+ * @property string $TypeDescription     Description of Type
+ * @property string $VersionDate         Version date
+ * @property int    $VersionNumber       Version Number
  */
 class BillOfMaterialVersion extends Model
 {
-        protected $ID;
-        protected $BatchQuantity;
-        protected $CadDrawingUrl;
-        protected $CalculatedCostPrice;
-        protected $Created;
-        protected $Creator;
-        protected $CreatorFullName;
-        protected $Description;
-        protected $Division;
-        protected $IsDefault;
-        protected $Item;
-        protected $ItemDescription;
-        protected $Modified;
-        protected $Modifier;
-        protected $ModifierFullName;
-        protected $Notes;
-        protected $OrderLeadDays;
-        protected $ProductionLeadDays;
-        protected $Status;
-        protected $StatusDescription;
-        protected $Type;
-        protected $TypeDescription;
-        protected $VersionDate;
-        protected $VersionNumber;
-        protected $url = 'manufacturing/BillOfMaterialVersions';
+    protected $ID;
+    protected $BatchQuantity;
+    protected $CadDrawingUrl;
+    protected $CalculatedCostPrice;
+    protected $Created;
+    protected $Creator;
+    protected $CreatorFullName;
+    protected $Description;
+    protected $Division;
+    protected $IsDefault;
+    protected $Item;
+    protected $ItemDescription;
+    protected $Modified;
+    protected $Modifier;
+    protected $ModifierFullName;
+    protected $Notes;
+    protected $OrderLeadDays;
+    protected $ProductionLeadDays;
+    protected $Status;
+    protected $StatusDescription;
+    protected $Type;
+    protected $TypeDescription;
+    protected $VersionDate;
+    protected $VersionNumber;
+    protected $url = 'manufacturing/BillOfMaterialVersions';
 
     /**
      * @return mixed

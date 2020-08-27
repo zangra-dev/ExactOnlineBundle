@@ -3,26 +3,25 @@
 namespace ExactOnlineBundle\Model;
 
 use ExactOnlineBundle\Model\Base\Model;
+
 /**
  * Entity holding stock position details.
  *
- * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=ReadLogisticsStockPosition
  *
- * @property float $InStock Number of items in stock
- * @property string $ItemId Primary key, Item
- * @property float $PlanningIn Number of items that are planned to come in
- * @property float $PlanningOut Number of items that are planned to go out
+ * @property float  $InStock     Number of items in stock
+ * @property string $ItemId      Primary key, Item
+ * @property float  $PlanningIn  Number of items that are planned to come in
+ * @property float  $PlanningOut Number of items that are planned to go out
  */
 class StockPosition extends Model
 {
-        protected $primaryKey = 'ItemId';
-        protected $InStock;
-        protected $ItemId;
-        protected $PlanningIn;
-        protected $PlanningOut;
-        protected $url = 'read/logistics/StockPosition';
-
+    protected $primaryKey = 'ItemId';
+    protected $InStock;
+    protected $ItemId;
+    protected $PlanningIn;
+    protected $PlanningOut;
+    protected $url = 'read/logistics/StockPosition';
 
     /**
      * @return mixed

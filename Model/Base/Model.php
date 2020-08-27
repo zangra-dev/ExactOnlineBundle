@@ -2,28 +2,22 @@
 
 namespace ExactOnlineBundle\Model\Base;
 
-use ExactOnlineBundle\DAO\Connection;
-
 /**
- * Author: Jefferson Bianchi
- * Email : Jefferson@aibianchi.com
+ * Author: Jefferson Bianchi / Maxime Lambot
+ * Email : jefferson@zangra.com / maxime@zangra.com.
  */
-abstract class Model {
-
-    public function toJson(){
-
-         $json = array();
-            foreach($this as $key => $value) {
-
-                if ( ($key == "url") || ($key == "primaryKey") ){
-                }else{
-                     $json[$key] = $value;
-                }
+abstract class Model
+{
+    public function toJson()
+    {
+        $json = [];
+        foreach ($this as $key => $value) {
+            if (('url' == $key) || ('primaryKey' == $key)) {
+            } else {
+                $json[$key] = $value;
             }
-            return json_encode($json);
+        }
 
+        return json_encode($json);
     }
-
 }
-
-?>

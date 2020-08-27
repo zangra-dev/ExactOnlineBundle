@@ -3,36 +3,36 @@
 namespace ExactOnlineBundle\Model;
 
 use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class Layout extends Model
+ * Class Layout extends Model.
  *
- * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=SalesInvoiceLayouts
  *
- * @property string $ID Primary key
- * @property string $Created Creation date
- * @property string $Creator User ID of creator
- * @property string $CreatorFullName Name of creator
- * @property int $Division Division code
- * @property string $Modified Last modified date
- * @property string $Modifier User ID of modifier
+ * @property string $ID               Primary key
+ * @property string $Created          Creation date
+ * @property string $Creator          User ID of creator
+ * @property string $CreatorFullName  Name of creator
+ * @property int    $Division         Division code
+ * @property string $Modified         Last modified date
+ * @property string $Modifier         User ID of modifier
  * @property string $ModifierFullName Name of modifier
- * @property string $Subject Subject
- * @property int $Type 1=Layout, 2=E-mail text layout, 3=Word template
+ * @property string $Subject          Subject
+ * @property int    $Type             1=Layout, 2=E-mail text layout, 3=Word template
  */
 class Layout extends Model
 {
-        protected $ID;
-        protected $Created;
-        protected $Creator;
-        protected $CreatorFullName;
-        protected $Division;
-        protected $Modified;
-        protected $Modifier;
-        protected $ModifierFullName;
-        protected $Subject;
-        protected $Type;
-        protected $url = 'salesinvoice/Layouts';
+    protected $ID;
+    protected $Created;
+    protected $Creator;
+    protected $CreatorFullName;
+    protected $Division;
+    protected $Modified;
+    protected $Modifier;
+    protected $ModifierFullName;
+    protected $Subject;
+    protected $Type;
+    protected $url = 'salesinvoice/Layouts';
 
     /**
      * @return mixed
