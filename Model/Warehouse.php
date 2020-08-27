@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -27,7 +27,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $ModifierFullName Name of modifier
  * @property int $UseStorageLocations Indicates if this warehouse is using storage locations. The storage locations will not be removed when when this is deactivated
  */
-class Warehouse extends Model 
+class Warehouse extends Model
 {
         protected $ID;
         protected $Code;

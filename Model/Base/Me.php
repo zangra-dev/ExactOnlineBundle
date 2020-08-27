@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model\Base;
+namespace ExactOnlineBundle\Model\Base;
 
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
@@ -84,7 +84,7 @@ class Me extends Model
                 $setter = "set".$keyD;
                 if(method_exists($this, $setter)){
                     $this->$setter($item);
-                }     
+                }
         }
     }
 

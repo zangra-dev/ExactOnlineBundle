@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -24,7 +24,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $ShippingRatesURL Shipping method rates URL
  * @property string $TrackingURL Tracking URL
  */
-class SalesShippingMethods extends Model 
+class SalesShippingMethods extends Model
 {
         protected $ID;
         protected $Active;

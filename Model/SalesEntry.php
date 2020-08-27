@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -54,7 +54,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property float $VATAmountFC Vat amount in the currency of the transaction
  * @property string $YourRef The invoice number of the customer
  */
-class SalesEntry extends Model 
+class SalesEntry extends Model
 {
         protected $primaryKey = 'EntryID';
         protected $saleEntryLines;
@@ -103,7 +103,7 @@ class SalesEntry extends Model
         protected $VATAmountFC;
         protected $YourRef;
         protected $url = 'salesentry/SalesEntries'
-    
+
 
     /**
      * @return mixed

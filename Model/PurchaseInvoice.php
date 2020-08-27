@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -35,7 +35,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $Warehouse string that identifies the warehouse that will receive the purchased goods. This is mandatory for creating a direct purchase invoice.
  * @property string $YourRef The invoice number provided by the supplier.
  */
-class PurchaseInvoice extends Model 
+class PurchaseInvoice extends Model
 {
         protected $ID;
         protected $Amount;

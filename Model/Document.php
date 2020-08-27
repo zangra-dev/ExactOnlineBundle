@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -32,7 +32,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property int $Type ID of the type of this document
  * @property string $TypeDescription Description of Type
  */
-class Document extends Model 
+class Document extends Model
 {
         protected $ID;
         protected $Account;

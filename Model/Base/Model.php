@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model\Base;
+namespace ExactOnlineBundle\Model\Base;
 
 use aibianchi\ExactOnlineBundle\DAO\Connection;
 

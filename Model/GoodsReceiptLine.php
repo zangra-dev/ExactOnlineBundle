@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -40,7 +40,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property StockSerialNumbers $SerialNumbers Collection of serial numbers
  * @property string $SupplierItemCode Supplier item code
  */
-class GoodsReceiptLine extends Model 
+class GoodsReceiptLine extends Model
 {
         protected $ID;
         protected $BatchNumbers;

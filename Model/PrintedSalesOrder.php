@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -22,7 +22,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property bool $SendEmailToCustomer Set to True if an email containing the invoice should be sent to the invoice customer
  * @property string $SenderEmailAddress Email address from which the email will be sent. If not specified, the company email address will be used.
  */
-class PrintedSalesOrder extends Model 
+class PrintedSalesOrder extends Model
 {
         protected $primaryKey = 'OrderId';
         protected $OrderId;

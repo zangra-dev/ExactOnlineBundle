@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\DAO\Exception;
+namespace ExactOnlineBundle\DAO\Exception;
 
 /**
  * interface ApiExceptionInterface

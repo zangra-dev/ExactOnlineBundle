@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -53,7 +53,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $SubscriptionTypeCode Code of SubscriptionType
  * @property string $SubscriptionTypeDescription Description of SubscriptionType
  */
-class Subscription extends Model 
+class Subscription extends Model
 {
         protected $primaryKey = 'EntryID';
         protected $BlockEntry;

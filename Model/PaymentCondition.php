@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -32,7 +32,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property float $Percentage Discount percentage
  * @property string $VATCalculation Indicates how the VAT amount is calculated Values: E = Excluding discount, I = Including discount
  */
-class PaymentCondition extends Model 
+class PaymentCondition extends Model
 {
 
         protected $ID;

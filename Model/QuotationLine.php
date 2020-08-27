@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -32,7 +32,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property float $VATPercentage The VAT percentage of the VAT code
  * @property int $VersionNumber Number indicating the different reviews which are made for the quotation
  */
-class QuotationLine extends Model 
+class QuotationLine extends Model
 {
         protected $ID;
         protected $AmountDC;

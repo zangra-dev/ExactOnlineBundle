@@ -1,5 +1,5 @@
 <?php
-namespace aibianchi\ExactOnlineBundle\Command;
+namespace ExactOnlineBundle\Command;
 
 
 use Symfony\Component\Console\Command\Command;

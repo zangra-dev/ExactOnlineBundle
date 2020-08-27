@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -39,7 +39,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $sysmodifier User ID of modifier
  * @property int $Type Material type 1 indicates material, 2 indicates byproduct
  */
-class BillOfMaterialMaterial extends Model 
+class BillOfMaterialMaterial extends Model
 {
         protected $ID;
         protected $AverageCost;

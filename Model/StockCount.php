@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -32,7 +32,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $WarehouseCode Code of Warehouse
  * @property string $WarehouseDescription Description of Warehouse
  */
-class StockCount extends Model 
+class StockCount extends Model
 {
 
         protected $primaryKey = 'StockCountID';

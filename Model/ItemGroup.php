@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -30,7 +30,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $ModifierFullName Name of modifier
  * @property string $Notes Notes
  */
-class ItemGroup extends Model 
+class ItemGroup extends Model
 {
         protected $ID;
         protected $Code;

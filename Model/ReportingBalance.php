@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -28,7 +28,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property int $Status Status: 20 = Open, 50 = Processed. To get 'after entry' results, both Open and Processed amounts have to be included. This is by default, so it requires no extra filtering.
  * @property int $Type The type of the transactions in the grouping.
  */
-class ReportingBalance extends Model 
+class ReportingBalance extends Model
 {
         protected $primaryKey = 'ID';
         protected $ID;

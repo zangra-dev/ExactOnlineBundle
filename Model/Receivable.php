@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -8,7 +8,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  *
  * @package aibianchi\ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=CashflowReceivables
- * 
+ *
  * @property string $ID  Identifier of the receivable.
  * @property string $Account The customer from which the receivable will come.
  * @property string $AccountBankAccountID The bank account of the customer, from which the receivable will come.
@@ -87,7 +87,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property int $TransactionType Type of the linked transaction.
  * @property string $YourRef Invoice number. In case the receivable belongs to a bank entry line and is matched with one invoice, YourRef is filled with the YourRef of this invoice.
  */
-class Receivable extends Model 
+class Receivable extends Model
 {
         protected $primaryKey = 'ID';
         protected $Account;

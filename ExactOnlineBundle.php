@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle;
+namespace ExactOnlineBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

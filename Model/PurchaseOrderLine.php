@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -59,7 +59,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $VATDescription Description of vat code
  * @property float $VATPercentage The VAT percentage of the VAT code. This is the percentage at the moment the invoice is created. It's also used by the default calculation of VAT amounts and VAT base amounts
  */
-class PurchaseOrderLine extends Model 
+class PurchaseOrderLine extends Model
 {
         protected $ID;
         protected $AmountDC;

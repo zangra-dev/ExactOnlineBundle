@@ -1,6 +1,6 @@
 <?php
 
- namespace aibianchi\ExactOnlineBundle\Model;
+ namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -112,7 +112,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  */
 class Item extends Model
 {
- 
+
  protected $ID;
  protected $Barcode;
  protected $Class_01;
@@ -218,13 +218,13 @@ class Item extends Model
 
  public function getID(){
 
-  return $this->ID; 
+  return $this->ID;
 }
 
 
  public function setID($ID){
 
-  $this->ID = $ID; 
+  $this->ID = $ID;
 
   return $this;
 }
@@ -232,13 +232,13 @@ class Item extends Model
 
  public function getBarcode(){
 
-  return $this->Barcode; 
+  return $this->Barcode;
 }
 
 
  public function setBarcode($Barcode){
 
-  $this->Barcode = $Barcode; 
+  $this->Barcode = $Barcode;
 
   return $this;
 }
@@ -246,13 +246,13 @@ class Item extends Model
 
  public function getClass_01(){
 
-  return $this->Class_01; 
+  return $this->Class_01;
 }
 
 
  public function setClass_01($Class_01){
 
-  $this->Class_01 = $Class_01; 
+  $this->Class_01 = $Class_01;
 
   return $this;
 }
@@ -260,13 +260,13 @@ class Item extends Model
 
  public function getClass_02(){
 
-  return $this->Class_02; 
+  return $this->Class_02;
 }
 
 
  public function setClass_02($Class_02){
 
-  $this->Class_02 = $Class_02; 
+  $this->Class_02 = $Class_02;
 
   return $this;
 }
@@ -274,13 +274,13 @@ class Item extends Model
 
  public function getClass_03(){
 
-  return $this->Class_03; 
+  return $this->Class_03;
 }
 
 
  public function setClass_03($Class_03){
 
-  $this->Class_03 = $Class_03; 
+  $this->Class_03 = $Class_03;
 
   return $this;
 }
@@ -288,13 +288,13 @@ class Item extends Model
 
  public function getClass_04(){
 
-  return $this->Class_04; 
+  return $this->Class_04;
 }
 
 
  public function setClass_04($Class_04){
 
-  $this->Class_04 = $Class_04; 
+  $this->Class_04 = $Class_04;
 
   return $this;
 }
@@ -302,13 +302,13 @@ class Item extends Model
 
  public function getClass_05(){
 
-  return $this->Class_05; 
+  return $this->Class_05;
 }
 
 
  public function setClass_05($Class_05){
 
-  $this->Class_05 = $Class_05; 
+  $this->Class_05 = $Class_05;
 
   return $this;
 }
@@ -316,13 +316,13 @@ class Item extends Model
 
  public function getClass_06(){
 
-  return $this->Class_06; 
+  return $this->Class_06;
 }
 
 
  public function setClass_06($Class_06){
 
-  $this->Class_06 = $Class_06; 
+  $this->Class_06 = $Class_06;
 
   return $this;
 }
@@ -330,13 +330,13 @@ class Item extends Model
 
  public function getClass_07(){
 
-  return $this->Class_07; 
+  return $this->Class_07;
 }
 
 
  public function setClass_07($Class_07){
 
-  $this->Class_07 = $Class_07; 
+  $this->Class_07 = $Class_07;
 
   return $this;
 }
@@ -344,13 +344,13 @@ class Item extends Model
 
  public function getClass_08(){
 
-  return $this->Class_08; 
+  return $this->Class_08;
 }
 
 
  public function setClass_08($Class_08){
 
-  $this->Class_08 = $Class_08; 
+  $this->Class_08 = $Class_08;
 
   return $this;
 }
@@ -358,13 +358,13 @@ class Item extends Model
 
  public function getClass_09(){
 
-  return $this->Class_09; 
+  return $this->Class_09;
 }
 
 
  public function setClass_09($Class_09){
 
-  $this->Class_09 = $Class_09; 
+  $this->Class_09 = $Class_09;
 
   return $this;
 }
@@ -372,13 +372,13 @@ class Item extends Model
 
  public function getClass_10(){
 
-  return $this->Class_10; 
+  return $this->Class_10;
 }
 
 
  public function setClass_10($Class_10){
 
-  $this->Class_10 = $Class_10; 
+  $this->Class_10 = $Class_10;
 
   return $this;
 }
@@ -386,13 +386,13 @@ class Item extends Model
 
  public function getCode(){
 
-  return $this->Code; 
+  return $this->Code;
 }
 
 
  public function setCode($Code){
 
-  $this->Code = $Code; 
+  $this->Code = $Code;
 
   return $this;
 }
@@ -400,13 +400,13 @@ class Item extends Model
 
  public function getCopyRemarks(){
 
-  return $this->CopyRemarks; 
+  return $this->CopyRemarks;
 }
 
 
  public function setCopyRemarks($CopyRemarks){
 
-  $this->CopyRemarks = $CopyRemarks; 
+  $this->CopyRemarks = $CopyRemarks;
 
   return $this;
 }
@@ -414,13 +414,13 @@ class Item extends Model
 
  public function getCostPriceCurrency(){
 
-  return $this->CostPriceCurrency; 
+  return $this->CostPriceCurrency;
 }
 
 
  public function setCostPriceCurrency($CostPriceCurrency){
 
-  $this->CostPriceCurrency = $CostPriceCurrency; 
+  $this->CostPriceCurrency = $CostPriceCurrency;
 
   return $this;
 }
@@ -428,13 +428,13 @@ class Item extends Model
 
  public function getCostPriceNew(){
 
-  return $this->CostPriceNew; 
+  return $this->CostPriceNew;
 }
 
 
  public function setCostPriceNew($CostPriceNew){
 
-  $this->CostPriceNew = $CostPriceNew; 
+  $this->CostPriceNew = $CostPriceNew;
 
   return $this;
 }
@@ -442,13 +442,13 @@ class Item extends Model
 
  public function getCostPriceStandard(){
 
-  return $this->CostPriceStandard; 
+  return $this->CostPriceStandard;
 }
 
 
  public function setCostPriceStandard($CostPriceStandard){
 
-  $this->CostPriceStandard = $CostPriceStandard; 
+  $this->CostPriceStandard = $CostPriceStandard;
 
   return $this;
 }
@@ -456,13 +456,13 @@ class Item extends Model
 
  public function getCreated(){
 
-  return $this->Created; 
+  return $this->Created;
 }
 
 
  public function setCreated($Created){
 
-  $this->Created = $Created; 
+  $this->Created = $Created;
 
   return $this;
 }
@@ -470,13 +470,13 @@ class Item extends Model
 
  public function getCreator(){
 
-  return $this->Creator; 
+  return $this->Creator;
 }
 
 
  public function setCreator($Creator){
 
-  $this->Creator = $Creator; 
+  $this->Creator = $Creator;
 
   return $this;
 }
@@ -484,13 +484,13 @@ class Item extends Model
 
  public function getCreatorFullName(){
 
-  return $this->CreatorFullName; 
+  return $this->CreatorFullName;
 }
 
 
  public function setCreatorFullName($CreatorFullName){
 
-  $this->CreatorFullName = $CreatorFullName; 
+  $this->CreatorFullName = $CreatorFullName;
 
   return $this;
 }
@@ -498,13 +498,13 @@ class Item extends Model
 
  public function getDescription(){
 
-  return $this->Description; 
+  return $this->Description;
 }
 
 
  public function setDescription($Description){
 
-  $this->Description = $Description; 
+  $this->Description = $Description;
 
   return $this;
 }
@@ -512,13 +512,13 @@ class Item extends Model
 
  public function getDivision(){
 
-  return $this->Division; 
+  return $this->Division;
 }
 
 
  public function setDivision($Division){
 
-  $this->Division = $Division; 
+  $this->Division = $Division;
 
   return $this;
 }
@@ -526,13 +526,13 @@ class Item extends Model
 
  public function getEndDate(){
 
-  return $this->EndDate; 
+  return $this->EndDate;
 }
 
 
  public function setEndDate($EndDate){
 
-  $this->EndDate = $EndDate; 
+  $this->EndDate = $EndDate;
 
   return $this;
 }
@@ -540,13 +540,13 @@ class Item extends Model
 
  public function getExtraDescription(){
 
-  return $this->ExtraDescription; 
+  return $this->ExtraDescription;
 }
 
 
  public function setExtraDescription($ExtraDescription){
 
-  $this->ExtraDescription = $ExtraDescription; 
+  $this->ExtraDescription = $ExtraDescription;
 
   return $this;
 }
@@ -554,13 +554,13 @@ class Item extends Model
 
  public function getFreeBoolField_01(){
 
-  return $this->FreeBoolField_01; 
+  return $this->FreeBoolField_01;
 }
 
 
  public function setFreeBoolField_01($FreeBoolField_01){
 
-  $this->FreeBoolField_01 = $FreeBoolField_01; 
+  $this->FreeBoolField_01 = $FreeBoolField_01;
 
   return $this;
 }
@@ -568,13 +568,13 @@ class Item extends Model
 
  public function getFreeBoolField_02(){
 
-  return $this->FreeBoolField_02; 
+  return $this->FreeBoolField_02;
 }
 
 
  public function setFreeBoolField_02($FreeBoolField_02){
 
-  $this->FreeBoolField_02 = $FreeBoolField_02; 
+  $this->FreeBoolField_02 = $FreeBoolField_02;
 
   return $this;
 }
@@ -582,13 +582,13 @@ class Item extends Model
 
  public function getFreeBoolField_03(){
 
-  return $this->FreeBoolField_03; 
+  return $this->FreeBoolField_03;
 }
 
 
  public function setFreeBoolField_03($FreeBoolField_03){
 
-  $this->FreeBoolField_03 = $FreeBoolField_03; 
+  $this->FreeBoolField_03 = $FreeBoolField_03;
 
   return $this;
 }
@@ -596,13 +596,13 @@ class Item extends Model
 
  public function getFreeBoolField_04(){
 
-  return $this->FreeBoolField_04; 
+  return $this->FreeBoolField_04;
 }
 
 
  public function setFreeBoolField_04($FreeBoolField_04){
 
-  $this->FreeBoolField_04 = $FreeBoolField_04; 
+  $this->FreeBoolField_04 = $FreeBoolField_04;
 
   return $this;
 }
@@ -610,13 +610,13 @@ class Item extends Model
 
  public function getFreeBoolField_05(){
 
-  return $this->FreeBoolField_05; 
+  return $this->FreeBoolField_05;
 }
 
 
  public function setFreeBoolField_05($FreeBoolField_05){
 
-  $this->FreeBoolField_05 = $FreeBoolField_05; 
+  $this->FreeBoolField_05 = $FreeBoolField_05;
 
   return $this;
 }
@@ -624,13 +624,13 @@ class Item extends Model
 
  public function getFreeDateField_01(){
 
-  return $this->FreeDateField_01; 
+  return $this->FreeDateField_01;
 }
 
 
  public function setFreeDateField_01($FreeDateField_01){
 
-  $this->FreeDateField_01 = $FreeDateField_01; 
+  $this->FreeDateField_01 = $FreeDateField_01;
 
   return $this;
 }
@@ -638,13 +638,13 @@ class Item extends Model
 
  public function getFreeDateField_02(){
 
-  return $this->FreeDateField_02; 
+  return $this->FreeDateField_02;
 }
 
 
  public function setFreeDateField_02($FreeDateField_02){
 
-  $this->FreeDateField_02 = $FreeDateField_02; 
+  $this->FreeDateField_02 = $FreeDateField_02;
 
   return $this;
 }
@@ -652,13 +652,13 @@ class Item extends Model
 
  public function getFreeDateField_03(){
 
-  return $this->FreeDateField_03; 
+  return $this->FreeDateField_03;
 }
 
 
  public function setFreeDateField_03($FreeDateField_03){
 
-  $this->FreeDateField_03 = $FreeDateField_03; 
+  $this->FreeDateField_03 = $FreeDateField_03;
 
   return $this;
 }
@@ -666,13 +666,13 @@ class Item extends Model
 
  public function getFreeDateField_04(){
 
-  return $this->FreeDateField_04; 
+  return $this->FreeDateField_04;
 }
 
 
  public function setFreeDateField_04($FreeDateField_04){
 
-  $this->FreeDateField_04 = $FreeDateField_04; 
+  $this->FreeDateField_04 = $FreeDateField_04;
 
   return $this;
 }
@@ -680,13 +680,13 @@ class Item extends Model
 
  public function getFreeDateField_05(){
 
-  return $this->FreeDateField_05; 
+  return $this->FreeDateField_05;
 }
 
 
  public function setFreeDateField_05($FreeDateField_05){
 
-  $this->FreeDateField_05 = $FreeDateField_05; 
+  $this->FreeDateField_05 = $FreeDateField_05;
 
   return $this;
 }
@@ -694,13 +694,13 @@ class Item extends Model
 
  public function getFreeNumberField_01(){
 
-  return $this->FreeNumberField_01; 
+  return $this->FreeNumberField_01;
 }
 
 
  public function setFreeNumberField_01($FreeNumberField_01){
 
-  $this->FreeNumberField_01 = $FreeNumberField_01; 
+  $this->FreeNumberField_01 = $FreeNumberField_01;
 
   return $this;
 }
@@ -708,13 +708,13 @@ class Item extends Model
 
  public function getFreeNumberField_02(){
 
-  return $this->FreeNumberField_02; 
+  return $this->FreeNumberField_02;
 }
 
 
  public function setFreeNumberField_02($FreeNumberField_02){
 
-  $this->FreeNumberField_02 = $FreeNumberField_02; 
+  $this->FreeNumberField_02 = $FreeNumberField_02;
 
   return $this;
 }
@@ -722,13 +722,13 @@ class Item extends Model
 
  public function getFreeNumberField_03(){
 
-  return $this->FreeNumberField_03; 
+  return $this->FreeNumberField_03;
 }
 
 
  public function setFreeNumberField_03($FreeNumberField_03){
 
-  $this->FreeNumberField_03 = $FreeNumberField_03; 
+  $this->FreeNumberField_03 = $FreeNumberField_03;
 
   return $this;
 }
@@ -736,13 +736,13 @@ class Item extends Model
 
  public function getFreeNumberField_04(){
 
-  return $this->FreeNumberField_04; 
+  return $this->FreeNumberField_04;
 }
 
 
  public function setFreeNumberField_04($FreeNumberField_04){
 
-  $this->FreeNumberField_04 = $FreeNumberField_04; 
+  $this->FreeNumberField_04 = $FreeNumberField_04;
 
   return $this;
 }
@@ -750,13 +750,13 @@ class Item extends Model
 
  public function getFreeNumberField_05(){
 
-  return $this->FreeNumberField_05; 
+  return $this->FreeNumberField_05;
 }
 
 
  public function setFreeNumberField_05($FreeNumberField_05){
 
-  $this->FreeNumberField_05 = $FreeNumberField_05; 
+  $this->FreeNumberField_05 = $FreeNumberField_05;
 
   return $this;
 }
@@ -764,13 +764,13 @@ class Item extends Model
 
  public function getFreeNumberField_06(){
 
-  return $this->FreeNumberField_06; 
+  return $this->FreeNumberField_06;
 }
 
 
  public function setFreeNumberField_06($FreeNumberField_06){
 
-  $this->FreeNumberField_06 = $FreeNumberField_06; 
+  $this->FreeNumberField_06 = $FreeNumberField_06;
 
   return $this;
 }
@@ -778,13 +778,13 @@ class Item extends Model
 
  public function getFreeNumberField_07(){
 
-  return $this->FreeNumberField_07; 
+  return $this->FreeNumberField_07;
 }
 
 
  public function setFreeNumberField_07($FreeNumberField_07){
 
-  $this->FreeNumberField_07 = $FreeNumberField_07; 
+  $this->FreeNumberField_07 = $FreeNumberField_07;
 
   return $this;
 }
@@ -792,13 +792,13 @@ class Item extends Model
 
  public function getFreeNumberField_08(){
 
-  return $this->FreeNumberField_08; 
+  return $this->FreeNumberField_08;
 }
 
 
  public function setFreeNumberField_08($FreeNumberField_08){
 
-  $this->FreeNumberField_08 = $FreeNumberField_08; 
+  $this->FreeNumberField_08 = $FreeNumberField_08;
 
   return $this;
 }
@@ -806,13 +806,13 @@ class Item extends Model
 
  public function getFreeTextField_01(){
 
-  return $this->FreeTextField_01; 
+  return $this->FreeTextField_01;
 }
 
 
  public function setFreeTextField_01($FreeTextField_01){
 
-  $this->FreeTextField_01 = $FreeTextField_01; 
+  $this->FreeTextField_01 = $FreeTextField_01;
 
   return $this;
 }
@@ -820,13 +820,13 @@ class Item extends Model
 
  public function getFreeTextField_02(){
 
-  return $this->FreeTextField_02; 
+  return $this->FreeTextField_02;
 }
 
 
  public function setFreeTextField_02($FreeTextField_02){
 
-  $this->FreeTextField_02 = $FreeTextField_02; 
+  $this->FreeTextField_02 = $FreeTextField_02;
 
   return $this;
 }
@@ -834,13 +834,13 @@ class Item extends Model
 
  public function getFreeTextField_03(){
 
-  return $this->FreeTextField_03; 
+  return $this->FreeTextField_03;
 }
 
 
  public function setFreeTextField_03($FreeTextField_03){
 
-  $this->FreeTextField_03 = $FreeTextField_03; 
+  $this->FreeTextField_03 = $FreeTextField_03;
 
   return $this;
 }
@@ -848,13 +848,13 @@ class Item extends Model
 
  public function getFreeTextField_04(){
 
-  return $this->FreeTextField_04; 
+  return $this->FreeTextField_04;
 }
 
 
  public function setFreeTextField_04($FreeTextField_04){
 
-  $this->FreeTextField_04 = $FreeTextField_04; 
+  $this->FreeTextField_04 = $FreeTextField_04;
 
   return $this;
 }
@@ -862,13 +862,13 @@ class Item extends Model
 
  public function getFreeTextField_05(){
 
-  return $this->FreeTextField_05; 
+  return $this->FreeTextField_05;
 }
 
 
  public function setFreeTextField_05($FreeTextField_05){
 
-  $this->FreeTextField_05 = $FreeTextField_05; 
+  $this->FreeTextField_05 = $FreeTextField_05;
 
   return $this;
 }
@@ -876,13 +876,13 @@ class Item extends Model
 
  public function getFreeTextField_06(){
 
-  return $this->FreeTextField_06; 
+  return $this->FreeTextField_06;
 }
 
 
  public function setFreeTextField_06($FreeTextField_06){
 
-  $this->FreeTextField_06 = $FreeTextField_06; 
+  $this->FreeTextField_06 = $FreeTextField_06;
 
   return $this;
 }
@@ -890,13 +890,13 @@ class Item extends Model
 
  public function getFreeTextField_07(){
 
-  return $this->FreeTextField_07; 
+  return $this->FreeTextField_07;
 }
 
 
  public function setFreeTextField_07($FreeTextField_07){
 
-  $this->FreeTextField_07 = $FreeTextField_07; 
+  $this->FreeTextField_07 = $FreeTextField_07;
 
   return $this;
 }
@@ -904,13 +904,13 @@ class Item extends Model
 
  public function getFreeTextField_08(){
 
-  return $this->FreeTextField_08; 
+  return $this->FreeTextField_08;
 }
 
 
  public function setFreeTextField_08($FreeTextField_08){
 
-  $this->FreeTextField_08 = $FreeTextField_08; 
+  $this->FreeTextField_08 = $FreeTextField_08;
 
   return $this;
 }
@@ -918,13 +918,13 @@ class Item extends Model
 
  public function getFreeTextField_09(){
 
-  return $this->FreeTextField_09; 
+  return $this->FreeTextField_09;
 }
 
 
  public function setFreeTextField_09($FreeTextField_09){
 
-  $this->FreeTextField_09 = $FreeTextField_09; 
+  $this->FreeTextField_09 = $FreeTextField_09;
 
   return $this;
 }
@@ -932,13 +932,13 @@ class Item extends Model
 
  public function getFreeTextField_10(){
 
-  return $this->FreeTextField_10; 
+  return $this->FreeTextField_10;
 }
 
 
  public function setFreeTextField_10($FreeTextField_10){
 
-  $this->FreeTextField_10 = $FreeTextField_10; 
+  $this->FreeTextField_10 = $FreeTextField_10;
 
   return $this;
 }
@@ -946,13 +946,13 @@ class Item extends Model
 
  public function getGLCosts(){
 
-  return $this->GLCosts; 
+  return $this->GLCosts;
 }
 
 
  public function setGLCosts($GLCosts){
 
-  $this->GLCosts = $GLCosts; 
+  $this->GLCosts = $GLCosts;
 
   return $this;
 }
@@ -960,13 +960,13 @@ class Item extends Model
 
  public function getGLCostsCode(){
 
-  return $this->GLCostsCode; 
+  return $this->GLCostsCode;
 }
 
 
  public function setGLCostsCode($GLCostsCode){
 
-  $this->GLCostsCode = $GLCostsCode; 
+  $this->GLCostsCode = $GLCostsCode;
 
   return $this;
 }
@@ -974,13 +974,13 @@ class Item extends Model
 
  public function getGLCostsDescription(){
 
-  return $this->GLCostsDescription; 
+  return $this->GLCostsDescription;
 }
 
 
  public function setGLCostsDescription($GLCostsDescription){
 
-  $this->GLCostsDescription = $GLCostsDescription; 
+  $this->GLCostsDescription = $GLCostsDescription;
 
   return $this;
 }
@@ -988,13 +988,13 @@ class Item extends Model
 
  public function getGLRevenue(){
 
-  return $this->GLRevenue; 
+  return $this->GLRevenue;
 }
 
 
  public function setGLRevenue($GLRevenue){
 
-  $this->GLRevenue = $GLRevenue; 
+  $this->GLRevenue = $GLRevenue;
 
   return $this;
 }
@@ -1002,13 +1002,13 @@ class Item extends Model
 
  public function getGLRevenueCode(){
 
-  return $this->GLRevenueCode; 
+  return $this->GLRevenueCode;
 }
 
 
  public function setGLRevenueCode($GLRevenueCode){
 
-  $this->GLRevenueCode = $GLRevenueCode; 
+  $this->GLRevenueCode = $GLRevenueCode;
 
   return $this;
 }
@@ -1016,13 +1016,13 @@ class Item extends Model
 
  public function getGLRevenueDescription(){
 
-  return $this->GLRevenueDescription; 
+  return $this->GLRevenueDescription;
 }
 
 
  public function setGLRevenueDescription($GLRevenueDescription){
 
-  $this->GLRevenueDescription = $GLRevenueDescription; 
+  $this->GLRevenueDescription = $GLRevenueDescription;
 
   return $this;
 }
@@ -1030,13 +1030,13 @@ class Item extends Model
 
  public function getGLStock(){
 
-  return $this->GLStock; 
+  return $this->GLStock;
 }
 
 
  public function setGLStock($GLStock){
 
-  $this->GLStock = $GLStock; 
+  $this->GLStock = $GLStock;
 
   return $this;
 }
@@ -1044,13 +1044,13 @@ class Item extends Model
 
  public function getGLStockCode(){
 
-  return $this->GLStockCode; 
+  return $this->GLStockCode;
 }
 
 
  public function setGLStockCode($GLStockCode){
 
-  $this->GLStockCode = $GLStockCode; 
+  $this->GLStockCode = $GLStockCode;
 
   return $this;
 }
@@ -1058,13 +1058,13 @@ class Item extends Model
 
  public function getGLStockDescription(){
 
-  return $this->GLStockDescription; 
+  return $this->GLStockDescription;
 }
 
 
  public function setGLStockDescription($GLStockDescription){
 
-  $this->GLStockDescription = $GLStockDescription; 
+  $this->GLStockDescription = $GLStockDescription;
 
   return $this;
 }
@@ -1072,13 +1072,13 @@ class Item extends Model
 
  public function getGrossWeight(){
 
-  return $this->GrossWeight; 
+  return $this->GrossWeight;
 }
 
 
  public function setGrossWeight($GrossWeight){
 
-  $this->GrossWeight = $GrossWeight; 
+  $this->GrossWeight = $GrossWeight;
 
   return $this;
 }
@@ -1086,13 +1086,13 @@ class Item extends Model
 
  public function getIsBatchItem(){
 
-  return $this->IsBatchItem; 
+  return $this->IsBatchItem;
 }
 
 
  public function setIsBatchItem($IsBatchItem){
 
-  $this->IsBatchItem = $IsBatchItem; 
+  $this->IsBatchItem = $IsBatchItem;
 
   return $this;
 }
@@ -1100,13 +1100,13 @@ class Item extends Model
 
  public function getIsBatchNumberItem(){
 
-  return $this->IsBatchNumberItem; 
+  return $this->IsBatchNumberItem;
 }
 
 
  public function setIsBatchNumberItem($IsBatchNumberItem){
 
-  $this->IsBatchNumberItem = $IsBatchNumberItem; 
+  $this->IsBatchNumberItem = $IsBatchNumberItem;
 
   return $this;
 }
@@ -1114,13 +1114,13 @@ class Item extends Model
 
  public function getIsFractionAllowedItem(){
 
-  return $this->IsFractionAllowedItem; 
+  return $this->IsFractionAllowedItem;
 }
 
 
  public function setIsFractionAllowedItem($IsFractionAllowedItem){
 
-  $this->IsFractionAllowedItem = $IsFractionAllowedItem; 
+  $this->IsFractionAllowedItem = $IsFractionAllowedItem;
 
   return $this;
 }
@@ -1128,13 +1128,13 @@ class Item extends Model
 
  public function getIsMakeItem(){
 
-  return $this->IsMakeItem; 
+  return $this->IsMakeItem;
 }
 
 
  public function setIsMakeItem($IsMakeItem){
 
-  $this->IsMakeItem = $IsMakeItem; 
+  $this->IsMakeItem = $IsMakeItem;
 
   return $this;
 }
@@ -1142,13 +1142,13 @@ class Item extends Model
 
  public function getIsNewContract(){
 
-  return $this->IsNewContract; 
+  return $this->IsNewContract;
 }
 
 
  public function setIsNewContract($IsNewContract){
 
-  $this->IsNewContract = $IsNewContract; 
+  $this->IsNewContract = $IsNewContract;
 
   return $this;
 }
@@ -1156,13 +1156,13 @@ class Item extends Model
 
  public function getIsOnDemandItem(){
 
-  return $this->IsOnDemandItem; 
+  return $this->IsOnDemandItem;
 }
 
 
  public function setIsOnDemandItem($IsOnDemandItem){
 
-  $this->IsOnDemandItem = $IsOnDemandItem; 
+  $this->IsOnDemandItem = $IsOnDemandItem;
 
   return $this;
 }
@@ -1170,13 +1170,13 @@ class Item extends Model
 
  public function getIsPackageItem(){
 
-  return $this->IsPackageItem; 
+  return $this->IsPackageItem;
 }
 
 
  public function setIsPackageItem($IsPackageItem){
 
-  $this->IsPackageItem = $IsPackageItem; 
+  $this->IsPackageItem = $IsPackageItem;
 
   return $this;
 }
@@ -1184,13 +1184,13 @@ class Item extends Model
 
  public function getIsPurchaseItem(){
 
-  return $this->IsPurchaseItem; 
+  return $this->IsPurchaseItem;
 }
 
 
  public function setIsPurchaseItem($IsPurchaseItem){
 
-  $this->IsPurchaseItem = $IsPurchaseItem; 
+  $this->IsPurchaseItem = $IsPurchaseItem;
 
   return $this;
 }
@@ -1198,13 +1198,13 @@ class Item extends Model
 
  public function getIsRegistrationCodeItem(){
 
-  return $this->IsRegistrationCodeItem; 
+  return $this->IsRegistrationCodeItem;
 }
 
 
  public function setIsRegistrationCodeItem($IsRegistrationCodeItem){
 
-  $this->IsRegistrationCodeItem = $IsRegistrationCodeItem; 
+  $this->IsRegistrationCodeItem = $IsRegistrationCodeItem;
 
   return $this;
 }
@@ -1212,13 +1212,13 @@ class Item extends Model
 
  public function getIsSalesItem(){
 
-  return $this->IsSalesItem; 
+  return $this->IsSalesItem;
 }
 
 
  public function setIsSalesItem($IsSalesItem){
 
-  $this->IsSalesItem = $IsSalesItem; 
+  $this->IsSalesItem = $IsSalesItem;
 
   return $this;
 }
@@ -1226,13 +1226,13 @@ class Item extends Model
 
  public function getIsSerialItem(){
 
-  return $this->IsSerialItem; 
+  return $this->IsSerialItem;
 }
 
 
  public function setIsSerialItem($IsSerialItem){
 
-  $this->IsSerialItem = $IsSerialItem; 
+  $this->IsSerialItem = $IsSerialItem;
 
   return $this;
 }
@@ -1240,13 +1240,13 @@ class Item extends Model
 
  public function getIsSerialNumberItem(){
 
-  return $this->IsSerialNumberItem; 
+  return $this->IsSerialNumberItem;
 }
 
 
  public function setIsSerialNumberItem($IsSerialNumberItem){
 
-  $this->IsSerialNumberItem = $IsSerialNumberItem; 
+  $this->IsSerialNumberItem = $IsSerialNumberItem;
 
   return $this;
 }
@@ -1254,13 +1254,13 @@ class Item extends Model
 
  public function getIsStockItem(){
 
-  return $this->IsStockItem; 
+  return $this->IsStockItem;
 }
 
 
  public function setIsStockItem($IsStockItem){
 
-  $this->IsStockItem = $IsStockItem; 
+  $this->IsStockItem = $IsStockItem;
 
   return $this;
 }
@@ -1268,13 +1268,13 @@ class Item extends Model
 
  public function getIsSubcontractedItem(){
 
-  return $this->IsSubcontractedItem; 
+  return $this->IsSubcontractedItem;
 }
 
 
  public function setIsSubcontractedItem($IsSubcontractedItem){
 
-  $this->IsSubcontractedItem = $IsSubcontractedItem; 
+  $this->IsSubcontractedItem = $IsSubcontractedItem;
 
   return $this;
 }
@@ -1282,13 +1282,13 @@ class Item extends Model
 
  public function getIsTaxableItem(){
 
-  return $this->IsTaxableItem; 
+  return $this->IsTaxableItem;
 }
 
 
  public function setIsTaxableItem($IsTaxableItem){
 
-  $this->IsTaxableItem = $IsTaxableItem; 
+  $this->IsTaxableItem = $IsTaxableItem;
 
   return $this;
 }
@@ -1296,13 +1296,13 @@ class Item extends Model
 
  public function getIsTime(){
 
-  return $this->IsTime; 
+  return $this->IsTime;
 }
 
 
  public function setIsTime($IsTime){
 
-  $this->IsTime = $IsTime; 
+  $this->IsTime = $IsTime;
 
   return $this;
 }
@@ -1310,13 +1310,13 @@ class Item extends Model
 
  public function getIsWebshopItem(){
 
-  return $this->IsWebshopItem; 
+  return $this->IsWebshopItem;
 }
 
 
  public function setIsWebshopItem($IsWebshopItem){
 
-  $this->IsWebshopItem = $IsWebshopItem; 
+  $this->IsWebshopItem = $IsWebshopItem;
 
   return $this;
 }
@@ -1324,13 +1324,13 @@ class Item extends Model
 
  public function getItemGroup(){
 
-  return $this->ItemGroup; 
+  return $this->ItemGroup;
 }
 
 
  public function setItemGroup($ItemGroup){
 
-  $this->ItemGroup = $ItemGroup; 
+  $this->ItemGroup = $ItemGroup;
 
   return $this;
 }
@@ -1338,13 +1338,13 @@ class Item extends Model
 
  public function getItemGroupCode(){
 
-  return $this->ItemGroupCode; 
+  return $this->ItemGroupCode;
 }
 
 
  public function setItemGroupCode($ItemGroupCode){
 
-  $this->ItemGroupCode = $ItemGroupCode; 
+  $this->ItemGroupCode = $ItemGroupCode;
 
   return $this;
 }
@@ -1352,13 +1352,13 @@ class Item extends Model
 
  public function getItemGroupDescription(){
 
-  return $this->ItemGroupDescription; 
+  return $this->ItemGroupDescription;
 }
 
 
  public function setItemGroupDescription($ItemGroupDescription){
 
-  $this->ItemGroupDescription = $ItemGroupDescription; 
+  $this->ItemGroupDescription = $ItemGroupDescription;
 
   return $this;
 }
@@ -1366,13 +1366,13 @@ class Item extends Model
 
  public function getModified(){
 
-  return $this->Modified; 
+  return $this->Modified;
 }
 
 
  public function setModified($Modified){
 
-  $this->Modified = $Modified; 
+  $this->Modified = $Modified;
 
   return $this;
 }
@@ -1380,13 +1380,13 @@ class Item extends Model
 
  public function getModifier(){
 
-  return $this->Modifier; 
+  return $this->Modifier;
 }
 
 
  public function setModifier($Modifier){
 
-  $this->Modifier = $Modifier; 
+  $this->Modifier = $Modifier;
 
   return $this;
 }
@@ -1394,13 +1394,13 @@ class Item extends Model
 
  public function getModifierFullName(){
 
-  return $this->ModifierFullName; 
+  return $this->ModifierFullName;
 }
 
 
  public function setModifierFullName($ModifierFullName){
 
-  $this->ModifierFullName = $ModifierFullName; 
+  $this->ModifierFullName = $ModifierFullName;
 
   return $this;
 }
@@ -1408,13 +1408,13 @@ class Item extends Model
 
  public function getNetWeight(){
 
-  return $this->NetWeight; 
+  return $this->NetWeight;
 }
 
 
  public function setNetWeight($NetWeight){
 
-  $this->NetWeight = $NetWeight; 
+  $this->NetWeight = $NetWeight;
 
   return $this;
 }
@@ -1422,13 +1422,13 @@ class Item extends Model
 
  public function getNetWeightUnit(){
 
-  return $this->NetWeightUnit; 
+  return $this->NetWeightUnit;
 }
 
 
  public function setNetWeightUnit($NetWeightUnit){
 
-  $this->NetWeightUnit = $NetWeightUnit; 
+  $this->NetWeightUnit = $NetWeightUnit;
 
   return $this;
 }
@@ -1436,13 +1436,13 @@ class Item extends Model
 
  public function getNotes(){
 
-  return $this->Notes; 
+  return $this->Notes;
 }
 
 
  public function setNotes($Notes){
 
-  $this->Notes = $Notes; 
+  $this->Notes = $Notes;
 
   return $this;
 }
@@ -1450,13 +1450,13 @@ class Item extends Model
 
  public function getPictureName(){
 
-  return $this->PictureName; 
+  return $this->PictureName;
 }
 
 
  public function setPictureName($PictureName){
 
-  $this->PictureName = $PictureName; 
+  $this->PictureName = $PictureName;
 
   return $this;
 }
@@ -1464,13 +1464,13 @@ class Item extends Model
 
  public function getPictureThumbnailUrl(){
 
-  return $this->PictureThumbnailUrl; 
+  return $this->PictureThumbnailUrl;
 }
 
 
  public function setPictureThumbnailUrl($PictureThumbnailUrl){
 
-  $this->PictureThumbnailUrl = $PictureThumbnailUrl; 
+  $this->PictureThumbnailUrl = $PictureThumbnailUrl;
 
   return $this;
 }
@@ -1478,13 +1478,13 @@ class Item extends Model
 
  public function getPictureUrl(){
 
-  return $this->PictureUrl; 
+  return $this->PictureUrl;
 }
 
 
  public function setPictureUrl($PictureUrl){
 
-  $this->PictureUrl = $PictureUrl; 
+  $this->PictureUrl = $PictureUrl;
 
   return $this;
 }
@@ -1492,13 +1492,13 @@ class Item extends Model
 
  public function getSalesVatCode(){
 
-  return $this->SalesVatCode; 
+  return $this->SalesVatCode;
 }
 
 
  public function setSalesVatCode($SalesVatCode){
 
-  $this->SalesVatCode = $SalesVatCode; 
+  $this->SalesVatCode = $SalesVatCode;
 
   return $this;
 }
@@ -1506,13 +1506,13 @@ class Item extends Model
 
  public function getSalesVatCodeDescription(){
 
-  return $this->SalesVatCodeDescription; 
+  return $this->SalesVatCodeDescription;
 }
 
 
  public function setSalesVatCodeDescription($SalesVatCodeDescription){
 
-  $this->SalesVatCodeDescription = $SalesVatCodeDescription; 
+  $this->SalesVatCodeDescription = $SalesVatCodeDescription;
 
   return $this;
 }
@@ -1520,13 +1520,13 @@ class Item extends Model
 
  public function getSearchCode(){
 
-  return $this->SearchCode; 
+  return $this->SearchCode;
 }
 
 
  public function setSearchCode($SearchCode){
 
-  $this->SearchCode = $SearchCode; 
+  $this->SearchCode = $SearchCode;
 
   return $this;
 }
@@ -1534,13 +1534,13 @@ class Item extends Model
 
  public function getSecurityLevel(){
 
-  return $this->SecurityLevel; 
+  return $this->SecurityLevel;
 }
 
 
  public function setSecurityLevel($SecurityLevel){
 
-  $this->SecurityLevel = $SecurityLevel; 
+  $this->SecurityLevel = $SecurityLevel;
 
   return $this;
 }
@@ -1548,13 +1548,13 @@ class Item extends Model
 
  public function getStartDate(){
 
-  return $this->StartDate; 
+  return $this->StartDate;
 }
 
 
  public function setStartDate($StartDate){
 
-  $this->StartDate = $StartDate; 
+  $this->StartDate = $StartDate;
 
   return $this;
 }
@@ -1562,13 +1562,13 @@ class Item extends Model
 
  public function getStock(){
 
-  return $this->Stock; 
+  return $this->Stock;
 }
 
 
  public function setStock($Stock){
 
-  $this->Stock = $Stock; 
+  $this->Stock = $Stock;
 
   return $this;
 }
@@ -1576,13 +1576,13 @@ class Item extends Model
 
  public function getUnit(){
 
-  return $this->Unit; 
+  return $this->Unit;
 }
 
 
  public function setUnit($Unit){
 
-  $this->Unit = $Unit; 
+  $this->Unit = $Unit;
 
   return $this;
 }
@@ -1590,13 +1590,13 @@ class Item extends Model
 
  public function getUnitDescription(){
 
-  return $this->UnitDescription; 
+  return $this->UnitDescription;
 }
 
 
  public function setUnitDescription($UnitDescription){
 
-  $this->UnitDescription = $UnitDescription; 
+  $this->UnitDescription = $UnitDescription;
 
   return $this;
 }
@@ -1604,13 +1604,13 @@ class Item extends Model
 
  public function getUnitType(){
 
-  return $this->UnitType; 
+  return $this->UnitType;
 }
 
 
  public function setUnitType($UnitType){
 
-  $this->UnitType = $UnitType; 
+  $this->UnitType = $UnitType;
 
   return $this;
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -22,7 +22,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $StartDate Stock entries entry start date.
  * @property string $UserInvoiceDate Possibility to override the InvoiceDate during creation of sales invoice from sales orders. Works only for integration with Intuit QuickBooks.
  */
-class InvoiceSalesOrder extends Model 
+class InvoiceSalesOrder extends Model
 {
         protected $ID;
         protected $CreateMode;

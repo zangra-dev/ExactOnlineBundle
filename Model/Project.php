@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -63,7 +63,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $TypeDescription Description of Type
  * @property bool $UseBillingMilestones Using billing milestones
  */
-class Project extends Model 
+class Project extends Model
 {
         protected $ID;
         protected $Account;

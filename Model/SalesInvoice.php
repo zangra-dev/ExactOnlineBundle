@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -74,7 +74,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property float $WithholdingTaxPercentage Withholding tax percentage applied to sales invoice
  * @property string $YourRef The invoice number of the customer
  */
-class SalesInvoice extends Model 
+class SalesInvoice extends Model
 {
 
         protected $primaryKey = 'InvoiceID';

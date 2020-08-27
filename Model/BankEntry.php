@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 
@@ -29,7 +29,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property int $Status Status: 5 = Rejected, 20 = Open, 50 = Processed
  * @property string $StatusDescription Description of Status
  */
-class BankEntry extends Model 
+class BankEntry extends Model
 {
 
         protected $primaryKey = 'EntryID';

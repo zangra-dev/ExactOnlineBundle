@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -35,7 +35,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $Workcenter Reference to Workcenter
  * @property string $WorkcenterDescription Description of Workcenter
  */
-class OperationResource extends Model 
+class OperationResource extends Model
 {
         protected $ID;
         protected $Account;

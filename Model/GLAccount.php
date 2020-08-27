@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -50,7 +50,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $YearEndCostGLAccount Indicates the costing account for year end calculations
  * @property string $YearEndReflectionGLAccount Indicates the reflection account that is used by year end application
  */
-class GLAccount extends Model 
+class GLAccount extends Model
 {
         protected $ID;
         protected $AssimilatedVATBox;

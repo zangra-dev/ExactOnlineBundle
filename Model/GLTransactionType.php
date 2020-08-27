@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -13,7 +13,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $Description
  * @property string $DescriptionSuffix
  */
-class GLTransactionType extends Model 
+class GLTransactionType extends Model
 {
 
         protected $ID;

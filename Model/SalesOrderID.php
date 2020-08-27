@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -11,7 +11,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  *
  * @property string $ID
  */
-class SalesOrderID extends Model 
+class SalesOrderID extends Model
 {
     protected $ID;
     protected $url = 'salesinvoice/SalesOrderID';

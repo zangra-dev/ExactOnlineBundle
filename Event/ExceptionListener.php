@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Event;
+namespace ExactOnlineBundle\Event;
 
 use aibianchi\ExactOnlineBundle\DAO\Exception\ApiExceptionInterface;
 use Exception;

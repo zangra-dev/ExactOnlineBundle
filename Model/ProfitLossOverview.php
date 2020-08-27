@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -27,7 +27,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property float $RevenuePreviousYear Revenue in previous year
  * @property float $RevenuePreviousYearPeriod Revenue in period of previous year
  */
-class ProfitLossOverview extends Model 
+class ProfitLossOverview extends Model
 {
         protected $primaryKey = 'CurrentYear';
         protected $CostsCurrentPeriod;

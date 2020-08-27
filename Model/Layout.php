@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -20,7 +20,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $Subject Subject
  * @property int $Type 1=Layout, 2=E-mail text layout, 3=Word template
  */
-class Layout extends Model 
+class Layout extends Model
 {
         protected $ID;
         protected $Created;

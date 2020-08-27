@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -34,7 +34,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $VersionDate Version date
  * @property int $VersionNumber Version Number
  */
-class BillOfMaterialVersion extends Model 
+class BillOfMaterialVersion extends Model
 {
         protected $ID;
         protected $BatchQuantity;

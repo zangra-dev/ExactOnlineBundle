@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -57,7 +57,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $WorkcenterCode Workcenter code
  * @property string $WorkcenterDescription Workcenter description
  */
-class ShopOrderRoutingStepPlan extends Model 
+class ShopOrderRoutingStepPlan extends Model
 {
 
         protected $ID;

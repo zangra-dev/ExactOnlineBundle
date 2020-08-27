@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -33,7 +33,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $Unit The unit code of the price
  * @property string $UnitDescription Description of the price unit
  */
-class SalesItemPrice extends Model 
+class SalesItemPrice extends Model
 {
         protected $ID;
         protected $Account;

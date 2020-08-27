@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -54,7 +54,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property float $VATPercentage Vat code percentage
  * @property string $VATType Type of vat code
  */
-class BankEntryLine extends Model 
+class BankEntryLine extends Model
 {
 
         protected $ID;

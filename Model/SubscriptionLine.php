@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -35,7 +35,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $VATCode VATCode
  * @property string $VATCodeDescription Description of VATCode
  */
-class SubscriptionLine extends Model 
+class SubscriptionLine extends Model
 {
         protected $ID;
         protected $AmountDC;

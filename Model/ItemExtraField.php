@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -17,9 +17,9 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  *
  */
 
-class ItemExtraField extends Model 
+class ItemExtraField extends Model
 {
-    
+
         protected $Description;
         protected $ItemID;
         protected $Modified;

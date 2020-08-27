@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -19,7 +19,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $JournalCode Code of Journal
  * @property bool $Reversal Indicates that amounts are reversed
  */
-class GeneralJournalEntry extends Model 
+class GeneralJournalEntry extends Model
 {
 
     protected $primaryKey = 'EntryID';

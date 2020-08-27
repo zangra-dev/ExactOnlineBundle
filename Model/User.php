@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -47,7 +47,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property UserRolesPerDivision $UserRolesPerDivision Collection of user roles per division
  * @property string $UserTypesList Obsolete
  */
-class User extends Model 
+class User extends Model
 {
 
         protected $primaryKey = 'UserID';

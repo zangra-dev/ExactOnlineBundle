@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -15,7 +15,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $FileName Filename of the attachment
  * @property float $FileSize File size of the attachment
  */
-class DocumentAttachment extends Model 
+class DocumentAttachment extends Model
 {
 
         protected $ID;

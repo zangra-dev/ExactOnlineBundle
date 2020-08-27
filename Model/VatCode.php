@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -50,7 +50,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property VATPercentages $VATPercentages VAT percentages. You can have several VAT percentages, with start and end dates
  * @property string $VATTransactionType Indicates the type of transactions for which the VAT code may be used. B = Both, P = Purchase, S = Sales
  */
-class VatCode extends Model 
+class VatCode extends Model
 {
 
         protected $ID;

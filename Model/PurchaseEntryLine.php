@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -57,7 +57,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property float $WithholdingAmountDC Withholding tax amount for spanish legislation
  * @property string $WithholdingTax Withholding tax key for spanish legislation
  */
-class PurchaseEntryLine extends Model 
+class PurchaseEntryLine extends Model
 {
 
         protected $ID;

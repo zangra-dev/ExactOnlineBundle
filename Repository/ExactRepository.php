@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Repository;
+namespace ExactOnlineBundle\Repository;
 
 use Doctrine\ORM\Mapping;
 use Doctrine\ORM\EntityRepository;

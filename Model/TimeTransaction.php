@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -55,7 +55,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property int $SubscriptionNumber Subscription number
  * @property int $Type Type of the transaction
  */
-class TimeTransaction extends Model 
+class TimeTransaction extends Model
 {
         protected $ID;
         protected $Account;

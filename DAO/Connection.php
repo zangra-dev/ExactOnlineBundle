@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\DAO;
+namespace ExactOnlineBundle\DAO;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;

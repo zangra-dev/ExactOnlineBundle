@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -36,7 +36,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $StorageLocationCode Storage location code
  * @property string $StorageLocationDescription Storage location description
  */
-class StockCountLine extends Model 
+class StockCountLine extends Model
 {
 
         protected $ID;

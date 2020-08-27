@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -26,7 +26,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $SignatureDate Signature date
  * @property int $Type Type of mandate 0 = core, 1 = B2B, 2 = bottomline (UK only)
  */
-class DirectDebitMandate extends Model 
+class DirectDebitMandate extends Model
 {
         protected $ID;
         protected $Account;

@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -29,9 +29,9 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property bool $SendInvoiceToCustomerPostbox Set to True if a postbox message containing the invoice should be sent to the invoice customer
  * @property bool $SendOutputBasedOnAccount Set to True if the output preference should be taken from the account. It will be either Paper, Email, Digital postbox. This option overrules both SendEmailToCustomer and SendInvoiceToCustomerPostbox.
  */
-class PrintedSalesInvoice extends Model 
+class PrintedSalesInvoice extends Model
 {
-    
+
         protected $primaryKey = 'InvoiceID';
         protected $InvoiceID;
         protected $Division;

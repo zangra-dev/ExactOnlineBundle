@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -26,7 +26,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $JournalDescription Description of Journal
  * @property string $YourRef Your reference
  */
-class PayablesList extends Model 
+class PayablesList extends Model
 {
         protected $primaryKey = 'HID';
         protected $HID;

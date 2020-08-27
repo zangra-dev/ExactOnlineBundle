@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -37,7 +37,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $VATCode The VAT code used for the invoice line.
  * @property float $VATPercentage The VAT percentage.
  */
-class PurchaseInvoiceLine extends Model 
+class PurchaseInvoiceLine extends Model
 {
         protected $ID;
         protected $Amount;

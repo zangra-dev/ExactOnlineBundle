@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -39,7 +39,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $SupplierDescription Description of supplier
  * @property string $SupplierItemCode Supplier’s item code
  */
-class SupplierItem extends Model 
+class SupplierItem extends Model
 {
         protected $ID;
         protected $CountryOfOrigin;

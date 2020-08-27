@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -15,7 +15,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $MailMessageID Reference to Mail message
  * @property int $Type Type of mail message attachment
  */
-class MailMessageAttachment extends Model 
+class MailMessageAttachment extends Model
 {
         protected $ID;
         protected $Attachment;

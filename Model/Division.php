@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -31,7 +31,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $VATNumber VAT number
  * @property string $Website Customer value, hyperlink to external website
  */
-class Division extends Model 
+class Division extends Model
 {
         protected $primaryKey = 'Code';
         protected $Code;

@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -19,7 +19,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property int $Division Division code
  * @property string $Topic Webhook subscription topic, e.g.: FinancialTransactions, Items, StockPositions
  */
-class WebhookSubscription extends Model 
+class WebhookSubscription extends Model
 {
         protected $ID;
         protected $CallbackURL;

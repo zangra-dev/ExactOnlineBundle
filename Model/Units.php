@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -19,7 +19,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $Type Type 'Time' is especially important for contracts.
 
  */
-class Units extends Model 
+class Units extends Model
 {
         protected $ID;
         protected $Active;

@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -14,7 +14,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property float $PlanningIn Number of items that are planned to come in
  * @property float $PlanningOut Number of items that are planned to go out
  */
-class StockPosition extends Model 
+class StockPosition extends Model
 {
         protected $primaryKey = 'ItemId';
         protected $InStock;
@@ -22,7 +22,7 @@ class StockPosition extends Model
         protected $PlanningIn;
         protected $PlanningOut;
         protected $url = 'read/logistics/StockPosition';
-    
+
 
     /**
      * @return mixed

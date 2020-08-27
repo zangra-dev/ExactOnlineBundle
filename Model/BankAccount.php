@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -32,7 +32,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $Type The type indicates what entity the bank account is used for. A = Account (default), E = Employee, K = Cash, R = Bank, S = Student, U = Unknown. Currently it's only possible to create 'Account' type bank accounts.
  * @property string $TypeDescription Description of the Type
  */
-class BankAccount extends Model 
+class BankAccount extends Model
 {
         protected $ID;
         protected $Account;

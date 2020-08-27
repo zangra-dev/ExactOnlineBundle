@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -28,7 +28,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $SynchronizationCode Provides a link between Exact Online and the banks
  * @property string $Type Bank to/from which the mail message is sent/received. This is used for mail messages of type Bank only. It has an attachment containing the bank file. When used for a mail message of type bank, the value is reserved for internal use and will then be ignored.
  */
-class MailMessage extends Model 
+class MailMessage extends Model
 {
         protected $ID;
         protected $Bank;

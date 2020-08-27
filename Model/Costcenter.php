@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -21,7 +21,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $Modifier User ID of modifier
  * @property string $ModifierFullName Name of modifier
  */
-class Costcenter extends Model 
+class Costcenter extends Model
 {
         protected $ID;
         protected $Active;

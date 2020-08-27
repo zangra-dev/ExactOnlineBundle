@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 
@@ -46,7 +46,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $PaymentServiceProviderName Name of the Payment service provider
  * @property int $Type Type of Journal. The following values are supported: 10 (Cash) 12 (Bank) 16 (Payment service) 20 (Sales) 21 (Return invoice) 22 (Purchase) 23 (Received return invoice) 90 (General journal)
  */
-class Journal extends Model 
+class Journal extends Model
 {
 
         protected $ID;

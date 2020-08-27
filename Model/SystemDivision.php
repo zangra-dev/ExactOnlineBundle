@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -33,7 +33,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property int $Status Follow the Division Status 0 for Inactive, 1 for Active and 2 for Archived Divisions
  * @property string $VATNumber The number under which the account is known at the Value Added Tax collection agency
  */
-class SystemDivision extends Model 
+class SystemDivision extends Model
 {
         protected $primaryKey = 'Code';
         protected $Code;

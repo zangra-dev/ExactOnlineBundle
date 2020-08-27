@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -39,7 +39,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $Unit Unit
  * @property string $UnitDescription Unit description
  */
-class ShopOrderMaterialPlan extends Model 
+class ShopOrderMaterialPlan extends Model
 {
         protected $ID;
         protected $Backflush;

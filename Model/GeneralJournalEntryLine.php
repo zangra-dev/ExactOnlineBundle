@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -29,7 +29,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $VATCode VATCode can only be used if the general journal has VAT enabled. VAT Lines will be automatically created if the VATCode is specified when creating a new general journal entry.
  * @property float $VATPercentage Vat percentage
  */
-class GeneralJournalEntryLine extends Model 
+class GeneralJournalEntryLine extends Model
 {
         protected $ID;
         protected $Account;

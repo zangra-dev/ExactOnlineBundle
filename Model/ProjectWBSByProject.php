@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -38,7 +38,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property float $TimeQuantityToAlert Alert when exceeding this time quantity
  * @property int $Type Type: 1-Deliverable, 2-Activity, 3-Expense
  */
-class ProjectWBSByProject extends Model 
+class ProjectWBSByProject extends Model
 {
         protected $ID;
         protected $AdditionalInvoicing;

@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -19,7 +19,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property float $OverdueReceivableInvoiceAmount Total receivable invoice amount that is overdue
  * @property float $OverdueReceivableInvoiceCount Number of receivable invoices that are overdue
  */
-class OutstandingInvoicesOverview extends Model 
+class OutstandingInvoicesOverview extends Model
 {
 
     protected $primaryKey = 'CurrencyCode';

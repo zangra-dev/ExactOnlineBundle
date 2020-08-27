@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -56,7 +56,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $Modifier User ID of modifier
  * @property string $ModifierFullName Name of modifier
  * @property string $Municipality Municipality
- * @property int $NameComposition 
+ * @property int $NameComposition
  * @property string $Nationality Nationality
  * @property string $NickName Nick name
  * @property string $Notes Additional notes
@@ -76,7 +76,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $User User ID of employee
  * @property string $UserFullName Name of user
  */
-class Employee extends Model 
+class Employee extends Model
 {
         protected $ID;
         protected $ActiveEmployment;

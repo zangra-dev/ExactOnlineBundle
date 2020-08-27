@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -59,7 +59,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property int $VersionNumber Number indicating the different reviews which are made for the quotation
  * @property string $YourRef The number by which this quotation is identified by the order account
  */
-class Quotation extends Model 
+class Quotation extends Model
 {
 
         protected $primaryKey = 'QuotationID';
@@ -113,7 +113,7 @@ class Quotation extends Model
         protected $VersionNumber;
         protected $YourRef;
         protected $url = 'crm/Quotations';
-    
+
 
     /**
      * @return mixed

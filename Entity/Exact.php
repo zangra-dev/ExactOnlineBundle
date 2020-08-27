@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace aibianchi\ExactOnlineBundle\Entity;
+namespace ExactOnlineBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -41,7 +41,7 @@ class AccountInvolvedAccount extends Model
         protected $Modified;
         protected $Modifier;
         protected $ModifierFullName;
-        protected $Notes;    
+        protected $Notes;
         protected $url = 'accountancy/AccountInvolvedAccounts';
 
 

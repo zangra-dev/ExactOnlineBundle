@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -59,7 +59,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $WarehouseDescription Description of Warehouse
  * @property string $YourRef Shows the reference number associated with the purchase order. Enter a description and reference to make the purchase order easier to identify.
  */
-class PurchaseOrder extends Model 
+class PurchaseOrder extends Model
 {
         protected $primaryKey = 'PurchaseOrderID';
         protected $purchaseOrderLines;

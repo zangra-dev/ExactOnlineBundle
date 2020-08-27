@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -38,7 +38,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $TrackingNumber Reference to tracking number
  * @property string $Unitcode Code of item unit
  */
-class GoodsDeliveryLine extends Model 
+class GoodsDeliveryLine extends Model
 {
         protected $ID;
         protected $BatchNumbers;

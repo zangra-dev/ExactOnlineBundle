@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -25,7 +25,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $WarehouseCode Code of warehouse
  * @property string $WarehouseDescription Description of warehouse
  */
-class ItemWarehousePlanningDetails extends Model 
+class ItemWarehousePlanningDetails extends Model
 {
 
         protected $Item;

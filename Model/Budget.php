@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -35,7 +35,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property int $ReportingPeriod Period (combined with financial year)
  * @property int $ReportingYear Financial year
  */
-class Budget extends Model 
+class Budget extends Model
 {
         protected $ID;
         protected $AmountDC;

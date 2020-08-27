@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -26,7 +26,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $Searchcode Search code for the operation
  * @property int $Status Status of the operation
  */
-class Operation extends Model 
+class Operation extends Model
 {
         protected $ID;
         protected $Code;

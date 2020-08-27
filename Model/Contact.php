@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -79,7 +79,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * the first. This also applies to the BusinessMobile and Mobile field and the BusinessPhone and Phone field.
  * It is best practice to use the 'main' fields (Email, Mobile and Phone).
  */
-class Contact extends Model 
+class Contact extends Model
 {
         protected $ID;
         protected $Account;

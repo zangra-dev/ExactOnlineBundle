@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -35,7 +35,7 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $WarehouseDescription Description of the warehouse
  * @property string $YourRef The purchase invoice number provided by the supplier
  */
-class GoodsReceipt extends Model 
+class GoodsReceipt extends Model
 {
         protected $ID;
         protected $Created;

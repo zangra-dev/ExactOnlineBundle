@@ -1,6 +1,6 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
 use aibianchi\ExactOnlineBundle\Model\Base\Model;
 /**
@@ -19,9 +19,9 @@ use aibianchi\ExactOnlineBundle\Model\Base\Model;
  * @property string $Modified Last modified date
  * @property int $TypeCategory ID of the document type category
  */
-class DocumentType extends Model 
+class DocumentType extends Model
 {
-    
+
 
         protected $ID;
     	protected $Created;
