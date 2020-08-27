@@ -316,7 +316,7 @@ class Connection
             'Accept' => self::$accept,
             'Content-Type' => self::$contentType,
             'Prefer' => 'return=representation',
-            'X-aibianchi' => 'Exact Online Bundle <https://github.com/zangra-dev/ExactOnlineBundle/>',
+            'X-zangra' => 'Exact Online Bundle <https://github.com/zangra-dev/ExactOnlineBundle/>',
         ]);
 
         if (null === $Exact = self::$em->getRepository(Exact::class)->findLast()) {
