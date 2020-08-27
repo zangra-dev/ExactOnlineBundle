@@ -53,7 +53,6 @@ class ExactLogger
      */
     private $occured;
 
-
     /**
      * @var datetime
      *

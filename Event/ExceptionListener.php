@@ -4,8 +4,6 @@ namespace ExactOnlineBundle\Event;
 
 use ExactOnlineBundle\DAO\Exception\ApiExceptionInterface;
 use ExactOnlineBundle\Entity\ExactLogger;
-use Exception;
-use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 
