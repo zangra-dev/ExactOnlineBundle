@@ -29,9 +29,9 @@
             "ExactOnlineBundle" : ""
         }
     },
-    "target-dir" : "ExactOnlineBundle",
-    "repositories" : [{
-    }],
+    // "target-dir" : "ExactOnlineBundle",
+    // "repositories" : [{
+    // }],
     "extra" : {
     "branch-alias" : {
             "main" : "main-dev"

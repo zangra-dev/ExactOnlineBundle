@@ -2,9 +2,9 @@
 
 namespace ExactOnlineBundle\Manager;
 
+use Doctrine\ORM\EntityManager;
 use ExactOnlineBundle\DAO\Connection;
 use ExactOnlineBundle\DAO\Exception\ApiException;
-use Doctrine\ORM\EntityManager;
 
 /**
  * Author: Jefferson Bianchi <jefferson@zangra.com>
