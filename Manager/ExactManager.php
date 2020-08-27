@@ -6,19 +6,20 @@ use Doctrine\ORM\EntityManager;
 use ExactOnlineBundle\DAO\Connection;
 use ExactOnlineBundle\DAO\Exception\ApiException;
 use ExactOnlineBundle\Model\BillOfMaterialMaterial;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Exact Manager
- * Author: Jefferson Bianchi / Maxime Lambot
- * Email : jefferson@zangra.com / maxime@zangra.com.
+ * Author: Jefferson Bianchi / Maxime Lambot / Nils Méchin
+ * Email : jefferson@zangra.com / maxime@zangra.com. / nils@zangra.com
  */
-class ExactManager
+abstract class ExactManager
 {
-    private $list = [];
-    private $model;
-    private $config;
-    private $em;
-    private $logger;
+    protected $list = [];
+    protected $model;
+    protected $config;
+    protected $em;
+    protected $logger;
 
     public function __construct(EntityManager $em)
     {
@@ -36,7 +37,7 @@ class ExactManager
     public function init($code)
     {
         try {
-            Connection::setConfig($this->config, $this->em, $this->logger);
+            Connection::setConfig($this->config, $this->em);
 
             if (Connection::isExpired()) {
                 if (null == $code) {
@@ -52,19 +53,25 @@ class ExactManager
 
     public function refreshToken()
     {
-        Connection::setConfig($this->config, $this->em, $this->logger);
+        Connection::setConfig($this->config, $this->em);
         Connection::refreshAccessToken();
     }
 
     /**
      * @param mixed $name
+     * @param mixed $version
      *
      * @return object
      */
-    public function getModel($name)
+    public function getModel($name, $version = 'normal')
     {
         try {
-            $classname = $cname = 'ExactOnlineBundle\\Model\\'.$name;
+            if ('extended' === $version) {
+                $classname = $cname = 'ExactOnlineBundle\\Model\\Xml\\'.$name;
+            } else {
+                $classname = $cname = 'ExactOnlineBundle\\Model\\'.$name;
+            }
+
             $this->model = new $classname();
 
             return $this;
@@ -74,135 +81,37 @@ class ExactManager
     }
 
     /**
-     * @param mixed $entity
-     */
-    public function persist($entity)
-    {
-        $json = $entity->toJson();
-        Connection::Request($entity->getUrl(), 'POST', $json);
-    }
-
-    /**
-     * @param mixed $entity
-     */
-    public function remove($entity)
-    {
-        $json = $entity->toJson();
-        $keyField = $this->getKeyField();
-        $getter = 'get'.$keyField;
-        $url = $entity->getUrl()."(guid'".$entity->{$getter}()."')";
-        Connection::Request($url, 'DELETE', $json);
-    }
-
-    /**
-     * @param mixed $entity
-     */
-    public function update($entity)
-    {
-        $skipNullValues = true;
-        $json = $entity->toJson($skipNullValues);
-        $keyField = $this->getKeyField();
-        $getter = 'get'.$keyField;
-        $url = $entity->getUrl()."(guid'".$entity->{$getter}()."')";
-        Connection::Request($url, 'PUT', $json);
-    }
-
-    /**
-     * @return int
-     */
-    public function count()
-    {
-        $url = $this->model->getUrl().'\\'.'$count';
-
-        return Connection::Request($url, 'GET');
-    }
-
-    /**
-     * getList with pagination
-     * Warning: Usually this limit, also known as page size, is 60 records but it may vary per end point.
-     * https://support.exactonline.com/community/s/knowledge-base#All-All-DNO-Content-resttips.
+     * Check hash code from Exact webhook.
      *
-     * @param mixed $page
-     * @param mixed $maxPerPage
+     * "Content":{"Topic":"SalesOrders","ClientId":"63824703-cf5c-4143-be7d-db3113b83b0e","Division":441609,"Action":"Update","Key":"19cee073-095e-46d1-8d2d-f3fc97ba5bc1","ExactOnlineEndpoint":"https://start.exac    tonline.be/api/v1/441609/salesorder/SalesOrders(guid'19cee073-095e-46d1-8d2d-f3fc97ba5bc1')","EventCreatedOn":"2020-01-06T16:26:08.587"},"HashCode":"3ACBC7840E4DD3CA10A1803124DC1D4A04B2CCD18EFB9E9BB666CC4C75876DC5"}
      *
-     * @return object Collection
+     * @param string $data     Content of 'Content' received data from Exact
+     *                         including brackets: {"Topic":...589"}
+     * @param string $hashCode Hash code comming from Exact
+     *
+     * @return bool
      */
-    public function getList($page = 1, $maxPerPage = 5)
+    public function checkWebhookHash(Request $request)
     {
-        if ($maxPerPage >= 60) {
-            throw new ApiException('60 records maximum per page', 406);
-        }
+        echo $this->config['webhookSecret'];
+        if (!empty($request->getContent())) {
+            $data = $request->getContent();
+            $data = json_decode($data);
 
-        $total = $this->count();
-
-        if ($maxPerPage > $total) {
-            throw new ApiException('Maximum records is: '.$total, 406);
-        }
-
-        $nbrPages = ceil($total / $maxPerPage);
-        $skip = ($page * $maxPerPage) - $maxPerPage;
-
-        if ($this->model instanceof BillOfMaterialMaterial) {
-            $url = $this->model->getUrl().'\\?'.'&$top='.$maxPerPage;
-        } else {
-            $url = $this->model->getUrl().'\\?'.'$skip='.$skip.'&$top='.$maxPerPage;
-        }
-
-        $data = Connection::Request($url, 'GET');
-
-        return $this->isArrayCollection($this->model, $data);
-    }
-
-    /**
-     *    array('field' => 'searchMe'),   // Criteria
-     *    array('date' => 'desc'),        // Order by
-     *    5,                              // limit.
-     *
-     * @param mixed $limit
-     *
-     *    @return array
-     */
-    public function findBy(array $criteria, array $select = null, array $orderby = null, $limit = 5)
-    {
-        // Check if current criteria (value) is a guid
-        $guidString = $this->assertGuid(current($criteria)) ? 'guid' : '';
-
-        $url = $this->model->getUrl().'\\?'.'$filter='.key($criteria).' eq '.$guidString."'".current($criteria)."'";
-
-        if (null != $select) {
-            $url = $url.'&$select=';
-            for ($i = 0; $i < count($select); ++$i) {
-                $url = $url.$select[$i].', ';
+            if (!isset($data->HashCode) || empty($data->HashCode)) {
+                throw new ApiException('Forbidden, No HashCode', 403);
             }
+
+            if (!$this->caclulateHash(json_encode($data->Content, JSON_UNESCAPED_SLASHES), $data->HashCode)) {
+                throw new ApiException('Bad HashCode, no match', 401);
+            }
+        } else {
+            throw new ApiException('Forbidden (no data)', 403);
         }
 
-        if ($limit > 0) {
-            $url = $url.'&$top='.$limit;
-        }
-
-        if (null != $orderby) {
-            $url = $url.'&$orderby='.key($orderby).' '.current($orderby);
-        }
-
-        $data = Connection::Request($url, 'GET');
-
-        return $this->isArrayCollection($this->model, $data);
+        return true;
     }
 
-    /**
-     * @param mixed $guid
-     *
-     *  @return object
-     */
-    public function find($guid)
-    {
-        $keyField = $this->getKeyField();
-
-        $url = $this->model->getUrl().'\\?'.'$filter='.$keyField.' eq guid'."'".$guid."'";
-        $data = Connection::Request($url, 'GET');
-
-        return $this->isSingleObject($data);
-    }
 
     /**
      * @return PrimaryKey field
@@ -219,56 +128,27 @@ class ExactManager
     }
 
     /**
-     * @param mixed $data
-     *
-     * @return object
-     */
-    private function isSingleObject($data)
-    {
-        $object = $this->model;
-        foreach ($data as $key => $item) {
-            $setter = 'set'.$key;
-            if (method_exists($object, $setter)) {
-                $object->{$setter}($item);
-            }
-        }
-
-        return $object;
-    }
-
-    /**
-     * @param mixed $entity
-     * @param mixed $data
-     *
-     * @return object collection
-     */
-    private function isArrayCollection($entity, $data)
-    {
-        foreach ($data as $keyD => $item) {
-            $object = new $entity();
-            foreach ($item as $key => $value) {
-                $setter = 'set'.$key;
-                if (method_exists($object, $setter)) {
-                    $object->{$setter}($value);
-                }
-            }
-            array_push($this->list, $object);
-        }
-
-        return $this->list;
-    }
-
-    /**
      * Assert passewd value is a GUID.
      *
      * @param string $guid a GUID string probably
      *
      * @return bool
      */
-    private function assertGuid($guid)
+    protected function assertGuid($guid)
     {
         $UUIDv4 = '/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i';
 
         return 1 === preg_match($UUIDv4, $guid);
+    }
+
+    private function caclulateHash($data, $hashCode)
+    {
+        if (empty($this->config['webhookSecret'])) {
+            throw new ApiException('No Webhook Secret', 401);
+        }
+
+        $calculatedHash = hash_hmac('sha256', $data, $this->config['webhookSecret']);
+
+        return strtoupper($calculatedHash) === $hashCode;
     }
 }
