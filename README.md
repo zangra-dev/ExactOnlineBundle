@@ -81,8 +81,8 @@ In your controller :
     {
         // the code sended by exact online when the first auth
         $code = $request->query->get('code');
-        //$exactManager->init($code, "Belgium"); // use init for the first Authentification, after that you should to use refreshtoken();
-	      $exactManager->refreshToken("Belgium");
+        //$exactManager->init($code); // use init for the first Authentification, after that you should to use refreshtoken();
+	      $exactManager->refreshToken();
     }
 
 Next go to http:// YOUR URL.com/ExactRequest
