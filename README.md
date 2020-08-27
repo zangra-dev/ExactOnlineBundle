@@ -1,10 +1,8 @@
 <h1>Exact Online Bundle API </h1>
 
-Author:   Bianchi Jefferson
+Author:   Bianchi Jefferson / Lambot Maxime
 
-Website: 	https://aibianchi.com
-
-Mail: 		Jefferson@aibianchi.com
+Mail: 		jefferson@zangra.com / maxime@zangra.com
 
 Exact Online doc: https://support.exactonline.com/community/s/knowledge-base#All-All-DNO-Content-getting-started
 
@@ -26,7 +24,7 @@ Create your APP on : https://apps.exactonline.com/be/fr-BE/V2/Manage/
 
 <h3>STEP 2</h3>
 
-	 composer require aibianchi/exact-online-bundle
+	 composer require zangra/exact-online-bundle
 
 <h3>STEP 3</h3>
 
@@ -77,7 +75,7 @@ You need to update your database:
 
 In your controller :
 
-    use aibianchi\ExactOnlineBundle\Manager\ExactManager;
+    use zangra\ExactOnlineBundle\Manager\ExactManager;
 
      public function indexAction(Request $request, ExactManager $exactManager)
     {
@@ -98,7 +96,7 @@ If you want to keep this session active, you need to replace function init() by 
 	$code = $request->query->get('code');
 	$exactManager = $this->get("exact_online.manager");
 	//$exactManager->init($code); // first init
-	$exactManager->refreshToken(); // after first init 
+	$exactManager->refreshToken(); // after first init
 
 <h3>getList($page, $maxPerPage)</h3> (with pagination)
 
@@ -133,7 +131,7 @@ If you want to keep this session active, you need to replace function init() by 
 <h3>update()</h3>
 
 	$account = $exactManager->getModel("Account")->find("587707b8-94aa-426a-b7db-56d434d9e83a");
-	$account->setWebsite("https://aibianchi.com");
+	$account->setWebsite("https://zangra.com");
 	$exactManager->update($account);
 
 <h3>remove()</h3>
