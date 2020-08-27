@@ -4,7 +4,7 @@
     "type" : "symfony-bundle",
     "authors" : [{
         "name" : "Jefferson Bianchi",
-        "email" : "jefferson@zangra.com"
+        "email" : "jefferson@zangra.com",
         "name" : "Maxime Lambot",
         "email" : "maxime@zangra.com"
     }],
