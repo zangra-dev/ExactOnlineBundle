@@ -13,6 +13,10 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class ExactOnlineExtension extends Extension
 {
+{
+    /**
+     * {@inheritdoc}
+     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
@@ -21,7 +25,10 @@ class ExactOnlineExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yaml');
 
-        $exactServiceDefintion = $container->getDefinition('exact_online.manager');
-        $exactServiceDefintion->addMethodCall('setConfig', [$config]);
+        $restServiceDefintion = $container->getDefinition('exact_online.rest_api');
+        $restServiceDefintion->addMethodCall('setConfig', [$config]);
+
+        $xmlServiceDefintion = $container->getDefinition('exact_online.xml_api');
+        $xmlServiceDefintion->addMethodCall('setConfig', [$config]);
     }
 }

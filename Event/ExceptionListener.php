@@ -3,6 +3,7 @@
 namespace ExactOnlineBundle\Event;
 
 use ExactOnlineBundle\DAO\Exception\ApiExceptionInterface;
+use ExactOnlineBundle\Entity\ExactLogger;
 use Exception;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -14,51 +15,32 @@ use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
  */
 class ExceptionListener
 {
-    private $logger;
+    private $em;
 
-    public function __construct(LoggerInterface $logger)
+    public function __construct(EntityManager $em)
     {
-        $this->logger = $logger;
+        $this->em = $em;
     }
 
     public function onKernelException(GetResponseForExceptionEvent $event)
     {
-        if (!$event->getException() instanceof ApiExceptionInterface) {
-            return;
+        if ($event->getException() instanceof ApiExceptionInterface || $event->getException() instanceof GuzzleException) {
+            $response = new JsonResponse($event->getException()->getMessage());
+            $event->setResponse($response);
+
+            $this->log($event->getException());
         }
-
-        $response = new JsonResponse($event->getException()->getMessage(), $event->getException()->getStatusCode());
-        $event->setResponse($response);
-
-        $this->log($event->getException());
     }
 
-    private function log(ApiExceptionInterface $exception)
+    private function log($exception)
     {
-        $log = [
-            'code' => $exception->getStatusCode(),
-            'message' => $exception->getMessage(),
-            'called' => [
-                'file' => $exception->getTrace()[0]['file'],
-                'line' => $exception->getTrace()[0]['line'],
-            ],
-            'occurred' => [
-                'file' => $exception->getFile(),
-                'line' => $exception->getLine(),
-            ],
-        ];
+        $log = new ExactLogger();
+        $log->setCode(method_exists($exception, 'getStatusCode') ? $exception->getStatusCode() : $exception->getCode());
+        $log->setMessage($exception->getMessage());
+        $log->setCalled('file :'.$exception->getTrace()[0]['file'].' line : '.$exception->getTrace()[0]['line']);
+        $log->setOccured('file :'.$exception->getFile().' line : '.$exception->getLine());
 
-        if ($exception->getPrevious() instanceof Exception) {
-            $log += [
-                'previous' => [
-                    'message' => $exception->getPrevious()->getMessage(),
-                    'exception' => get_class($exception->getPrevious()),
-                    'file' => $exception->getPrevious()->getFile(),
-                    'line' => $exception->getPrevious()->getLine(),
-                ],
-            ];
-        }
-
-        $this->logger->error(json_encode($log));
+        $this->em->persist($log);
+        $this->em->flush();
     }
 }

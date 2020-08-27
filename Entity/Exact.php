@@ -68,13 +68,6 @@ class Exact
      */
     private $createdAt;
 
-    /**
-     * @var text
-     *
-     * @ORM\Column(name="country", type="text")
-     */
-    private $country;
-
     public function __construct()
     {
         $this->enabled = true;

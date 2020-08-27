@@ -11,6 +11,9 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
@@ -18,8 +21,6 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-            ->arrayNode('Belgium')
-            ->children()
             ->scalarNode('baseUrl')->defaultValue('')->end()
             ->scalarNode('apiUrl')->defaultValue('')->end()
             ->scalarNode('authUrl')->defaultValue('')->end()
@@ -27,40 +28,8 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('redirectUrl')->defaultValue('')->end()
             ->scalarNode('clientId')->defaultValue('')->end()
             ->scalarNode('clientSecret')->defaultValue('')->end()
-            ->end()
-            ->end()
-            ->arrayNode('France')
-            ->children()
-            ->scalarNode('baseUrl')->defaultValue('')->end()
-            ->scalarNode('apiUrl')->defaultValue('')->end()
-            ->scalarNode('authUrl')->defaultValue('')->end()
-            ->scalarNode('tokenUrl')->defaultValue('')->end()
-            ->scalarNode('redirectUrl')->defaultValue('')->end()
-            ->scalarNode('clientId')->defaultValue('')->end()
-            ->scalarNode('clientSecret')->defaultValue('')->end()
-            ->end()
-            ->end()
-            ->arrayNode('Nerderland')
-            ->children()
-            ->scalarNode('baseUrl')->defaultValue('')->end()
-            ->scalarNode('apiUrl')->defaultValue('')->end()
-            ->scalarNode('authUrl')->defaultValue('')->end()
-            ->scalarNode('tokenUrl')->defaultValue('')->end()
-            ->scalarNode('redirectUrl')->defaultValue('')->end()
-            ->scalarNode('clientId')->defaultValue('')->end()
-            ->scalarNode('clientSecret')->defaultValue('')->end()
-            ->end()
-            ->end()
-            ->arrayNode('Spain')
-            ->children()
-            ->scalarNode('baseUrl')->defaultValue('')->end()
-            ->scalarNode('apiUrl')->defaultValue('')->end()
-            ->scalarNode('authUrl')->defaultValue('')->end()
-            ->scalarNode('tokenUrl')->defaultValue('')->end()
-            ->scalarNode('redirectUrl')->defaultValue('')->end()
-            ->scalarNode('clientId')->defaultValue('')->end()
-            ->scalarNode('clientSecret')->defaultValue('')->end()
-            ->end()
+            ->scalarNode('mainDivision')->defaultValue('')->end()
+            ->scalarNode('webhookSecret')->defaultValue('')->end()
             ->end()
             ;
 

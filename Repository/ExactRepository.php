@@ -10,12 +10,10 @@ use Doctrine\ORM\EntityRepository;
  */
 final class ExactRepository extends EntityRepository
 {
-    public function findLastByCountry($country)
+    public function findLast()
     {
         $qb = $this->createQueryBuilder('e');
         $qb->setMaxResults(1);
-        $qb->where('e.country = :country');
-        $qb->setParameter('country', $country);
         $qb->orderBy('e.id', 'DESC');
 
         return $qb->getQuery()->getOneOrNullResult();
