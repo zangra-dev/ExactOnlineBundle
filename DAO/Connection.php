@@ -8,9 +8,9 @@ use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7;
 
 use Doctrine\ORM\EntityManager;
-use aibianchi\ExactOnlineBundle\DAO\Exception\ApiException;
-use aibianchi\ExactOnlineBundle\Model\Base\Me;
-use aibianchi\ExactOnlineBundle\Entity\Exact;
+use ExactOnlineBundle\DAO\Exception\ApiException;
+use ExactOnlineBundle\Model\Base\Me;
+use ExactOnlineBundle\Entity\Exact;
 
 /**
  * Class Connection

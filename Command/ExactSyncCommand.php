@@ -9,9 +9,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Psr\Log\LoggerInterface;
 use GuzzleHttp\Exception\ClientException;
-use aibianchi\ExactOnlineBundle\DAO\Connection;
-use aibianchi\ExactOnlineBundle\DAO\Exception\ApiException;
-use aibianchi\ExactOnlineBundle\Manager\ExactManager;
+use ExactOnlineBundle\DAO\Connection;
+use ExactOnlineBundle\DAO\Exception\ApiException;
+use ExactOnlineBundle\Manager\ExactManager;
 /**
  * ExactOnlineBundle command.
  *

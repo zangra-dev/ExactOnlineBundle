@@ -3,8 +3,8 @@
 namespace ExactOnlineBundle\Model\Base;
 
 
-use aibianchi\ExactOnlineBundle\Model\Base\Model;
-use aibianchi\ExactOnlineBundle\DAO\Connection;
+use ExactOnlineBundle\Model\Base\Model;
+use ExactOnlineBundle\DAO\Connection;
 
 /**
  * Class Me extends Model

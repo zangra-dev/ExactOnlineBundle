@@ -4,7 +4,7 @@ namespace ExactOnlineBundle\Repository;
 
 use Doctrine\ORM\Mapping;
 use Doctrine\ORM\EntityRepository;
-use aibianchi\ExactOnlineBundle\Entity\Exact;
+use ExactOnlineBundle\Entity\Exact;
 
 
 /**

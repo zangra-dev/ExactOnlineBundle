@@ -2,7 +2,7 @@
 
 namespace ExactOnlineBundle\Model;
 
-use aibianchi\ExactOnlineBundle\Model\Base\Model;
+use ExactOnlineBundle\Model\Base\Model;
 /**
  * Added deprecated BillOfMaterialMaterials class for extends Model backward compatibility
  */

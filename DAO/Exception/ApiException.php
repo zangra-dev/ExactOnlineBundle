@@ -2,7 +2,7 @@
 
 namespace ExactOnlineBundle\DAO\Exception;
 
-use aibianchi\ExactOnlineBundle\DAO\Exception\ApiExceptionInterface;
+use ExactOnlineBundle\DAO\Exception\ApiExceptionInterface;
 use Exception;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 

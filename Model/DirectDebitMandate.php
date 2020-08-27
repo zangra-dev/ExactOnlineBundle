@@ -2,7 +2,7 @@
 
 namespace ExactOnlineBundle\Model;
 
-use aibianchi\ExactOnlineBundle\Model\Base\Model;
+use ExactOnlineBundle\Model\Base\Model;
 /**
  * Class DirectDebitMandate extends Model
  *

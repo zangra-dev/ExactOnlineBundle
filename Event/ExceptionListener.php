@@ -2,7 +2,7 @@
 
 namespace ExactOnlineBundle\Event;
 
-use aibianchi\ExactOnlineBundle\DAO\Exception\ApiExceptionInterface;
+use ExactOnlineBundle\DAO\Exception\ApiExceptionInterface;
 use Exception;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;

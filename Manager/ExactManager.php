@@ -3,9 +3,9 @@
 namespace ExactOnlineBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
-use aibianchi\ExactOnlineBundle\DAO\Connection;
-use aibianchi\ExactOnlineBundle\DAO\Exception\ApiException;
-use aibianchi\ExactOnlineBundle\Model\BillOfMaterialMaterial;
+use ExactOnlineBundle\DAO\Connection;
+use ExactOnlineBundle\DAO\Exception\ApiException;
+use ExactOnlineBundle\Model\BillOfMaterialMaterial;
 
 /**
  * Exact Manager

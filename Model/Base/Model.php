@@ -2,7 +2,7 @@
 
 namespace ExactOnlineBundle\Model\Base;
 
-use aibianchi\ExactOnlineBundle\DAO\Connection;
+use ExactOnlineBundle\DAO\Connection;
 
 /**
  * Author: Jefferson Bianchi
