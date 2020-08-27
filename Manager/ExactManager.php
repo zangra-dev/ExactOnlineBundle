@@ -68,11 +68,11 @@ class ExactManager {
     public function getModel($name){
 
         try{
-            $classname   = $cname = "aibianchi\\ExactOnlineBundle\\Model\\".$name;
+            $classname   = $cname = "ExactOnlineBundle\\Model\\".$name;
             $this->model = new $classname();
             return $this;
         }catch (ApiException $e) {
-            throw new ApiException("Model doesn't existe : ", $e->getStatusCode());
+            throw new ApiException("Model doesn't exist : ", $e->getStatusCode());
         }
     }
 

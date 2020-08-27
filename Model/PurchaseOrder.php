@@ -6,7 +6,7 @@ use ExactOnlineBundle\Model\Base\Model;
 /**
  * Class PurchaseOrder extends Model
  *
- * @package aibianchi\ExactOnlineBundle\Model
+ * @package ExactOnlineBundle\Model
  * @See https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=PurchaseOrderPurchaseOrders
  *
  * @property string $PurchaseOrderID Primary key

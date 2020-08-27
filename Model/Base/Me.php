@@ -9,7 +9,7 @@ use ExactOnlineBundle\DAO\Connection;
 /**
  * Class Me extends Model
  *
- * @package aibianchi\ExactOnlineBundle\Model
+ * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=SystemSystemMe
  *
  * @property string   $UserID Primary key

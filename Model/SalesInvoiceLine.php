@@ -6,7 +6,7 @@ use ExactOnlineBundle\Model\Base\Model;
 /**
  * Class SalesInvoiceLine extends Model
  *
- * @package aibianchi\ExactOnlineBundle\Model
+ * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=salesinvoiceSalesInvoiceLines
  *
  * @property string $ID Primary key

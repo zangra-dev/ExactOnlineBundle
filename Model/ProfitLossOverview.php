@@ -6,7 +6,7 @@ use ExactOnlineBundle\Model\Base\Model;
 /**
  * Class ProfitLossOverview extends Model
  *
- * @package aibianchi\ExactOnlineBundle\Model
+ * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=ReadFinancialProfitLossOverview
  *
  * @property int $CurrentYear Current year, Primary key

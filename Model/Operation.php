@@ -6,7 +6,7 @@ use ExactOnlineBundle\Model\Base\Model;
 /**
  * Class Operation extends Model
  *
- * @package aibianchi\ExactOnlineBundle\Model
+ * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=ManufacturingOperations
  *
  * @property string $ID Primary key

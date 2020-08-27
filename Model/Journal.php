@@ -7,7 +7,7 @@ use ExactOnlineBundle\Model\Base\Model;
 /**
  * Class Journal extends Model
  *
- * @package aibianchi\ExactOnlineBundle\Model
+ * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=FinancialJournals
  *
  * @property string $ID Primary Key

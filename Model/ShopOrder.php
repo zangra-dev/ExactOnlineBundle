@@ -7,7 +7,7 @@ use ExactOnlineBundle\Model\Base\Model;
 /**
  * Class ShopOrder
  *
- * @package aibianchi\ExactOnlineBundle\Model
+ * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=ManufacturingShopOrders
  *
  * @property string $ID Primary key

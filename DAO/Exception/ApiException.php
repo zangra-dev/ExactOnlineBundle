@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 /**
  * Class ApiException
  *
- * @package aibianchi\ExactOnlineBundle\DAO\Exception;
+ * @package ExactOnlineBundle\DAO\Exception;
  *
  */
 class ApiException extends HttpException implements ApiExceptionInterface

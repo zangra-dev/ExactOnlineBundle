@@ -7,7 +7,7 @@ use ExactOnlineBundle\Model\Base\Model;
 /**
  * Class SalesOrder extends Model
  *
- * @package aibianchi\ExactOnlineBundle\Model
+ * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=SalesOrderSalesOrders
  *
  * @property string $OrderID Primary key

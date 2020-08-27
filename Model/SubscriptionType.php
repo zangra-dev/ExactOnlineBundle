@@ -1,11 +1,11 @@
 <?php
 
-namespace Paibianchi\ExactOnlineBundle\Model;
+namespace PExactOnlineBundle\Model;
 
 /**
  * Class SubscriptionType extends Model
  *
- * @package aibianchi\ExactOnlineBundle\Model
+ * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=SubscriptionSubscriptionTypes
  *
  * @property string $ID Primary key
@@ -19,7 +19,7 @@ namespace Paibianchi\ExactOnlineBundle\Model;
  * @property string $Modifier User ID of the last modifier
  * @property string $ModifierFullName Name of the last modifier
  */
-class SubscriptionType extends Model 
+class SubscriptionType extends Model
 {
         protected $ID;
         protected $Code;

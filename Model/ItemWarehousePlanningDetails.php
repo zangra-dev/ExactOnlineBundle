@@ -6,7 +6,7 @@ use ExactOnlineBundle\Model\Base\Model;
 /**
  * Class ItemWarehousePlanningDetails extends Model
  *
- * @package Paibianchi\ExactOnlineBundle\Model
+ * @package PExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=InventoryItemWarehousePlanningDetails
  *
  * @property string $Item Primary key

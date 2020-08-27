@@ -6,7 +6,7 @@ use ExactOnlineBundle\Model\Base\Model;
 /**
  * Class BankEntryLine extends Model
  *
- * @package aibianchi\ExactOnlineBundle\Model
+ * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/lpRestAPIResourcesDetails.aspx?name=FinancialTransactionBankEntryLines
  *
  * @property string $ID Primary key

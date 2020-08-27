@@ -6,7 +6,7 @@ use ExactOnlineBundle\Model\Base\Model;
 /**
  * Class SalesOrderID extends Model
  *
- * @package aibianchi\ExactOnlineBundle\Model;
+ * @package ExactOnlineBundle\Model;
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=SalesInvoiceSalesOrderIDget123
  *
  * @property string $ID

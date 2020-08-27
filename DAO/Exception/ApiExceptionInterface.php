@@ -5,7 +5,7 @@ namespace ExactOnlineBundle\DAO\Exception;
 /**
  * interface ApiExceptionInterface
  *
- * @package aibianchi\ExactOnlineBundle\DAO\Exception;
+ * @package ExactOnlineBundle\DAO\Exception;
  *
  */
 

@@ -16,7 +16,7 @@ use ExactOnlineBundle\Entity\Exact;
  * Class Connection
  * Author: Jefferson Bianchi
  * Email : Jefferson@aibianchi.com
- * @package aibianchi\ExactOnlineBundle\DAO
+ * @package ExactOnlineBundle\DAO
  *
  */
 class Connection

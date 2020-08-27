@@ -7,7 +7,7 @@ use ExactOnlineBundle\Model\Base\Model;
 /**
  * Class Account extends Model
  *
- * @package aibianchi\ExactOnlineBundle\Model
+ * @package ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=crmAccounts
  *
  * @property string $ID Primary key

@@ -6,7 +6,7 @@ use ExactOnlineBundle\Model\Base\Model;
 /**
  * Class ProjectWBSByProject extends Model
  *
- * @package aibianchi\ExactOnlineBundle\Model;
+ * @package ExactOnlineBundle\Model;
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=ReadProjectProjectWBSByProject
  *
  * @property string $ID Primary key

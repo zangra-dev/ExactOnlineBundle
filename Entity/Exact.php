@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="exact")
- * @ORM\Entity(repositoryClass="aibianchi\ExactOnlineBundle\Repository\ExactRepository")
+ * @ORM\Entity(repositoryClass="ExactOnlineBundle\Repository\ExactRepository")
  */
 class Exact
 {

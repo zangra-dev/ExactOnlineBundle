@@ -6,7 +6,7 @@ use ExactOnlineBundle\Model\Base\Model;
 /**
  * Class PurchaseInvoice extends Model
  *
- * @package aibianchi\ExactOnlineBundle\Model;
+ * @package ExactOnlineBundle\Model;
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=PurchasePurchaseInvoices
  *
  * @property string $ID A guid that is the unique identifier of the purchase invoice.
