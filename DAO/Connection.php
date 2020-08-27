@@ -13,12 +13,13 @@ use GuzzleHttp\Psr7\Response;
 
 /**
  * Class Connection
- * Author: Jefferson Bianchi / Maxime Lambot
- * Email : jefferson@zangra.com / maxime@zangra.com.
+ * Author: Jefferson Bianchi / Maxime Lambot / Nils Méchin
+ * Email : jefferson@zangra.com / maxime@zangra.com / nils@zangra.com
  */
 class Connection
 {
-    private static $container;
+    const CONTENT_TYPE_JSON = 'application/json';
+    const CONTENT_TYPE_XML = 'application/xml';
 
     private static $baseUrl;
     private static $apiUrl;
@@ -33,30 +34,30 @@ class Connection
 
     private static $em;
     private static $instance;
+    private static $contentType = self::CONTENT_TYPE_JSON;
+    private static $accept = self::CONTENT_TYPE_JSON.';odata=verbose,text/plain';
+    private static $xRateLimits = [];
 
-    public static function setConfig(string $country, array $config, EntityManager $em)
+    public static function setConfig(array $config, EntityManager $em, $contentType = 'json')
     {
-        self::$country = $country;
         self::$em = $em;
-        self::$baseUrl = $config["{$country}"]['baseUrl'];
-        self::$apiUrl = $config["{$country}"]['apiUrl'];
-        self::$authUrl = $config["{$country}"]['authUrl'];
-        self::$tokenUrl = $config["{$country}"]['tokenUrl'];
-        self::$redirectUrl = $config["{$country}"]['redirectUrl'];
-        self::$exactClientId = $config["{$country}"]['clientId'];
-        self::$exactClientSecret = $config["{$country}"]['clientSecret'];
+        self::$baseUrl = $config['baseUrl'];
+        self::$apiUrl = $config['apiUrl'];
+        self::$authUrl = $config['authUrl'];
+        self::$tokenUrl = $config['tokenUrl'];
+        self::$redirectUrl = $config['redirectUrl'];
+        self::$exactClientId = $config['clientId'];
+        self::$exactClientSecret = $config['clientSecret'];
+        self::$division = $config['mainDivision'];
+        self::setContentType($contentType);
     }
 
-    public static function getInstance()
-    {
-        if (null === static::$instance) {
-            static::$instance = new static();
-        }
-
-        return static::$instance;
-    }
-
-    // Exact api will post on redirect URL
+    /**
+     * Retrieve authorization code from Exact.
+     * Exact api will POST on redirect URL and will be treated in our Controller.
+     *
+     * @return Redirect
+     */
     public static function getAuthorization()
     {
         $url = self::$baseUrl.self::$authUrl;
@@ -72,6 +73,9 @@ class Connection
         die('Redirect');
     }
 
+    /**
+     * Get Token and persist to DB.
+     */
     public static function getAccessToken()
     {
         $url = self::$baseUrl.self::$tokenUrl;
@@ -85,7 +89,8 @@ class Connection
                     'grant_type' => 'authorization_code',
                     'client_secret' => self::$exactClientSecret,
                     'redirect_uri' => self::$redirectUrl,
-                ], ]
+                ],
+            ]
         );
 
         $body = $response->getBody();
@@ -93,72 +98,129 @@ class Connection
         self::persistExact($obj);
     }
 
-    public static function refreshAccessToken($country)
+    /**
+     * Refresh access token (if expired).
+     */
+    public static function refreshAccessToken()
     {
-        self::$country = $country;
-        $Exact = self::$em->getRepository(Exact::class)->findLastByCountry(self::$country);
-        $url = self::$baseUrl.self::$tokenUrl;
-        $client = new Client();
+        if (self::isExpired()) {
+            $Exact = self::$em->getRepository(Exact::class)->findLast();
+            $url = self::$baseUrl.self::$tokenUrl;
+            $client = new Client();
 
-        $response = $client->post($url, [
-            'form_params' => [
-                'refresh_token' => $Exact->getRefreshToken(),
-                'grant_type' => 'refresh_token',
-                'client_id' => self::$exactClientId,
-                'client_secret' => self::$exactClientSecret,
-            ],
-        ]);
-        $body = $response->getBody();
-        $obj = json_decode((string) $body);
-        self::persistExact($obj);
+            $response = $client->post($url, [
+                'form_params' => [
+                    'refresh_token' => $Exact->getRefreshToken(),
+                    'grant_type' => 'refresh_token',
+                    'client_id' => self::$exactClientId,
+                    'client_secret' => self::$exactClientSecret,
+                ],
+            ]);
+
+            $body = $response->getBody();
+            $obj = json_decode((string) $body);
+
+            self::persistExact($obj);
+        }
     }
 
+    /**
+     * Check if Token has expired.
+     *
+     * @return bool
+     */
     public static function isExpired()
     {
-        $Exact = self::$em->getRepository(Exact::class)->findLastByCountry(self::$country);
-        if (null == $Exact) {
-            return true;
+        $Exact = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
+
+        if (null === $Exact) {
+            throw new ApiException('No access token found.', 499);
         }
+
         $createAt = $Exact->getCreatedAt();
         $now = new \DateTime('now');
-        $expiresIn = $Exact->getTokenExpires();
-        $seconds = ($now->getTimeStamp()) - ($createAt->getTimeStamp());
 
-        if ($expiresIn - 60 < $seconds) {
+        /** @var int Number of seconds the token is valid */
+        $lifeSpan = $Exact->getTokenExpires();
+        /** @var int Elapsed time */
+        $age = ($now->getTimeStamp()) - ($createAt->getTimeStamp());
+
+        // Lifespan (10min) minus 10 seconds
+        if ($lifeSpan - 10 < $age) {
             return true;
         }
 
         return false;
     }
 
+    /**
+     * Execute request.
+     *
+     * @param string     $url
+     * @param string     $method
+     * @param string     $json
+     * @param null|mixed $body
+     *
+     * @return array
+     */
     public static function Request(string $url, string $method, string $json = null)
     {
-        if (self::isExpired()) {
-            throw new ApiException('Token is expired.', 498);
+        self::refreshAccessToken();
+
+        if (self::CONTENT_TYPE_XML === self::$contentType) {
+            $url = self::$baseUrl.'docs/'.$url.'&_Division_='.self::$division;
         }
 
-        try {
+        if (self::CONTENT_TYPE_JSON === self::$contentType) {
             if ('current/Me' == $url) {
                 $url = self::$baseUrl.self::$apiUrl.'/'.$url;
             } else {
-                $url = self::$baseUrl.self::$apiUrl.'/'.self::getDivision().'/'.$url;
+                $url = self::$baseUrl.self::$apiUrl.'/'.self::$division.'/'.$url;
             }
+        }
+
+        try {
             $client = new Client();
-            $request = self::createRequest($method, $url, $json);
+            $request = self::createRequest($method, $url, $body);
             $response = $client->send($request);
-            $array = self::parseResponse($response);
 
-            if (null == $array) {
-                throw new ApiException('no data is present', 204);
+            self::$xRateLimits['X-RateLimi-Limit'] = $response->getHeader('X-RateLimit-Limit');
+            self::$xRateLimits['X-RateLimit-Remaining'] = $response->getHeader('X-RateLimit-Remaining');
+            self::$xRateLimits['X-RateLimit-Reset'] = $response->getHeader('X-RateLimit-Reset');
+            self::$xRateLimits['X-RateLimit-Minutely-Limit'] = $response->getHeader('X-RateLimit-Minutely-Limit');
+            self::$xRateLimits['X-RateLimit-Minutely-Remaining'] = $response->getHeader('X-RateLimit-Minutely-Remaining');
+            self::$xRateLimits['X-RateLimit-Minutely-Reset'] = $response->getHeader('X-RateLimit-Minutely-Reset');
+        } catch (\Exception $ex) {
+            if ('PUT' == $method && 403 == $ex->getResponse()->getStatusCode()) {
+                return 'ErrorDoPersist';
             }
 
-            if (self::$DEBUG_MODE) {
-                dump($array);
+            $error = json_decode($ex->getResponse()->getBody()->getContents())->error->message->value;
+
+            if (500 == $ex->getResponse()->getStatusCode()) {
+                return $error;
             }
 
-            return $array;
+            throw new ApiException($error, $ex->getResponse()->getStatusCode());
+        }
+
+        try {
+            return self::parseResponse($response, $request->getMethod());
         } catch (ApiException $e) {
             throw new ApiException($e->getMessage(), $e->getStatusCode());
+        }
+    }
+
+    public static function setContentType($type = 'json')
+    {
+        if ('xml' === $type) {
+            self::$contentType = self::CONTENT_TYPE_XML;
+            self::$accept = self::CONTENT_TYPE_XML;
+        }
+
+        if ('json' === $type) {
+            self::$contentType = self::CONTENT_TYPE_JSON;
+            self::$accept = self::CONTENT_TYPE_JSON.';odata=verbose,text/plain';
         }
     }
 
@@ -183,7 +245,9 @@ class Connection
     }
 
     /**
-     * @return mixed
+     * Get division; makes an api request and returns a filled 'Me' Object.
+     *
+     * @return string extract current division from Me()
      */
     public static function getDivision()
     {
@@ -192,9 +256,35 @@ class Connection
         return $me->getCurrentDivision();
     }
 
+    public function getXRateLimits()
+    {
+        return self::$xRateLimits;
+    }
+
+    public function getRateLimitDelay()
+    {
+        if (isset(self::$xRateLimits['X-RateLimit-Minutely-Remaining'])) {
+            $limit = (self::$xRateLimits['X-RateLimit-Minutely-Remaining'][0]);
+        } else {
+            $limit = 300;
+        }
+        $delay = (60 / $limit) * 1000000;
+        if ($delay < 2000000) {
+            $delay = 0;
+        }
+
+        return intval($delay);
+    }
+
+    /**
+     * Persist to table 'exact'.
+     *
+     * @param  object   returned object from Exact with new Tokens
+     * @param mixed $obj
+     */
     private static function persistExact($obj)
     {
-        $Exact = self::$em->getRepository(Exact::class)->findLastByCountry(self::$country);
+        $Exact = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
         if (null != $Exact) {
             $code = $Exact->getCode();
         } else {
@@ -206,24 +296,31 @@ class Connection
         $exact->setCode($code);
         $exact->setTokenExpires($obj->expires_in);
         $exact->setRefreshToken($obj->refresh_token);
-        $exact->setCountry(self::$country);
 
         self::$em->Persist($exact);
         self::$em->flush();
     }
 
+    /**
+     * Create Request.
+     *
+     * @param string $method
+     * @param string $endpoint
+     * @param string $body
+     *
+     * @return GuzzleHttp\Psr7\Request;
+     */
     private static function createRequest(string $method = 'GET', $endpoint, $body = null, array $params = [], array $headers = [])
     {
         $headers = array_merge($headers, [
-            'Accept' => 'application/json;odata=verbose,text/plain',
-            'Content-Type' => 'application/json',
+            'Accept' => self::$accept,
+            'Content-Type' => self::$contentType,
             'Prefer' => 'return=representation',
-            'X-aibianchi' => 'Exact Online Bundle <https://github.com/AI-Bianchi/ExactOnlineBundle/>',
+            'X-aibianchi' => 'Exact Online Bundle <https://github.com/zangra-dev/ExactOnlineBundle/>',
         ]);
-        $Exact = self::$em->getRepository(Exact::class)->findLastByCountry(self::$country);
 
-        if (null == $Exact->getAccessToken()) {
-            throw new ApiException('Access token was not initialized', 498);
+        if (null === $Exact = self::$em->getRepository(Exact::class)->findLast()) {
+            throw new ApiException('No access token found.', 499);
         }
 
         if (!empty($params)) {
@@ -232,32 +329,47 @@ class Connection
 
         $headers['Authorization'] = 'Bearer '.$Exact->getAccessToken();
 
-        $request = new Request($method, $endpoint, $headers, $body);
-
-        if (self::$DEBUG_MODE) {
-            dump($request);
-        }
-
-        return $request;
+        return new Request($method, $endpoint, $headers, $body);
     }
 
-    private static function parseResponse(Response $response, bool $returnSingleIfPossible = true)
+    private static function parseResponse(Response $response, $method, $returnSingleIfPossible = true)
+    {
+        if (204 === $response->getStatusCode() && 'POST' == $method) {
+            throw new ApiException($response->getReasonPhrase(), $response->getStatusCode());
+        }
+
+        if (self::CONTENT_TYPE_XML === self::$contentType) {
+            return $response->getBody()->getContents();
+        }
+
+        if (self::CONTENT_TYPE_JSON === self::$contentType) {
+            return self::parseJSON($response, $returnSingleIfPossible);
+        }
+    }
+
+    /**
+     * Parse JSON response.
+     *
+     * @param bool $returnSingleIfPossible
+     *
+     * @return array (associative)
+     */
+    private static function parseJSON(Response $response, $returnSingleIfPossible = true)
     {
         try {
-            if (204 === $response->getStatusCode()) {
-                throw new ApiException($response->getMessage(), $response->getStatusCode());
-            }
-
             Psr7\rewind_body($response);
             $json = json_decode($response->getBody()->getContents(), true);
 
             if (is_array($json)) {
                 if (array_key_exists('d', $json)) {
-                    if (array_key_exists('__next', $json['d'])) {
-                        $nextUrl = $json['d']['__next'];
-                    } else {
-                        $nextUrl = null;
-                    }
+                    // This code is not used, just keep it a while
+                    //
+                    // if (array_key_exists('__next', $json['d'])) {
+                    //     $nextUrl = $json['d']['__next'];
+                    // } else {
+                    //     $nextUrl = null;
+                    // }
+
                     if (array_key_exists('results', $json['d'])) {
                         if ($returnSingleIfPossible && 1 == count($json['d']['results'])) {
                             return $json['d']['results'][0];

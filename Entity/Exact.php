@@ -7,7 +7,8 @@ namespace ExactOnlineBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @author Bianchi Jefferson <jefferson@zangra.com>
+ * Author: Jefferson Bianchi / Maxime Lambot
+ * Email : jefferson@zangra.com / maxime@zangra.com.
  */
 
 /**
