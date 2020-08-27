@@ -4,6 +4,14 @@ services:
       autoconfigure: true
       public: true
 
+    exact_online.rest_api:
+        class: ExactOnlineBundle\Manager\ExactJsonApi
+        arguments: ['@doctrine.orm.entity_manager']
+
+    exact_online.xml_api:
+        class: ExactOnlineBundle\Manager\ExactXmlApi
+        arguments: ['@doctrine.orm.entity_manager']
+
     ExactOnlineBundle\Command\ExactSyncCommand:
         tags:
             - { name: 'console', command: 'exact:token:refresh' }
@@ -13,7 +21,7 @@ services:
         arguments: ['@doctrine.orm.entity_manager']
 
     exact_online.exceptionlistener:
-        class: aibianchi\ExactOnlineBundle\Event\ExceptionListener
+        class: ExactOnlineBundle\Event\ExceptionListener
         arguments: ['@monolog.logger.exactAPI']
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
