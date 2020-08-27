@@ -1,30 +1,29 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
-use aibianchi\ExactOnlineBundle\Model\Base\Model;
+use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class DocumentAttachment extends Model
+ * Class DocumentAttachment extends Model.
  *
- * @package aibianchi\ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=documentsDocumentAttachments
  *
- * @property string $ID Primary key
+ * @property string $ID         Primary key
  * @property string $Attachment Contains the attachment
- * @property string $Document Reference to the Document
- * @property string $FileName Filename of the attachment
- * @property float $FileSize File size of the attachment
+ * @property string $Document   Reference to the Document
+ * @property string $FileName   Filename of the attachment
+ * @property float  $FileSize   File size of the attachment
  */
-class DocumentAttachment extends Model 
+class DocumentAttachment extends Model
 {
-
-        protected $ID;
-        protected $Attachment;
-        protected $Document;
-        protected $FileName;
-        protected $FileSize;
-        protected $Url;
-        protected $url = 'documents/DocumentAttachments';
+    protected $ID;
+    protected $Attachment;
+    protected $Document;
+    protected $FileName;
+    protected $FileSize;
+    protected $Url;
+    protected $url = 'documents/DocumentAttachments';
 
     /**
      * @return mixed

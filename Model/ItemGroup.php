@@ -1,58 +1,58 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
-use aibianchi\ExactOnlineBundle\Model\Base\Model;
+use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class ItemGroup extends Model
+ * Class ItemGroup extends Model.
  *
- * @package aibianchi\ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=logisticsItemGroups
  *
- * @property string $ID Primary key
- * @property string $Code Code of the item group
- * @property string $Created Creation date
- * @property string $Creator User ID of creator
- * @property string $CreatorFullName Name of creator
- * @property string $Description Description of the item group
- * @property int $Division Division code
- * @property string $GLCosts GL account on which the costs of items of this group will be booked
- * @property string $GLCostsCode Code of GLCosts
- * @property string $GLCostsDescription Description of GLCosts
- * @property string $GLRevenue GL account on which the revenue for items of this group will be booked
- * @property string $GLRevenueCode Code of GLRevenue
+ * @property string $ID                   Primary key
+ * @property string $Code                 Code of the item group
+ * @property string $Created              Creation date
+ * @property string $Creator              User ID of creator
+ * @property string $CreatorFullName      Name of creator
+ * @property string $Description          Description of the item group
+ * @property int    $Division             Division code
+ * @property string $GLCosts              GL account on which the costs of items of this group will be booked
+ * @property string $GLCostsCode          Code of GLCosts
+ * @property string $GLCostsDescription   Description of GLCosts
+ * @property string $GLRevenue            GL account on which the revenue for items of this group will be booked
+ * @property string $GLRevenueCode        Code of GLRevenue
  * @property string $GLRevenueDescription Description of GLRevenue
- * @property string $GLStock GL account on which stock entries will be booked for items of this group
- * @property string $GLStockCode Code of GLStock
- * @property string $GLStockDescription Description of GLStock
- * @property string $Modified Last modified date
- * @property string $Modifier User ID of modifier
- * @property string $ModifierFullName Name of modifier
- * @property string $Notes Notes
+ * @property string $GLStock              GL account on which stock entries will be booked for items of this group
+ * @property string $GLStockCode          Code of GLStock
+ * @property string $GLStockDescription   Description of GLStock
+ * @property string $Modified             Last modified date
+ * @property string $Modifier             User ID of modifier
+ * @property string $ModifierFullName     Name of modifier
+ * @property string $Notes                Notes
  */
-class ItemGroup extends Model 
+class ItemGroup extends Model
 {
-        protected $ID;
-        protected $Code;
-        protected $Created;
-        protected $Creator;
-        protected $CreatorFullName;
-        protected $Description;
-        protected $Division;
-        protected $GLCosts;
-        protected $GLCostsCode;
-        protected $GLCostsDescription;
-        protected $GLRevenue;
-        protected $GLRevenueCode;
-        protected $GLRevenueDescription;
-        protected $GLStock;
-        protected $GLStockCode;
-        protected $GLStockDescription;
-        protected $Modified;
-        protected $Modifier;
-        protected $ModifierFullName;
-        protected $Notes;
-        protected $url = 'logistics/ItemGroups';
+    protected $ID;
+    protected $Code;
+    protected $Created;
+    protected $Creator;
+    protected $CreatorFullName;
+    protected $Description;
+    protected $Division;
+    protected $GLCosts;
+    protected $GLCostsCode;
+    protected $GLCostsDescription;
+    protected $GLRevenue;
+    protected $GLRevenueCode;
+    protected $GLRevenueDescription;
+    protected $GLStock;
+    protected $GLStockCode;
+    protected $GLStockDescription;
+    protected $Modified;
+    protected $Modifier;
+    protected $ModifierFullName;
+    protected $Notes;
+    protected $url = 'logistics/ItemGroups';
 
     /**
      * @return mixed

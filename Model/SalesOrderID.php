@@ -1,21 +1,20 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
-use aibianchi\ExactOnlineBundle\Model\Base\Model;
+use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class SalesOrderID extends Model
+ * Class SalesOrderID extends Model.
  *
- * @package aibianchi\ExactOnlineBundle\Model;
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=SalesInvoiceSalesOrderIDget123
  *
  * @property string $ID
  */
-class SalesOrderID extends Model 
+class SalesOrderID extends Model
 {
     protected $ID;
     protected $url = 'salesinvoice/SalesOrderID';
-
 
     /**
      * @return mixed

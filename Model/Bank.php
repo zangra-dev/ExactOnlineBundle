@@ -1,39 +1,38 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
-use aibianchi\ExactOnlineBundle\Model\Base\Model;
+use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class Bank extends Model
+ * Class Bank extends Model.
  *
- * @package aibianchi\ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=CashflowBanks
  *
- * @property string $ID Primary key
- * @property string $BankName The name of the bank
- * @property string $BICCode The bank identification code of the bank
- * @property string $Country The country in which the bank is based
- * @property string $Created Creation date
- * @property string $Description The extended description of the bank
- * @property string $Format The account format used by the bank
+ * @property string $ID              Primary key
+ * @property string $BankName        The name of the bank
+ * @property string $BICCode         The bank identification code of the bank
+ * @property string $Country         The country in which the bank is based
+ * @property string $Created         Creation date
+ * @property string $Description     The extended description of the bank
+ * @property string $Format          The account format used by the bank
  * @property string $HomePageAddress The website of the bank
- * @property string $Modified Last modified date
- * @property string $Status The status of the bank. A = Active, P = Passive
+ * @property string $Modified        Last modified date
+ * @property string $Status          The status of the bank. A = Active, P = Passive
  */
 class Bank extends Model
 {
-        protected $ID;
-        protected $BankName;
-        protected $BICCode;
-        protected $Country;
-        protected $Created;
-        protected $Description;
-        protected $Format;
-        protected $HomePageAddress;
-        protected $Modified;
-        protected $Status;
-        protected $url = 'cashflow/Banks';
-
+    protected $ID;
+    protected $BankName;
+    protected $BICCode;
+    protected $Country;
+    protected $Created;
+    protected $Description;
+    protected $Format;
+    protected $HomePageAddress;
+    protected $Modified;
+    protected $Status;
+    protected $url = 'cashflow/Banks';
 
     /**
      * @return mixed

@@ -1,26 +1,24 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
-use aibianchi\ExactOnlineBundle\Model\Base\Model;
+use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class GLTransactionType extends Model
+ * Class GLTransactionType extends Model.
  *
- * @package aibianchi\ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=FinancialGLTransactionTypes
  *
- * @property int $ID
+ * @property int    $ID
  * @property string $Description
  * @property string $DescriptionSuffix
  */
-class GLTransactionType extends Model 
+class GLTransactionType extends Model
 {
-
-        protected $ID;
-        protected $Description;
-        protected $DescriptionSuffix;
-   		protected $url = 'financial/GLTransactionTypes';
-
+    protected $ID;
+    protected $Description;
+    protected $DescriptionSuffix;
+    protected $url = 'financial/GLTransactionTypes';
 
     /**
      * @return mixed

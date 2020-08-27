@@ -1,106 +1,106 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
-use aibianchi\ExactOnlineBundle\Model\Base\Model;
+use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class CashEntryLine extends Model
+ * Class CashEntryLine extends Model.
  *
- * @package aibianchi\ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=FinancialTransactionCashEntryLines
  *
- * @property string $ID Primary key
- * @property string $Account Reference to Account
- * @property string $AccountCode Code of Account
- * @property string $AccountName Name of Account
- * @property float $AmountDC Amount in the default currency of the company
- * @property float $AmountFC Amount in the currency of the transaction
- * @property float $AmountVATFC Vat amount in the currency of the transaction
- * @property string $Asset Reference to an asset
- * @property string $AssetCode Code of Asset
- * @property string $AssetDescription Description of Asset
- * @property string $CostCenter Reference to a cost center
+ * @property string $ID                    Primary key
+ * @property string $Account               Reference to Account
+ * @property string $AccountCode           Code of Account
+ * @property string $AccountName           Name of Account
+ * @property float  $AmountDC              Amount in the default currency of the company
+ * @property float  $AmountFC              Amount in the currency of the transaction
+ * @property float  $AmountVATFC           Vat amount in the currency of the transaction
+ * @property string $Asset                 Reference to an asset
+ * @property string $AssetCode             Code of Asset
+ * @property string $AssetDescription      Description of Asset
+ * @property string $CostCenter            Reference to a cost center
  * @property string $CostCenterDescription Description of CostCenter
- * @property string $CostUnit Reference to a cost unit
- * @property string $CostUnitDescription Description of CostUnit
- * @property string $Created Creation date
- * @property string $Creator User ID of creator
- * @property string $CreatorFullName Name of creator
+ * @property string $CostUnit              Reference to a cost unit
+ * @property string $CostUnitDescription   Description of CostUnit
+ * @property string $Created               Creation date
+ * @property string $Creator               User ID of creator
+ * @property string $CreatorFullName       Name of creator
  * @property string $Date
- * @property string $Description Description
- * @property int $Division Division code
- * @property string $Document Reference to a document
- * @property int $DocumentNumber Number of Document
- * @property string $DocumentSubject Subject of Document
- * @property string $EntryID Reference to the header
- * @property int $EntryNumber Entry number of the header
- * @property float $ExchangeRate Exchange rate
- * @property string $GLAccount General ledger account
- * @property string $GLAccountCode Code of GLAccount
- * @property string $GLAccountDescription Description of GLAccount
- * @property int $LineNumber Line number
- * @property string $Modified Last modified date
- * @property string $Modifier User ID of modifier
- * @property string $ModifierFullName Name of modifier
- * @property string $Notes Extra remarks
- * @property string $OffsetID Reference to offset line
- * @property int $OurRef
- * @property string $Project Reference to a project
- * @property string $ProjectCode Code of Project
- * @property string $ProjectDescription Description of Project
- * @property float $Quantity Quantity
- * @property string $VATCode Reference to vat code
- * @property string $VATCodeDescription Description of VATCode
- * @property float $VATPercentage Vat code percentage
- * @property string $VATType Type of vat code
+ * @property string $Description           Description
+ * @property int    $Division              Division code
+ * @property string $Document              Reference to a document
+ * @property int    $DocumentNumber        Number of Document
+ * @property string $DocumentSubject       Subject of Document
+ * @property string $EntryID               Reference to the header
+ * @property int    $EntryNumber           Entry number of the header
+ * @property float  $ExchangeRate          Exchange rate
+ * @property string $GLAccount             General ledger account
+ * @property string $GLAccountCode         Code of GLAccount
+ * @property string $GLAccountDescription  Description of GLAccount
+ * @property int    $LineNumber            Line number
+ * @property string $Modified              Last modified date
+ * @property string $Modifier              User ID of modifier
+ * @property string $ModifierFullName      Name of modifier
+ * @property string $Notes                 Extra remarks
+ * @property string $OffsetID              Reference to offset line
+ * @property int    $OurRef
+ * @property string $Project               Reference to a project
+ * @property string $ProjectCode           Code of Project
+ * @property string $ProjectDescription    Description of Project
+ * @property float  $Quantity              Quantity
+ * @property string $VATCode               Reference to vat code
+ * @property string $VATCodeDescription    Description of VATCode
+ * @property float  $VATPercentage         Vat code percentage
+ * @property string $VATType               Type of vat code
  */
-class CashEntryLine extends Model 
+class CashEntryLine extends Model
 {
-        protected $ID;
-        protected $Account;
-        protected $AccountCode;
-        protected $AccountName;
-        protected $AmountDC;
-        protected $AmountFC;
-        protected $AmountVATFC;
-        protected $Asset;
-        protected $AssetCode;
-        protected $AssetDescription;
-        protected $CostCenter;
-        protected $CostCenterDescription;
-        protected $CostUnit;
-        protected $CostUnitDescription;
-        protected $Created;
-        protected $Creator;
-        protected $CreatorFullName;
-        protected $Date;
-        protected $Description;
-        protected $Division;
-        protected $Document;
-        protected $DocumentNumber;
-        protected $DocumentSubject;
-        protected $EntryID;
-        protected $EntryNumber;
-        protected $ExchangeRate;
-        protected $GLAccount;
-        protected $GLAccountCode;
-        protected $GLAccountDescription;
-        protected $LineNumber;
-        protected $Modified;
-        protected $Modifier;
-        protected $ModifierFullName;
-        protected $Notes;
-        protected $OffsetID;
-        protected $OurRef;
-        protected $Project;
-        protected $ProjectCode;
-        protected $ProjectDescription;
-        protected $Quantity;
-        protected $VATCode;
-        protected $VATCodeDescription;
-        protected $VATPercentage;
-        protected $VATType;
-        protected $url = 'financialtransaction/CashEntryLines';
+    protected $ID;
+    protected $Account;
+    protected $AccountCode;
+    protected $AccountName;
+    protected $AmountDC;
+    protected $AmountFC;
+    protected $AmountVATFC;
+    protected $Asset;
+    protected $AssetCode;
+    protected $AssetDescription;
+    protected $CostCenter;
+    protected $CostCenterDescription;
+    protected $CostUnit;
+    protected $CostUnitDescription;
+    protected $Created;
+    protected $Creator;
+    protected $CreatorFullName;
+    protected $Date;
+    protected $Description;
+    protected $Division;
+    protected $Document;
+    protected $DocumentNumber;
+    protected $DocumentSubject;
+    protected $EntryID;
+    protected $EntryNumber;
+    protected $ExchangeRate;
+    protected $GLAccount;
+    protected $GLAccountCode;
+    protected $GLAccountDescription;
+    protected $LineNumber;
+    protected $Modified;
+    protected $Modifier;
+    protected $ModifierFullName;
+    protected $Notes;
+    protected $OffsetID;
+    protected $OurRef;
+    protected $Project;
+    protected $ProjectCode;
+    protected $ProjectDescription;
+    protected $Quantity;
+    protected $VATCode;
+    protected $VATCodeDescription;
+    protected $VATPercentage;
+    protected $VATType;
+    protected $url = 'financialtransaction/CashEntryLines';
 
     /**
      * @return mixed

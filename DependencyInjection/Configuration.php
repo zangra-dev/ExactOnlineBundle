@@ -1,18 +1,19 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\DependencyInjection;
+namespace ExactOnlineBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
- * Author: Jefferson Bianchi
- * Mail  : Jefferson@aibianchi.com
+ * Author: Jefferson Bianchi / Maxime Lambot
+ * Email : jefferson@zangra.com / maxime@zangra.com.
  */
 class Configuration implements ConfigurationInterface
 {
-
-
+    /**
+     * {@inheritdoc}
+     */
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
@@ -20,54 +21,16 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-
-                ->arrayNode('Belgium')
-                    ->children()
-                        ->scalarNode('baseUrl')->defaultValue('')->end()
-                        ->scalarNode('apiUrl')->defaultValue('')->end()
-                        ->scalarNode('authUrl')->defaultValue('')->end()
-                        ->scalarNode('tokenUrl')->defaultValue('')->end()
-                        ->scalarNode('redirectUrl')->defaultValue('')->end()
-                        ->scalarNode('clientId')->defaultValue('')->end()
-                        ->scalarNode('clientSecret')->defaultValue('')->end()
-                    ->end()
-                ->end()
-
-                ->arrayNode('France')
-                   ->children()
-                        ->scalarNode('baseUrl')->defaultValue('')->end()
-                        ->scalarNode('apiUrl')->defaultValue('')->end()
-                        ->scalarNode('authUrl')->defaultValue('')->end()
-                        ->scalarNode('tokenUrl')->defaultValue('')->end()
-                        ->scalarNode('redirectUrl')->defaultValue('')->end()
-                        ->scalarNode('clientId')->defaultValue('')->end()
-                        ->scalarNode('clientSecret')->defaultValue('')->end()
-                   ->end()
-                ->end()
-
-                ->arrayNode('Nerderland')
-                    ->children()
-                        ->scalarNode('baseUrl')->defaultValue('')->end()
-                        ->scalarNode('apiUrl')->defaultValue('')->end()
-                        ->scalarNode('authUrl')->defaultValue('')->end()
-                        ->scalarNode('tokenUrl')->defaultValue('')->end()
-                        ->scalarNode('redirectUrl')->defaultValue('')->end()
-                        ->scalarNode('clientId')->defaultValue('')->end()
-                        ->scalarNode('clientSecret')->defaultValue('')->end()
-                   ->end()
-                ->end()
-
-                ->arrayNode('Spain')
-                    ->children()
-                        ->scalarNode('baseUrl')->defaultValue('')->end()
-                        ->scalarNode('apiUrl')->defaultValue('')->end()
-                        ->scalarNode('authUrl')->defaultValue('')->end()
-                        ->scalarNode('tokenUrl')->defaultValue('')->end()
-                        ->scalarNode('redirectUrl')->defaultValue('')->end()
-                        ->scalarNode('clientId')->defaultValue('')->end()
-                        ->scalarNode('clientSecret')->defaultValue('')->end()
-                   ->end()
-                ->end()
+            ->scalarNode('baseUrl')->defaultValue('')->end()
+            ->scalarNode('apiUrl')->defaultValue('')->end()
+            ->scalarNode('authUrl')->defaultValue('')->end()
+            ->scalarNode('tokenUrl')->defaultValue('')->end()
+            ->scalarNode('redirectUrl')->defaultValue('')->end()
+            ->scalarNode('clientId')->defaultValue('')->end()
+            ->scalarNode('clientSecret')->defaultValue('')->end()
+            ->scalarNode('mainDivision')->defaultValue('')->end()
+            ->scalarNode('webhookSecret')->defaultValue('')->end()
+            ->end()
             ;
 
         return $treeBuilder;

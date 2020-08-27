@@ -1,19 +1,22 @@
 services:
     _defaults:
-         autowire: true
-         autoconfigure: true
-         public: true
-    aibianchi\ExactOnlineBundle\Command\ExactSyncCommand:
+      autowire: true
+      autoconfigure: true
+      public: true
+
+    ExactOnlineBundle\Command\ExactSyncCommand:
         tags:
             - { name: 'console', command: 'exact:token:refresh' }
-    exact_online.manager:
-          class: aibianchi\ExactOnlineBundle\Manager\ExactManager
-          arguments: ['@doctrine.orm.entity_manager']
-    exact_online.exceptionlistener:
-       class: aibianchi\ExactOnlineBundle\Event\ExceptionListener
-       arguments: ['@monolog.logger.exactAPI']
-       tags:
-        - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
-        - { name: monolog.logger, channel: exactAPI }
-    aibianchi\ExactOnlineBundle\Manager\ExactManager: '@exact_online.manager'
 
+    exact_online.manager:
+        class: ExactOnlineBundle\Manager\ExactManager
+        arguments: ['@doctrine.orm.entity_manager']
+
+    exact_online.exceptionlistener:
+        class: aibianchi\ExactOnlineBundle\Event\ExceptionListener
+        arguments: ['@monolog.logger.exactAPI']
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+            - { name: monolog.logger, channel: exactAPI }
+
+    ExactOnlineBundle\Manager\ExactManager: '@exact_online.manager'

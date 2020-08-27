@@ -1,27 +1,26 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
-use aibianchi\ExactOnlineBundle\Model\Base\Model;
+use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class GeneralJournalEntry extends Model
+ * Class GeneralJournalEntry extends Model.
  *
- * @package aibianchi\ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=GeneralJournalEntryGeneralJournalEntries
  *
- * @property string $EntryID Primary key
- * @property string $Currency Currency code
- * @property int $EntryNumber Entry number
- * @property float $ExchangeRate Exchange rate
- * @property int $FinancialPeriod Financial period
- * @property int $FinancialYear Financial year
+ * @property string                   $EntryID                  Primary key
+ * @property string                   $Currency                 Currency code
+ * @property int                      $EntryNumber              Entry number
+ * @property float                    $ExchangeRate             Exchange rate
+ * @property int                      $FinancialPeriod          Financial period
+ * @property int                      $FinancialYear            Financial year
  * @property GeneralJournalEntryLines $GeneralJournalEntryLines Collection of lines
- * @property string $JournalCode Code of Journal
- * @property bool $Reversal Indicates that amounts are reversed
+ * @property string                   $JournalCode              Code of Journal
+ * @property bool                     $Reversal                 Indicates that amounts are reversed
  */
-class GeneralJournalEntry extends Model 
+class GeneralJournalEntry extends Model
 {
-
     protected $primaryKey = 'EntryID';
     protected $generalJournalEntryLines;
     protected $EntryID;
@@ -34,7 +33,6 @@ class GeneralJournalEntry extends Model
     protected $JournalCode;
     protected $Reversal;
     protected $url = 'generaljournalentry/GeneralJournalEntries';
-
 
     /**
      * @return mixed

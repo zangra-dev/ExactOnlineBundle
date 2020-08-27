@@ -1,10 +1,12 @@
 {
-    "name" : "aibianchi/exact-online-bundle",
+    "name" : "zangra/exact-online-bundle",
     "description" : "A Bundle for Exact Online API",
     "type" : "symfony-bundle",
     "authors" : [{
         "name" : "Jefferson Bianchi",
-        "email" : "Jefferson@aibianchi.com"
+        "email" : "jefferson@zangra.com",
+        "name" : "Maxime Lambot",
+        "email" : "maxime@zangra.com"
     }],
     "keywords" : [
         "Symfony",
@@ -24,10 +26,10 @@
     },
     "autoload" : {
         "psr-0" : {
-            "aibianchi\\ExactOnlineBundle" : ""
+            "ExactOnlineBundle" : ""
         }
     },
-    "target-dir" : "aibianchi/ExactOnlineBundle",
+    "target-dir" : "ExactOnlineBundle",
     "repositories" : [{
     }],
     "extra" : {

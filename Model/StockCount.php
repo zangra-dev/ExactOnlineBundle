@@ -1,65 +1,63 @@
 <?php
 
-namespace aibianchi\ExactOnlineBundle\Model; 
+namespace ExactOnlineBundle\Model;
 
-use aibianchi\ExactOnlineBundle\Model\Base\Model;
+use ExactOnlineBundle\Model\Base\Model;
+
 /**
- * Class StockCount extends Model
+ * Class StockCount extends Model.
  *
- * @package aibianchi\ExactOnlineBundle\Model
  * @see https://start.exactonline.nl/docs/HlpRestAPIResourcesDetails.aspx?name=InventoryStockCounts
  *
- * @property string $StockCountID Primary key
- * @property string $CountedBy Stock count user
- * @property string $Created Creation date
- * @property string $Creator User ID of creator
- * @property string $CreatorFullName Name of creator
- * @property string $Description Description of the stock count
- * @property int $Division Division code
- * @property int $EntryNumber Entry number of the stock transactions
- * @property string $Modified Last modified date
- * @property string $Modifier User ID of modifier
- * @property string $ModifierFullName Name of modifier
- * @property string $OffsetGLInventory Offset GL account of inventory
- * @property string $OffsetGLInventoryCode GLAccount code
- * @property string $OffsetGLInventoryDescription GLAccount description
- * @property int $Source Source of stock count entry: 1-Manual entry, 2-Import, 3-Stock count, 4-Web service
- * @property int $Status Stock count status: 12-Draft, 21-Processed
- * @property string $StockCountDate Stock count date
- * @property StockCountLines $StockCountLines Collection of stock count lines
- * @property int $StockCountNumber Human readable id of the stock count
- * @property string $Warehouse Warehouse
- * @property string $WarehouseCode Code of Warehouse
- * @property string $WarehouseDescription Description of Warehouse
+ * @property string          $StockCountID                 Primary key
+ * @property string          $CountedBy                    Stock count user
+ * @property string          $Created                      Creation date
+ * @property string          $Creator                      User ID of creator
+ * @property string          $CreatorFullName              Name of creator
+ * @property string          $Description                  Description of the stock count
+ * @property int             $Division                     Division code
+ * @property int             $EntryNumber                  Entry number of the stock transactions
+ * @property string          $Modified                     Last modified date
+ * @property string          $Modifier                     User ID of modifier
+ * @property string          $ModifierFullName             Name of modifier
+ * @property string          $OffsetGLInventory            Offset GL account of inventory
+ * @property string          $OffsetGLInventoryCode        GLAccount code
+ * @property string          $OffsetGLInventoryDescription GLAccount description
+ * @property int             $Source                       Source of stock count entry: 1-Manual entry, 2-Import, 3-Stock count, 4-Web service
+ * @property int             $Status                       Stock count status: 12-Draft, 21-Processed
+ * @property string          $StockCountDate               Stock count date
+ * @property StockCountLines $StockCountLines              Collection of stock count lines
+ * @property int             $StockCountNumber             Human readable id of the stock count
+ * @property string          $Warehouse                    Warehouse
+ * @property string          $WarehouseCode                Code of Warehouse
+ * @property string          $WarehouseDescription         Description of Warehouse
  */
-class StockCount extends Model 
+class StockCount extends Model
 {
-
-        protected $primaryKey = 'StockCountID';
-        protected $StockCountID;
-        protected $CountedBy;
-        protected $Created;
-        protected $Creator;
-        protected $CreatorFullName;
-        protected $Description;
-        protected $Division;
-        protected $EntryNumber;
-        protected $Modified;
-        protected $Modifier;
-        protected $ModifierFullName;
-        protected $OffsetGLInventory;
-        protected $OffsetGLInventoryCode;
-        protected $OffsetGLInventoryDescription;
-        protected $Source;
-        protected $Status;
-        protected $StockCountDate;
-        protected $StockCountLines;
-        protected $StockCountNumber;
-        protected $Warehouse;
-        protected $WarehouseCode;
-        protected $WarehouseDescription;
-        protected $url = 'inventory/StockCounts';
-
+    protected $primaryKey = 'StockCountID';
+    protected $StockCountID;
+    protected $CountedBy;
+    protected $Created;
+    protected $Creator;
+    protected $CreatorFullName;
+    protected $Description;
+    protected $Division;
+    protected $EntryNumber;
+    protected $Modified;
+    protected $Modifier;
+    protected $ModifierFullName;
+    protected $OffsetGLInventory;
+    protected $OffsetGLInventoryCode;
+    protected $OffsetGLInventoryDescription;
+    protected $Source;
+    protected $Status;
+    protected $StockCountDate;
+    protected $StockCountLines;
+    protected $StockCountNumber;
+    protected $Warehouse;
+    protected $WarehouseCode;
+    protected $WarehouseDescription;
+    protected $url = 'inventory/StockCounts';
 
     /**
      * @return mixed
