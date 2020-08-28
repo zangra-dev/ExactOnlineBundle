@@ -36,7 +36,7 @@ class XmlImportResponseObject
     protected $topicNode;
 
     /**
-     * @ORM\Column(name="topic_node", type="string")
+     * @ORM\Column(name="topic_code", type="string")
      */
     protected $topicCode;
 
