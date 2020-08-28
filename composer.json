@@ -37,14 +37,10 @@
     },
 
     "autoload" : {
-        "psr-0" : {
-            "ExactOnlineBundle" : ""
+        "psr-4" : {
+            "ExactOnlineBundle\\" : "src/"
         }
     },
-
-    "target-dir" : "ExactOnlineBundle",
-    "repositories" : [{
-    }],
 
     "extra" : {
     "branch-alias" : {
