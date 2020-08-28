@@ -36,10 +36,9 @@
         "guzzlehttp/guzzle": "^6.2"
     },
 
-    "autoload" : {
-        "psr-4" : {
-            "ExactOnlineBundle\\" : "src/"
-        }
+    "autoload": {
+        "psr-4": {
+          "ExactOnlineBundle\\": "src/"
     },
 
     "extra" : {
