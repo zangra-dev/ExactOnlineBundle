@@ -1,6 +1,7 @@
 <?php
 
 namespace ExactOnlineBundle\Model\Xml;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * https://support.exactonline.com/community/s/knowledge-base#All-All-DNO-Content-xmlsamplecode.
