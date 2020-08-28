@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Author: Jefferson Bianchi / Maxime Lambot
- * Email : Jefferson@aibianchi.com / maxime@zangra.com.
+ * Email : Jefferson@zangra.com / maxime@zangra.com.
  */
 class DefaultController extends Controller
 {

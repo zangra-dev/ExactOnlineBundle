@@ -8,7 +8,7 @@ Exact Online doc: https://support.exactonline.com/community/s/knowledge-base#All
 
 <hr/>
 <h1>Requirements</h1>
-Guzzle 6
+Symfony HTTP Client 5.1
 
 branch for:
 
