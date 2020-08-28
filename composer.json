@@ -41,7 +41,6 @@
           "ExactOnlineBundle\\": "src/"
         }
     },
-
     "extra" : {
         "branch-alias" : {
             "main" : "main-dev"
