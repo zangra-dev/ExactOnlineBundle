@@ -7,6 +7,10 @@ namespace ExactOnlineBundle\Model\Xml;
  *
  * Converted XML Response to Object
  */
+
+/**
+ * @ORM\Table(name="exact_import_log")
+ */
 class XmlImportResponseObject
 {
     const TYPE_ERROR = 0;
@@ -15,11 +19,35 @@ class XmlImportResponseObject
     const TYPE_FATAL = 3;
     const RESPONSE_TYPES = ['error', 'warning', 'succes', 'fatal'];
 
+    /**
+     * @ORM\Column(name="message", type="string")
+     */
     protected $message;
+
+    /**
+     * @ORM\Column(name="type", type="integer")
+     */
     protected $type;
+
+    /**
+     * @ORM\Column(name="topic_node", type="string")
+     */
     protected $topicNode;
+
+    /**
+     * @ORM\Column(name="topic_node", type="string")
+     */
     protected $topicCode;
+
+    /**
+     * @ORM\Column(name="data_key", type="string", nullable=true)
+     */
     protected $dataKey;
+
+    /**
+     *
+     * @ORM\Column(name="datetime", type="datetime")
+     */
     protected $datetime;
 
     /**
