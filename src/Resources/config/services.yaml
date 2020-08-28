@@ -14,7 +14,7 @@ services:
 
     exact_online.exceptionlistener:
         class: ExactOnlineBundle\Event\ExceptionListener
-        arguments: ['@monolog.logger.exactAPI']
+        arguments: ['@doctrine.orm.entity_manager']
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
             - { name: monolog.logger, channel: exactAPI }
