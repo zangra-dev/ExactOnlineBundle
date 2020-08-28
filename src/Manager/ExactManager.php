@@ -5,13 +5,12 @@ namespace ExactOnlineBundle\Manager;
 use Doctrine\ORM\EntityManager;
 use ExactOnlineBundle\DAO\Connection;
 use ExactOnlineBundle\DAO\Exception\ApiException;
-use ExactOnlineBundle\Model\BillOfMaterialMaterial;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Exact Manager
  * Author: Jefferson Bianchi / Maxime Lambot / Nils Méchin
- * Email : jefferson@zangra.com / maxime@zangra.com. / nils@zangra.com
+ * Email : jefferson@zangra.com / maxime@zangra.com. / nils@zangra.com.
  */
 abstract class ExactManager
 {
@@ -112,6 +111,19 @@ abstract class ExactManager
         return true;
     }
 
+    /**
+     * Assert passewd value is a GUID.
+     *
+     * @param string $guid a GUID string probably
+     *
+     * @return bool
+     */
+    protected function assertGuid($guid)
+    {
+        $UUIDv4 = '/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i';
+
+        return 1 === preg_match($UUIDv4, $guid);
+    }
 
     /**
      * @return PrimaryKey field
@@ -125,20 +137,6 @@ abstract class ExactManager
         }
 
         return $primaryKey;
-    }
-
-    /**
-     * Assert passewd value is a GUID.
-     *
-     * @param string $guid a GUID string probably
-     *
-     * @return bool
-     */
-    protected function assertGuid($guid)
-    {
-        $UUIDv4 = '/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i';
-
-        return 1 === preg_match($UUIDv4, $guid);
     }
 
     private function caclulateHash($data, $hashCode)

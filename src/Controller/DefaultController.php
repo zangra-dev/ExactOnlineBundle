@@ -2,15 +2,13 @@
 
 namespace ExactOnlineBundle\Controller;
 
-use ExactOnlineBundle\Model\Account;
-use ExactOnlineBundle\Model\Item;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Author: Jefferson Bianchi / Maxime Lambot
- * Email : Jefferson@aibianchi.com / maxime@zangra.com
+ * Email : Jefferson@aibianchi.com / maxime@zangra.com.
  */
 class DefaultController extends Controller
 {

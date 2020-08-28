@@ -14,7 +14,7 @@ use GuzzleHttp\Psr7\Response;
 /**
  * Class Connection
  * Author: Jefferson Bianchi / Maxime Lambot / Nils Méchin
- * Email : jefferson@zangra.com / maxime@zangra.com / nils@zangra.com
+ * Email : jefferson@zangra.com / maxime@zangra.com / nils@zangra.com.
  */
 class Connection
 {
@@ -156,8 +156,6 @@ class Connection
     /**
      * Execute request.
      *
-     * @param string     $url
-     * @param string     $method
      * @param string     $json
      * @param null|mixed $body
      *
@@ -304,7 +302,6 @@ class Connection
     /**
      * Create Request.
      *
-     * @param string $method
      * @param string $endpoint
      * @param string $body
      *

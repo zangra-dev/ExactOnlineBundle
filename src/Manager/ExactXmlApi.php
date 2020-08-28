@@ -2,11 +2,11 @@
 
 namespace ExactOnlineBundle\Manager;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityManager;
 use ExactOnlineBundle\DAO\Connection;
 use ExactOnlineBundle\Entity\XmlImportResponse;
 use ExactOnlineBundle\Model\Xml\XmlParamsControl;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\EntityManager;
 
 /**
  * Author: Nils méchin <nils@zangra.com>.
