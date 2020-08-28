@@ -2,12 +2,23 @@
     "name" : "zangra/exact-online-bundle",
     "description" : "A Bundle for Exact Online API",
     "type" : "symfony-bundle",
-    "authors" : [{
-        "name" : "Jefferson Bianchi",
-        "email" : "jefferson@zangra.com",
-        "name" : "Maxime Lambot",
-        "email" : "maxime@zangra.com"
-    }],
+    "authors" : [
+        {
+            "name" : "Jefferson Bianchi",
+            "email" : "jefferson@zangra.com",
+            "role": "Developer"
+        },
+        {
+            "name" : "Maxime Lambot",
+            "email" : "maxime@zangra.com",
+            "role": "Developer"
+        },
+        {
+            "name" : "Nils Méchin",
+            "email" : "nils@zangra.com",
+            "role": "Lead Developer"
+        }
+    ],
     "keywords" : [
         "Symfony",
         "api",
@@ -24,14 +35,17 @@
         "doctrine/doctrine-bundle": "*",
         "guzzlehttp/guzzle": "^6.2"
     },
+
     "autoload" : {
         "psr-0" : {
             "ExactOnlineBundle" : ""
         }
     },
+
     "target-dir" : "ExactOnlineBundle",
     "repositories" : [{
     }],
+
     "extra" : {
     "branch-alias" : {
             "main" : "main-dev"
