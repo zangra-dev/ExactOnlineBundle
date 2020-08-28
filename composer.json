@@ -33,7 +33,7 @@
         "php": "^7.2",
         "symfony/framework-bundle": "^4.4",
         "doctrine/doctrine-bundle": "*",
-        "guzzlehttp/guzzle": "^6.2"
+        "symfony/http-client": "^5.1"
     },
 
     "autoload": {
