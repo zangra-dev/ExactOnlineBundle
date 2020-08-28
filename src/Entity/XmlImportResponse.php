@@ -4,9 +4,22 @@ namespace ExactOnlineBundle\Entity;
 
 use ExactOnlineBundle\Model\Xml\XmlImportResponseObject;
 
+/**
+ * @ORM\Table(name="exact_import_log")
+ * @ORM\Entity(repositoryClass="ExactOnlineBundle\Repository\XmlImportResponseRepository")
+ */
 class XmlImportResponse extends XmlImportResponseObject
 {
+    /**
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
     private $id;
+
+    /**
+     * @ORM\Column(name="batch_id", type="integer")
+     */
     private $batchId;
 
     /**
