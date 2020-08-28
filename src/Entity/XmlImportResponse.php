@@ -6,6 +6,7 @@ use ExactOnlineBundle\Model\Xml\XmlImportResponseObject;
 
 /**
  * @ORM\Table(name="exact_import_log")
+ * @ORM\Entity(repositoryClass="ExactOnlineBundle\Repository\XmlImportResponseRepository")
  */
 class XmlImportResponse extends XmlImportResponseObject
 {

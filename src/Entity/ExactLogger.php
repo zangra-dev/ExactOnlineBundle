@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="exact_logger")
+ * @ORM\Entity(repositoryClass="ExactOnlineBundle\Repository\ExactLoggerRepository")
  */
 class ExactLogger
 {
