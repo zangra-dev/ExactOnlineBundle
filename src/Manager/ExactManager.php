@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use ExactOnlineBundle\DAO\Connection;
 use ExactOnlineBundle\DAO\Exception\ApiException;
 use Symfony\Component\HttpFoundation\Request;
+use Exception;
 
 /**
  * Exact Manager
@@ -33,7 +34,7 @@ abstract class ExactManager
     /**
      * @param mixed $code
      */
-    public function init($code)
+    public function init($code = null)
     {
         try {
             Connection::setConfig($this->config, $this->em);
@@ -46,7 +47,8 @@ abstract class ExactManager
                 Connection::getAccessToken();
             }
         } catch (ApiException $e) {
-            throw new Exception("Can't initiate connection: ", $e->getCode());
+            $errorMessage = "Can't initiate connection: ". $e->getStatusCode();
+            throw new ApiException($errorMessage, $e->getStatusCode());
         }
     }
 
@@ -128,7 +130,7 @@ abstract class ExactManager
     /**
      * @return PrimaryKey field
      */
-    private function getKeyField()
+    public function getKeyField()
     {
         if (method_exists($this->model, 'getPrimaryKey')) {
             $primaryKey = $this->model->getPrimaryKey();
