@@ -31,6 +31,7 @@ use ExactOnlineBundle\Model\Base\Model;
  * @property string          $DeliveryStatusDescription      Description of DeliveryStatus
  * @property string          $Description                    Description
  * @property int             $Division                       Division code
+ * @property float           $Discount                       Discount percentage
  * @property string          $Document                       Document that is manually linked to the sales order
  * @property int             $DocumentNumber                 Number of the document
  * @property string          $DocumentSubject                Subject of the document
@@ -93,6 +94,7 @@ class SalesOrder extends Model
     protected $DeliveryStatusDescription;
     protected $Description;
     protected $Division;
+    protected $Discount;
     protected $Document;
     protected $DocumentNumber;
     protected $DocumentSubject;
@@ -1327,6 +1329,26 @@ class SalesOrder extends Model
     public function setUrl($url)
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+     /**
+     * @return mixed
+     */
+    public function getDiscount()
+    {
+        return $this->Discount;
+    }
+
+    /**
+     * @param mixed $Discount
+     *
+     * @return self
+     */
+    public function setDiscount($Discount)
+    {
+        $this->Discount = $Discount;
 
         return $this;
     }
