@@ -6,7 +6,6 @@ use Doctrine\ORM\EntityManager;
 use ExactOnlineBundle\DAO\Connection;
 use ExactOnlineBundle\DAO\Exception\ApiException;
 use Symfony\Component\HttpFoundation\Request;
-use Exception;
 
 /**
  * Exact Manager
@@ -47,7 +46,8 @@ abstract class ExactManager
                 Connection::getAccessToken();
             }
         } catch (ApiException $e) {
-            $errorMessage = "Can't initiate connection: ". $e->getStatusCode();
+            $errorMessage = "Can't initiate connection: ".$e->getStatusCode();
+
             throw new ApiException($errorMessage, $e->getStatusCode());
         }
     }
@@ -114,20 +114,6 @@ abstract class ExactManager
     }
 
     /**
-     * Assert passewd value is a GUID.
-     *
-     * @param string $guid a GUID string probably
-     *
-     * @return bool
-     */
-    protected function assertGuid($guid)
-    {
-        $UUIDv4 = '/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i';
-
-        return 1 === preg_match($UUIDv4, $guid);
-    }
-
-    /**
      * @return PrimaryKey field
      */
     public function getKeyField()
@@ -139,6 +125,20 @@ abstract class ExactManager
         }
 
         return $primaryKey;
+    }
+
+    /**
+     * Assert passewd value is a GUID.
+     *
+     * @param string $guid a GUID string probably
+     *
+     * @return bool
+     */
+    protected function assertGuid($guid)
+    {
+        $UUIDv4 = '/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i';
+
+        return 1 === preg_match($UUIDv4, $guid);
     }
 
     private function caclulateHash($data, $hashCode)

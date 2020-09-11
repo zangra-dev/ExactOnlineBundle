@@ -1333,7 +1333,7 @@ class SalesOrder extends Model
         return $this;
     }
 
-     /**
+    /**
      * @return mixed
      */
     public function getDiscount()

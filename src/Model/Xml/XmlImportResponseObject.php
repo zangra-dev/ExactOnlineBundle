@@ -1,6 +1,7 @@
 <?php
 
 namespace ExactOnlineBundle\Model\Xml;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,7 +47,6 @@ class XmlImportResponseObject
     protected $dataKey;
 
     /**
-     *
      * @ORM\Column(name="datetime", type="datetime")
      */
     protected $datetime;
