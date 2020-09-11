@@ -2,8 +2,8 @@
 
 namespace ExactOnlineBundle\Entity;
 
-use ExactOnlineBundle\Model\Xml\XmlImportResponseObject;
 use Doctrine\ORM\Mapping as ORM;
+use ExactOnlineBundle\Model\Xml\XmlImportResponseObject;
 
 /**
  * @ORM\Table(name="exact_import_log")

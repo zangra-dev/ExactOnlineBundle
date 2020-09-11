@@ -2,6 +2,7 @@
 
 namespace ExactOnlineBundle\Event;
 
+use Doctrine\ORM\EntityManager;
 use ExactOnlineBundle\DAO\Exception\ApiExceptionInterface;
 use ExactOnlineBundle\Entity\ExactLogger;
 use Symfony\Component\HttpFoundation\JsonResponse;

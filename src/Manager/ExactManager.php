@@ -33,7 +33,7 @@ abstract class ExactManager
     /**
      * @param mixed $code
      */
-    public function init($code)
+    public function init($code = null)
     {
         try {
             Connection::setConfig($this->config, $this->em);
@@ -46,7 +46,9 @@ abstract class ExactManager
                 Connection::getAccessToken();
             }
         } catch (ApiException $e) {
-            throw new Exception("Can't initiate connection: ", $e->getCode());
+            $errorMessage = "Can't initiate connection: ".$e->getStatusCode();
+
+            throw new ApiException($errorMessage, $e->getStatusCode());
         }
     }
 
@@ -112,6 +114,20 @@ abstract class ExactManager
     }
 
     /**
+     * @return PrimaryKey field
+     */
+    public function getKeyField()
+    {
+        if (method_exists($this->model, 'getPrimaryKey')) {
+            $primaryKey = $this->model->getPrimaryKey();
+        } else {
+            $primaryKey = 'ID';
+        }
+
+        return $primaryKey;
+    }
+
+    /**
      * Assert passewd value is a GUID.
      *
      * @param string $guid a GUID string probably
@@ -123,20 +139,6 @@ abstract class ExactManager
         $UUIDv4 = '/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i';
 
         return 1 === preg_match($UUIDv4, $guid);
-    }
-
-    /**
-     * @return PrimaryKey field
-     */
-    private function getKeyField()
-    {
-        if (method_exists($this->model, 'getPrimaryKey')) {
-            $primaryKey = $this->model->getPrimaryKey();
-        } else {
-            $primaryKey = 'ID';
-        }
-
-        return $primaryKey;
     }
 
     private function caclulateHash($data, $hashCode)

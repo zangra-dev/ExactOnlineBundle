@@ -295,7 +295,7 @@ class Connection
         $exact->setTokenExpires($obj->expires_in);
         $exact->setRefreshToken($obj->refresh_token);
 
-        self::$em->Persist($exact);
+        self::$em->persist($exact);
         self::$em->flush();
     }
 
