@@ -36,14 +36,15 @@ abstract class ExactManager
     public function init($code = null)
     {
         try {
-            Connection::setConfig($this->config, $this->em);
+            $connection = Connection::getInstance();
+            $connection->setConfig($this->config, $this->em);
 
-            if (Connection::isExpired()) {
+            if ($connection->isExpired()) {
                 if (null == $code) {
-                    Connection::getAuthorization();
+                    $connection->getAuthorization();
                 }
-                Connection::setCode($code);
-                Connection::getAccessToken();
+                $connection->setCode($code);
+                $connection->getAccessToken();
             }
         } catch (ApiException $e) {
             $errorMessage = "Can't initiate connection: ".$e->getStatusCode();
@@ -54,8 +55,9 @@ abstract class ExactManager
 
     public function refreshToken()
     {
-        Connection::setConfig($this->config, $this->em);
-        Connection::refreshAccessToken();
+        $connection = Connection::getInstance();
+        $connection->setConfig($this->config, $this->em);
+        $connection->refreshAccessToken();
     }
 
     /**
