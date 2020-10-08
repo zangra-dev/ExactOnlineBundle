@@ -33,7 +33,7 @@ class Connection
     private static $division;
 
     private static $em;
-    private static $instance;
+    private static $instance = null;
     private static $contentType = self::CONTENT_TYPE_JSON;
     private static $accept = self::CONTENT_TYPE_JSON.';odata=verbose,text/plain';
     private static $xRateLimits = [];
@@ -50,6 +50,20 @@ class Connection
         self::$exactClientSecret = $config['clientSecret'];
         self::$division = $config['mainDivision'];
         self::setContentType($contentType);
+    }
+
+    /**
+     * Return existing instance or creates a new one.
+     *
+     * @return Connection
+     */
+    public static function getInstance()
+    {
+        if (null === static::$instance) {
+            static::$instance = new Connection();
+        }
+
+        return static::$instance;
     }
 
     /**
