@@ -4,3 +4,4 @@
 ExactOnlineBundle
 exact.sublime-project
 exact.sublime-workspace
+vendor/*
