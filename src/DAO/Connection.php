@@ -70,7 +70,7 @@ class Connection
      * Retrieve authorization code from Exact.
      * Exact api will POST on redirect URL and will be treated in our Controller.
      *
-     * @return Redirect
+     * @
      */
     public static function getAuthorization()
     {
@@ -175,7 +175,7 @@ class Connection
      *
      * @return array
      */
-    public static function Request(string $url, string $method, string $json = null)
+    public static function Request(string $url, string $method, string $body = null)
     {
         self::refreshAccessToken();
 
