@@ -15,14 +15,14 @@ class XmlParamsControl
     const IMPORT = 'Import';
     const EXPORT = 'Export';
 
-    private $xmlTopicParameters = '/home/debian/public/zangra-sylius/web/bundles/exactbundle/XMLTopicParameters.xml';
+    private $xmlTopicParameters = '/home/debian/zangra-sylius-v2/public/exact/XMLTopicParameters.xml';
     private $xml;
     private $type;
 
     public function __construct($type = self::EXPORT)
     {
         if (!file_exists($this->xmlTopicParameters)) {
-            throw new ApiException('File xmlTopicParameters can not be read at: '.$this->xmlTopicParameters, 1);
+            throw new ApiException('File xmlTopicParameters can not be read at: '.$this->xmlTopicParameters, 404);
         }
 
         $this->type = $type;
@@ -43,7 +43,7 @@ class XmlParamsControl
         // Check that topic exists
         $xmlParams = $this->xml->xpath('//Topic[@code="'.$topic.'"]');
         if (empty($xmlParams)) {
-            throw new ApiException('Parameter: '.$topic.' does not exists', 1);
+            throw new ApiException('Parameter: '.$topic.' does not exists', 404);
         }
 
         // Check that param and value is correct for specified topic
@@ -87,13 +87,13 @@ class XmlParamsControl
                     return true;
                 }
 
-                throw new ApiException('Expecting type: "'.$type.'" and got value: '.$value.'. If it\'s a date type check format in Exact', 1);
+                throw new ApiException('Expecting type: "'.$type.'" and got value: '.$value.'. If it\'s a date type check format in Exact', 404);
             }
         }
 
         throw new ApiException(
             'XML Parameter "(Params_)'.$param.'" does not exists for topic "'.$topic.'". Available params: '.$this->stringParams($xmlParams),
-            1
+            404
         );
     }
 
