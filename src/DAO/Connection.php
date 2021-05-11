@@ -5,6 +5,7 @@ namespace ExactOnlineBundle\DAO;
 use Doctrine\ORM\EntityManager;
 use ExactOnlineBundle\DAO\Exception\ApiException;
 use ExactOnlineBundle\Entity\Exact;
+use ExactOnlineBundle\Entity\ExactLocker;
 use ExactOnlineBundle\Model\Base\Me;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
@@ -117,7 +118,20 @@ class Connection
      */
     public static function refreshAccessToken()
     {
+        // If there is a locker in the DB, a refresh is in progress so wait
+        // for a new creation
+        $locker = self::$em->getRepository(ExactLocker::class)->findLast();
+        if(!is_null($locker)) {
+            usleep(2000000);
+        }
+
         if (self::isExpired()) {
+
+            $locker = new ExactLocker();
+            $locker->setLocker(1);
+            self::$em->persist($locker);
+            self::$em->flush();
+
             $Exact = self::$em->getRepository(Exact::class)->findLast();
             $url = self::$baseUrl.self::$tokenUrl;
             $client = new Client();
@@ -135,6 +149,19 @@ class Connection
             $obj = json_decode((string) $body);
 
             self::persistExact($obj);
+
+            // Add a logger to check correctly the timestamp at the Token Creation
+            // If multiple Token Created at the same timestamp, it means the locker don't work
+            $log = new ExactLogger();
+            $log->setCode(200);
+            $log->setMessage('New Exact Token');
+            $log->setCalled((string) time());
+            $log->setOccured(__METHOD__);
+            $this->em->persist($log);
+            $this->em->flush();
+
+            self::$em->remove($locker);
+            self::$em->flush();
         }
     }
 
@@ -145,10 +172,6 @@ class Connection
      */
     public static function isExpired()
     {
-
-
-
-
 
         $Exact = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
 
