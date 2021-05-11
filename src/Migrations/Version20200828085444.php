@@ -36,5 +36,6 @@ final class Version20200828085444 extends AbstractMigration
         $this->addSql('DROP TABLE exact');
         $this->addSql('DROP TABLE exact_logger');
         $this->addSql('DROP TABLE exact_import_log');
+        $this->addSql('DROP TABLE exact_locker');
     }
 }

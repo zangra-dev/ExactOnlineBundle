@@ -32,4 +32,29 @@ class ExactLocker
      * @ORM\Column(name="locker", type="boolean")
      */
     private $locker;
+
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isLocker()
+    {
+        return $this->locker;
+    }
+
+    /**
+     * @param bool $locker
+     */
+    public function setLocker($locker)
+    {
+        $this->locker = $locker;
+    }
 }
