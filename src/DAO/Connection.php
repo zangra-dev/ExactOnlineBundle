@@ -145,6 +145,11 @@ class Connection
      */
     public static function isExpired()
     {
+
+
+
+
+
         $Exact = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
 
         if (null === $Exact) {
@@ -159,8 +164,8 @@ class Connection
         /** @var int Elapsed time */
         $age = ($now->getTimeStamp()) - ($createAt->getTimeStamp());
 
-        // Lifespan (10min) minus 10 seconds
-        if ($lifeSpan - 10 < $age) {
+        // Lifespan (10min)
+        if ($lifeSpan < $age) {
             return true;
         }
 
