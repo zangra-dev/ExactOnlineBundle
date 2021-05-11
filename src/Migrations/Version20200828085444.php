@@ -25,6 +25,7 @@ final class Version20200828085444 extends AbstractMigration
         $this->addSql('CREATE TABLE exact (id INT AUTO_INCREMENT NOT NULL, access_token LONGTEXT NOT NULL, code LONGTEXT NOT NULL, token_expires INT NOT NULL, refresh_token LONGTEXT NOT NULL, enabled TINYINT(1) NOT NULL, created_at DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET UTF8 COLLATE `UTF8_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE exact_logger (id INT AUTO_INCREMENT NOT NULL, code LONGTEXT NOT NULL, message LONGTEXT NOT NULL, called LONGTEXT NOT NULL, occured LONGTEXT NOT NULL, created_at DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET UTF8 COLLATE `UTF8_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE exact_import_log (id INT AUTO_INCREMENT NOT NULL, batch_id INT NOT NULL, message VARCHAR(255) NOT NULL, type INT NOT NULL, topic_node VARCHAR(255) NOT NULL, topic_code VARCHAR(255) NOT NULL, data_key VARCHAR(255) DEFAULT NULL, datetime DATETIME NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET UTF8 COLLATE `UTF8_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE exact_locker (id INT AUTO_INCREMENT NOT NULL, locker TINYINT(1) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET UTF8 COLLATE `UTF8_unicode_ci` ENGINE = InnoDB');
     }
 
     public function down(Schema $schema): void
