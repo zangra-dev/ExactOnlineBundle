@@ -52,7 +52,7 @@ class ExactJsonApi extends ExactManager
         $getter = 'get'.$keyField;
         // Sometime, when you do multiple export it keep old entity and will not search the correct KeyField
         // So, is the getter does not exist, force by default the getID
-        if(!method_exists($entity, $getter)) {
+        if (!method_exists($entity, $getter)) {
             $getter = 'getID';
         }
         $url = $entity->getUrl()."(guid'".$entity->{$getter}()."')";

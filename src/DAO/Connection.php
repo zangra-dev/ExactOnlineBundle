@@ -86,7 +86,8 @@ class Connection
         $query = http_build_query($param);
 
         header('Location: '.$url.'?'.$query, true, 302);
-        die('Redirect');
+
+        exit('Redirect');
     }
 
     /**
@@ -116,6 +117,7 @@ class Connection
 
     /**
      * Refresh access token (if expired).
+     *
      * @throws ApiException
      */
     public static function refreshAccessToken()
@@ -123,7 +125,6 @@ class Connection
         self::isLocked();
 
         if (self::isExpired()) {
-
             $locker = new ExactLocker();
             $locker->setLocker(1);
             self::$em->persist($locker);
@@ -169,7 +170,6 @@ class Connection
      */
     public static function isExpired()
     {
-
         $Exact = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
 
         if (null === $Exact) {
@@ -313,6 +313,23 @@ class Connection
         return intval($delay);
     }
 
+    public static function isLocked()
+    {
+        $startTime = time();
+        // If there is a locker in the DB, a refresh is in progress so wait
+        // for a new creation
+        $locker = self::$em->getRepository(ExactLocker::class)->findLast();
+        while ($locker) {
+            usleep(250);
+            $locker = self::$em->getRepository(ExactLocker::class)->findLast();
+
+            $now = time();
+            if ($now > $startTime + 5) {
+                throw new ApiException('Too Much Time Locked : '.$startTime.'->'.$now, 499);
+            }
+        }
+    }
+
     /**
      * Persist to table 'exact'.
      *
@@ -422,23 +439,5 @@ class Connection
         } catch (\ApiException $e) {
             throw new ApiException($e->getMessage(), $e->getStatusCode());
         }
-    }
-
-    public static function isLocked()
-    {
-        $startTime = time();
-        // If there is a locker in the DB, a refresh is in progress so wait
-        // for a new creation
-        $locker = self::$em->getRepository(ExactLocker::class)->findLast();
-        while ($locker) {
-            usleep(250);
-            $locker = self::$em->getRepository(ExactLocker::class)->findLast();
-
-            if ($startTime + 5 > time()) {
-                throw new ApiException('Too Much Time Locked.', 499);
-            }
-        }
-
-
     }
 }

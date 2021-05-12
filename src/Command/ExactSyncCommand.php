@@ -49,6 +49,7 @@ class ExactSyncCommand extends Command
             $output->writeln("<error>{$country} is unauthorized </error>");
             $output->writeln('<info>Please select a correct country in this list:</info>');
             print_r($listCountry);
+
             exit;
         }
 

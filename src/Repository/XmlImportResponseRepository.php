@@ -19,6 +19,6 @@ class XmlImportResponseRepository extends EntityRepository
             ->select('i, MAX(i.batchId) AS maxId')
         ;
 
-        return  (int) $qb->getQuery()->getSingleResult()['maxId'];
+        return (int) $qb->getQuery()->getSingleResult()['maxId'];
     }
 }
