@@ -33,7 +33,6 @@ class ExactLocker
      */
     private $locker;
 
-
     /**
      * @return int
      */

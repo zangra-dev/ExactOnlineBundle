@@ -26,7 +26,7 @@ class XmlParamsControl
         }
 
         $this->type = $type;
-        $this->xml = simplexml_load_file($this->xmlTopicParameters) or die;
+        $this->xml = simplexml_load_file($this->xmlTopicParameters) or exit;
     }
 
     /**
