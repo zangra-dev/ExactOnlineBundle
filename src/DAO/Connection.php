@@ -434,8 +434,9 @@ class Connection
             usleep(250);
             $locker = self::$em->getRepository(ExactLocker::class)->findLast();
 
-            if ($startTime + 5 > time()) {
-                throw new ApiException('Too Much Time Locked.', 499);
+            $now = time();
+            if ($now > $startTime + 5) {
+                throw new ApiException('Too Much Time Locked : '.$startTime.'->'.$now, 499);
             }
         }
 
