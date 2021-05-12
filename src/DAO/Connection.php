@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use ExactOnlineBundle\DAO\Exception\ApiException;
 use ExactOnlineBundle\Entity\Exact;
 use ExactOnlineBundle\Entity\ExactLocker;
+use ExactOnlineBundle\Entity\ExactLogger;
 use ExactOnlineBundle\Model\Base\Me;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
@@ -115,15 +116,11 @@ class Connection
 
     /**
      * Refresh access token (if expired).
+     * @throws ApiException
      */
     public static function refreshAccessToken()
     {
-        // If there is a locker in the DB, a refresh is in progress so wait
-        // for a new creation
-        $locker = self::$em->getRepository(ExactLocker::class)->findLast();
-        if(!is_null($locker)) {
-            usleep(2000000);
-        }
+        self::isLocked();
 
         if (self::isExpired()) {
 
@@ -157,8 +154,8 @@ class Connection
             $log->setMessage('New Exact Token');
             $log->setCalled((string) time());
             $log->setOccured(__METHOD__);
-            $this->em->persist($log);
-            $this->em->flush();
+            self::$em->persist($log);
+            self::$em->flush();
 
             self::$em->remove($locker);
             self::$em->flush();
@@ -425,5 +422,23 @@ class Connection
         } catch (\ApiException $e) {
             throw new ApiException($e->getMessage(), $e->getStatusCode());
         }
+    }
+
+    public static function isLocked()
+    {
+        $startTime = time();
+        // If there is a locker in the DB, a refresh is in progress so wait
+        // for a new creation
+        $locker = self::$em->getRepository(ExactLocker::class)->findLast();
+        while ($locker) {
+            usleep(250);
+            $locker = self::$em->getRepository(ExactLocker::class)->findLast();
+
+            if ($startTime + 5 > time()) {
+                throw new ApiException('Too Much Time Locked.', 499);
+            }
+        }
+
+
     }
 }
