@@ -5,10 +5,10 @@ namespace ExactOnlineBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * Author: Jefferson Bianchi / Maxime Lambot
- * Email : jefferson@zangra.com / maxime@zangra.com.
+ * Author: Maxime Lambot
+ * Email : maxime@zangra.com.
  */
-final class ExactRepository extends EntityRepository
+final class ExactLockerRepository extends EntityRepository
 {
     public function findLast()
     {
