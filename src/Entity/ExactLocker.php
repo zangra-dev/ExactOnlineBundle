@@ -34,6 +34,20 @@ class ExactLocker
     private $locker;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="version", type="integer")
+     */
+    private $version;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="timestamp", type="integer")
+     */
+    private $timestamp;
+
+    /**
      * @return int
      */
     public function getId()
@@ -55,5 +69,37 @@ class ExactLocker
     public function setLocker($locker)
     {
         $this->locker = $locker;
+    }
+
+    /**
+     * @return int
+     */
+    public function getVersion(): int
+    {
+        return $this->version;
+    }
+
+    /**
+     * @param int $version
+     */
+    public function setVersion(int $version): void
+    {
+        $this->version = $version;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTimestamp(): int
+    {
+        return $this->timestamp;
+    }
+
+    /**
+     * @param int $timestamp
+     */
+    public function setTimestamp(int $timestamp): void
+    {
+        $this->timestamp = $timestamp;
     }
 }
