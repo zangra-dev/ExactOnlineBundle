@@ -327,7 +327,7 @@ class Connection
         // If there is a locker in the DB, a refresh is in progress so wait
         // for a new creation
         $locker = self::$em->getRepository(ExactLocker::class)->findLast();
-        while ($locker->isLocker() and $locker->getTimestamp() == $now) {
+        while ($locker and $locker->isLocker() and $locker->getTimestamp() == $now) {
             usleep(250);
             $locker = self::$em->getRepository(ExactLocker::class)->findLast();
 
