@@ -126,12 +126,12 @@ class Connection
 
         if (self::isExpired()) {
             $locker = self::$em->getRepository(ExactLocker::class)->findLast();
-            if(is_null($locker) ) {
+            if (is_null($locker)) {
                 $locker = new ExactLocker();
                 $locker->setVersion(0);
             }
             $locker->setLocker(1);
-            $locker->setVersion($locker->getVersion()+1);
+            $locker->setVersion($locker->getVersion() + 1);
             $locker->setTimestamp(time());
             self::$em->persist($locker);
             self::$em->flush();
@@ -165,7 +165,7 @@ class Connection
             self::$em->flush();
 
             $locker->setLocker(0);
-            $locker->setTimestamp($locker->getTimestamp()+1);
+            $locker->setTimestamp($locker->getTimestamp() + 1);
             self::$em->persist($locker);
             self::$em->flush();
         }

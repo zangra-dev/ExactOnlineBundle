@@ -71,33 +71,21 @@ class ExactLocker
         $this->locker = $locker;
     }
 
-    /**
-     * @return int
-     */
     public function getVersion(): int
     {
         return $this->version;
     }
 
-    /**
-     * @param int $version
-     */
     public function setVersion(int $version): void
     {
         $this->version = $version;
     }
 
-    /**
-     * @return int
-     */
     public function getTimestamp(): int
     {
         return $this->timestamp;
     }
 
-    /**
-     * @param int $timestamp
-     */
     public function setTimestamp(int $timestamp): void
     {
         $this->timestamp = $timestamp;
