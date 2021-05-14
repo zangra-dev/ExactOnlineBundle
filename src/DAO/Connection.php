@@ -125,8 +125,14 @@ class Connection
         self::isLocked();
 
         if (self::isExpired()) {
-            $locker = new ExactLocker();
+            $locker = self::$em->getRepository(ExactLocker::class)->findLast();
+            if(is_null($locker) ) {
+                $locker = new ExactLocker();
+                $locker->setVersion(0);
+            }
             $locker->setLocker(1);
+            $locker->setVersion($locker->getVersion()+1);
+            $locker->setTimestamp(time());
             self::$em->persist($locker);
             self::$em->flush();
 
@@ -158,7 +164,9 @@ class Connection
             self::$em->persist($log);
             self::$em->flush();
 
-            self::$em->remove($locker);
+            $locker->setLocker(0);
+            $locker->setTimestamp($locker->getTimestamp()+1);
+            self::$em->persist($locker);
             self::$em->flush();
         }
     }
@@ -315,11 +323,11 @@ class Connection
 
     public static function isLocked()
     {
-        $startTime = time();
+        $now = $startTime = time();
         // If there is a locker in the DB, a refresh is in progress so wait
         // for a new creation
         $locker = self::$em->getRepository(ExactLocker::class)->findLast();
-        while ($locker) {
+        while ($locker->isLocker() and $locker->getTimestamp() == $now) {
             usleep(250);
             $locker = self::$em->getRepository(ExactLocker::class)->findLast();
 
