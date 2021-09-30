@@ -96,7 +96,6 @@ abstract class ExactManager
      */
     public function checkWebhookHash(Request $request)
     {
-        echo $this->config['webhookSecret'];
         if (!empty($request->getContent())) {
             $data = $request->getContent();
             $data = json_decode($data);
