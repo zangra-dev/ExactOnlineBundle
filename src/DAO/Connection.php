@@ -120,7 +120,7 @@ class Connection
      *
      * @throws ApiException
      */
-    public static function refreshAccessToken()
+    public static function refreshAccessToken($count = 0)
     {
         if (self::isExpired()) {
             }
@@ -129,20 +129,28 @@ class Connection
             $url = self::$baseUrl.self::$tokenUrl;
             $client = new Client();
 
-            $response = $client->post($url, [
-                'form_params' => [
-                    'refresh_token' => $Exact->getRefreshToken(),
-                    'grant_type' => 'refresh_token',
-                    'client_id' => self::$exactClientId,
-                    'client_secret' => self::$exactClientSecret,
-                ],
-            ]);
-
-            $body = $response->getBody();
-            $obj = json_decode((string) $body);
-
-            self::persistExact($obj);
-
+            try {
+                $response = $client->post($url, [
+                    'form_params' => [
+                        'refresh_token' => $Exact->getRefreshToken(),
+                        'grant_type' => 'refresh_token',
+                        'client_id' => self::$exactClientId,
+                        'client_secret' => self::$exactClientSecret,
+                    ],
+                ]);
+                $body = $response->getBody();
+                $obj = json_decode((string) $body);
+                self::persistExact($obj);
+            } catch (BadResponseException $e) {
+                $message = $e->getMessage();
+                if (strpos('Old Token', $message)) {
+                    self::$em->remove($Exact);
+                    self::$em->flush();
+                    self::refreshAccessToken($count++);
+                } else {
+                    return $message;
+                }
+            }
         }
     }
 
