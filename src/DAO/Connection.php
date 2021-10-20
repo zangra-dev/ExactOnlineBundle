@@ -300,7 +300,7 @@ class Connection
         if (isset(self::$xRateLimits['X-RateLimit-Minutely-Remaining'])) {
             $limit = (self::$xRateLimits['X-RateLimit-Minutely-Remaining'][0]);
         } else {
-            $limit = 300;
+            $limit = 60;
         }
         $delay = (60 / $limit) * 1000000;
         if ($delay < 2000000) {
