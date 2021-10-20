@@ -150,7 +150,7 @@ class Connection
                     self::$em->flush();
                     self::refreshAccessToken($count++);
                 } else {
-                    return $message;
+                    throw new ApiException($message, 403);
                 }
             }
         }
