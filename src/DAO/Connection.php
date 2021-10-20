@@ -122,19 +122,8 @@ class Connection
      */
     public static function refreshAccessToken()
     {
-        self::isLocked();
-
         if (self::isExpired()) {
-            $locker = self::$em->getRepository(ExactLocker::class)->findLast();
-            if (is_null($locker)) {
-                $locker = new ExactLocker();
-                $locker->setVersion(0);
             }
-            $locker->setLocker(1);
-            $locker->setVersion($locker->getVersion() + 1);
-            $locker->setTimestamp(time());
-            self::$em->persist($locker);
-            self::$em->flush();
 
             $Exact = self::$em->getRepository(Exact::class)->findLast();
             $url = self::$baseUrl.self::$tokenUrl;
@@ -154,20 +143,6 @@ class Connection
 
             self::persistExact($obj);
 
-            // Add a logger to check correctly the timestamp at the Token Creation
-            // If multiple Token Created at the same timestamp, it means the locker don't work
-            $log = new ExactLogger();
-            $log->setCode(200);
-            $log->setMessage('New Exact Token');
-            $log->setCalled((string) time());
-            $log->setOccured(__METHOD__);
-            self::$em->persist($log);
-            self::$em->flush();
-
-            $locker->setLocker(0);
-            $locker->setTimestamp($locker->getTimestamp() + 1);
-            self::$em->persist($locker);
-            self::$em->flush();
         }
     }
 
@@ -319,23 +294,6 @@ class Connection
         }
 
         return intval($delay);
-    }
-
-    public static function isLocked()
-    {
-        $now = $startTime = time();
-        // If there is a locker in the DB, a refresh is in progress so wait
-        // for a new creation
-        $locker = self::$em->getRepository(ExactLocker::class)->findLast();
-        while ($locker and $locker->isLocker() and $locker->getTimestamp() == $now) {
-            usleep(250);
-            $locker = self::$em->getRepository(ExactLocker::class)->findLast();
-
-            $now = time();
-            if ($now > $startTime + 5) {
-                throw new ApiException('Too Much Time Locked : '.$startTime.'->'.$now, 499);
-            }
-        }
     }
 
     /**
