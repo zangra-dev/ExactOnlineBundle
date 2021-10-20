@@ -228,6 +228,9 @@ class Connection
             if (500 == $ex->getResponse()->getStatusCode()) {
                 return $error;
             }
+            if (429 == $ex->getResponse()->getStatusCode()) {
+                return 'Export impossible '.$ex->getResponse()->getReasonPhrase();
+            }
 
             throw new ApiException($error, $ex->getResponse()->getStatusCode());
         }
