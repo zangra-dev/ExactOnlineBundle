@@ -5,10 +5,9 @@ namespace ExactOnlineBundle\DAO;
 use Doctrine\ORM\EntityManager;
 use ExactOnlineBundle\DAO\Exception\ApiException;
 use ExactOnlineBundle\Entity\Exact;
-use ExactOnlineBundle\Entity\ExactLocker;
-use ExactOnlineBundle\Entity\ExactLogger;
 use ExactOnlineBundle\Model\Base\Me;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
@@ -20,8 +19,8 @@ use GuzzleHttp\Psr7\Response;
  */
 class Connection
 {
-    const CONTENT_TYPE_JSON = 'application/json';
-    const CONTENT_TYPE_XML = 'application/xml';
+    public const CONTENT_TYPE_JSON = 'application/json';
+    public const CONTENT_TYPE_XML = 'application/xml';
 
     private static $baseUrl;
     private static $apiUrl;
@@ -35,7 +34,7 @@ class Connection
     private static $division;
 
     private static $em;
-    private static $instance = null;
+    private static $instance;
     private static $contentType = self::CONTENT_TYPE_JSON;
     private static $accept = self::CONTENT_TYPE_JSON.';odata=verbose,text/plain';
     private static $xRateLimits = [];
@@ -118,56 +117,42 @@ class Connection
     /**
      * Refresh access token (if expired).
      *
+     * @param mixed $count
+     *
      * @throws ApiException
      */
-    public static function refreshAccessToken()
+    public static function refreshAccessToken($count = 0)
     {
-        self::isLocked();
-
         if (self::isExpired()) {
-            $locker = self::$em->getRepository(ExactLocker::class)->findLast();
-            if (is_null($locker)) {
-                $locker = new ExactLocker();
-                $locker->setVersion(0);
+            if ($count >= 10) {
+                return 'Export impossible, Refresh Token Manuel requis';
             }
-            $locker->setLocker(1);
-            $locker->setVersion($locker->getVersion() + 1);
-            $locker->setTimestamp(time());
-            self::$em->persist($locker);
-            self::$em->flush();
-
             $Exact = self::$em->getRepository(Exact::class)->findLast();
             $url = self::$baseUrl.self::$tokenUrl;
             $client = new Client();
 
-            $response = $client->post($url, [
-                'form_params' => [
-                    'refresh_token' => $Exact->getRefreshToken(),
-                    'grant_type' => 'refresh_token',
-                    'client_id' => self::$exactClientId,
-                    'client_secret' => self::$exactClientSecret,
-                ],
-            ]);
-
-            $body = $response->getBody();
-            $obj = json_decode((string) $body);
-
-            self::persistExact($obj);
-
-            // Add a logger to check correctly the timestamp at the Token Creation
-            // If multiple Token Created at the same timestamp, it means the locker don't work
-            $log = new ExactLogger();
-            $log->setCode(200);
-            $log->setMessage('New Exact Token');
-            $log->setCalled((string) time());
-            $log->setOccured(__METHOD__);
-            self::$em->persist($log);
-            self::$em->flush();
-
-            $locker->setLocker(0);
-            $locker->setTimestamp($locker->getTimestamp() + 1);
-            self::$em->persist($locker);
-            self::$em->flush();
+            try {
+                $response = $client->post($url, [
+                    'form_params' => [
+                        'refresh_token' => $Exact->getRefreshToken(),
+                        'grant_type' => 'refresh_token',
+                        'client_id' => self::$exactClientId,
+                        'client_secret' => self::$exactClientSecret,
+                    ],
+                ]);
+                $body = $response->getBody();
+                $obj = json_decode((string) $body);
+                self::persistExact($obj);
+            } catch (BadResponseException $e) {
+                $message = $e->getMessage();
+                if (strpos('Old Token', $message)) {
+                    self::$em->remove($Exact);
+                    self::$em->flush();
+                    self::refreshAccessToken($count++);
+                } else {
+                    throw new ApiException($message, 403);
+                }
+            }
         }
     }
 
@@ -245,6 +230,9 @@ class Connection
             if (500 == $ex->getResponse()->getStatusCode()) {
                 return $error;
             }
+            if (429 == $ex->getResponse()->getStatusCode()) {
+                return 'Export impossible '.$ex->getResponse()->getReasonPhrase();
+            }
 
             throw new ApiException($error, $ex->getResponse()->getStatusCode());
         }
@@ -311,7 +299,7 @@ class Connection
         if (isset(self::$xRateLimits['X-RateLimit-Minutely-Remaining'])) {
             $limit = (self::$xRateLimits['X-RateLimit-Minutely-Remaining'][0]);
         } else {
-            $limit = 300;
+            $limit = 60;
         }
         $delay = (60 / $limit) * 1000000;
         if ($delay < 2000000) {
@@ -319,23 +307,6 @@ class Connection
         }
 
         return intval($delay);
-    }
-
-    public static function isLocked()
-    {
-        $now = $startTime = time();
-        // If there is a locker in the DB, a refresh is in progress so wait
-        // for a new creation
-        $locker = self::$em->getRepository(ExactLocker::class)->findLast();
-        while ($locker and $locker->isLocker() and $locker->getTimestamp() == $now) {
-            usleep(250);
-            $locker = self::$em->getRepository(ExactLocker::class)->findLast();
-
-            $now = time();
-            if ($now > $startTime + 5) {
-                throw new ApiException('Too Much Time Locked : '.$startTime.'->'.$now, 499);
-            }
-        }
     }
 
     /**
