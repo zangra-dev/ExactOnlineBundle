@@ -5,10 +5,9 @@ namespace ExactOnlineBundle\DAO;
 use Doctrine\ORM\EntityManager;
 use ExactOnlineBundle\DAO\Exception\ApiException;
 use ExactOnlineBundle\Entity\Exact;
-use ExactOnlineBundle\Entity\ExactLocker;
-use ExactOnlineBundle\Entity\ExactLogger;
 use ExactOnlineBundle\Model\Base\Me;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\BadResponseException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
@@ -20,8 +19,8 @@ use GuzzleHttp\Psr7\Response;
  */
 class Connection
 {
-    const CONTENT_TYPE_JSON = 'application/json';
-    const CONTENT_TYPE_XML = 'application/xml';
+    public const CONTENT_TYPE_JSON = 'application/json';
+    public const CONTENT_TYPE_XML = 'application/xml';
 
     private static $baseUrl;
     private static $apiUrl;
@@ -35,7 +34,7 @@ class Connection
     private static $division;
 
     private static $em;
-    private static $instance = null;
+    private static $instance;
     private static $contentType = self::CONTENT_TYPE_JSON;
     private static $accept = self::CONTENT_TYPE_JSON.';odata=verbose,text/plain';
     private static $xRateLimits = [];
@@ -72,7 +71,7 @@ class Connection
      * Retrieve authorization code from Exact.
      * Exact api will POST on redirect URL and will be treated in our Controller.
      *
-     * @return Redirect
+     * @
      */
     public static function getAuthorization()
     {
@@ -194,7 +193,7 @@ class Connection
      *
      * @return array
      */
-    public static function Request(string $url, string $method, string $json = null)
+    public static function Request(string $url, string $method, string $body = null)
     {
         self::refreshAccessToken();
 
