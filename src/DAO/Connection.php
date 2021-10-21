@@ -145,7 +145,7 @@ class Connection
                 self::persistExact($obj);
             } catch (BadResponseException $e) {
                 $message = $e->getMessage();
-                if (strpos('Old Token', $message)) {
+                if (strpos('Old refresh', $message)) {
                     self::$em->remove($Exact);
                     self::$em->flush();
                     self::refreshAccessToken($count++);
