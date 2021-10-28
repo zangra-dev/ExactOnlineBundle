@@ -34,7 +34,7 @@ class Connection
     private static $division;
 
     private static $em;
-    private static $instance;
+    private static $instance = null;
     private static $contentType = self::CONTENT_TYPE_JSON;
     private static $accept = self::CONTENT_TYPE_JSON.';odata=verbose,text/plain';
     private static $xRateLimits = [];
@@ -60,11 +60,11 @@ class Connection
      */
     public static function getInstance()
     {
-        if (null === static::$instance) {
-            static::$instance = new Connection();
+        if (self::$instance == null) {
+            self::$instance = new Connection();
         }
 
-        return static::$instance;
+        return self::$instance;
     }
 
     /**
