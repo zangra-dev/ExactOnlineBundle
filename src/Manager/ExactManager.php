@@ -53,7 +53,13 @@ abstract class ExactManager
         }
     }
 
-    public function refreshToken()
+    public function initConnection()
+    {
+        $connection = Connection::getInstance();
+        $connection->setConfig($this->config, $this->em);
+    }
+
+    public function forceRefreshToken()
     {
         $connection = Connection::getInstance();
         $connection->setConfig($this->config, $this->em);

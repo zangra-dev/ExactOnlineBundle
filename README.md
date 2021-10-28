@@ -81,13 +81,13 @@ In your controller :
     {
         // the code sended by exact online when the first auth
         $code = $request->query->get('code');
-        //$exactManager->init($code); // use init for the first Authentification, after that you should to use refreshtoken();
-	      $exactManager->refreshToken();
+        //$exactManager->init($code); // use init for the first Authentification, after that you should to use forceRefreshToken();
+	      $exactManager->forceRefreshToken();
     }
 
 Next go to http:// YOUR URL.com/ExactRequest
 Your authentication login will be required, this session will expire after 10 minutes
-If you want to keep this session active, you need to replace function init() by refreshToken()
+The token is automatically reniew when you launch an Request to Exact with self::refreshAccessToken();
 
 <h1>Usage</h1>
 
@@ -96,7 +96,7 @@ If you want to keep this session active, you need to replace function init() by 
 	$code = $request->query->get('code');
 	$exactManager = $this->get("exact_online.manager");
 	//$exactManager->init($code); // first init
-	$exactManager->refreshToken(); // after first init
+	$exactManager->forceRefreshToken(); // after first init
 
 <h3>getList($page, $maxPerPage)</h3> (with pagination)
 

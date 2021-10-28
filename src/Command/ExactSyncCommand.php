@@ -58,7 +58,7 @@ class ExactSyncCommand extends Command
 
         try {
             $ExactManager = $this->exactManager;
-            $ExactManager->refreshToken($country);
+            $ExactManager->initConnection();
 
             $output->writeln('<info>Token was successfully refreshed</info>');
             $logger->info('Token was successfully refreshed');
