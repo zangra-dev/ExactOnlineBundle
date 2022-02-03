@@ -44,6 +44,11 @@ class ExactXmlApi extends ExactManager implements ExactXmlApiInterface
         parent::setConfig($config);
     }
 
+    public function getRateLimitDelay()
+    {
+        return Connection::getRateLimitDelay();
+    }
+
     public function import(string $body, array $params = [], array $options = [])
     {
         if (!empty($options)) {
