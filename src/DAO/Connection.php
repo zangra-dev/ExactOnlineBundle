@@ -8,6 +8,8 @@ use ExactOnlineBundle\Entity\Exact;
 use ExactOnlineBundle\Model\Base\Me;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\TooManyRedirectsException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
@@ -182,10 +184,7 @@ class Connection
     /**
      * Execute request.
      *
-     * @param string     $json
-     * @param null|mixed $body
-     *
-     * @return array
+     * @return string|array
      */
     public static function Request(string $url, string $method, string $body = null)
     {
@@ -214,21 +213,26 @@ class Connection
             self::$xRateLimits['X-RateLimit-Minutely-Limit'] = $response->getHeader('X-RateLimit-Minutely-Limit');
             self::$xRateLimits['X-RateLimit-Minutely-Remaining'] = $response->getHeader('X-RateLimit-Minutely-Remaining');
             self::$xRateLimits['X-RateLimit-Minutely-Reset'] = $response->getHeader('X-RateLimit-Minutely-Reset');
-        } catch (\Exception $ex) {
-            if ('PUT' == $method && 403 == $ex->getResponse()->getStatusCode()) {
-                return 'ErrorDoPersist';
-            }
+        } catch (BadResponseException $ex) {
+            // BadResponseException is a parent of Guzzle ServerException and ClientException
+            $code = $ex->getCode();
+            $exceptionMsg = $ex->getMessage() ?? '';
+            $exceptionMsg = substr($exceptionMsg, 0, strpos($exceptionMsg, "\n"));
+            $exactMsg = 'nothing';
+            if ($ex->hasResponse()) {
+                $response = $ex->getResponse();
+                $code = $response->getStatusCode() ?? $code;
+                $reason = $response->getReasonPhrase();
+                if (null !== $content = json_decode($response->getBody()->getContents())) {
+                    $exactMsg = $content->error->message->value ?? '';
+                }
 
-            $error = json_decode($ex->getResponse()->getBody()->getContents())->error->message->value;
-
-            if (500 == $ex->getResponse()->getStatusCode()) {
-                return $error;
+                return 'Error ' . $code . '. Reason: "' . $reason . '". Exact says: ' . $exactMsg .' :::: '.$exceptionMsg;
             }
-            if (429 == $ex->getResponse()->getStatusCode()) {
-                return 'Export impossible '.$ex->getResponse()->getReasonPhrase();
-            }
-
-            throw new ApiException($error, $ex->getResponse()->getStatusCode());
+        } catch (ConnectException $ex) {
+            return "Error Exact export with Guzzle client: Connect/Network problem: ".$ex->getCode().' '.$ex->getMessage();
+        } catch (TooManyRedirectsException $ex) {
+            return "Error Exact export with Guzzle client: too many redirects".$ex->getCode().' '.$ex->getMessage();
         }
 
         try {
@@ -409,7 +413,7 @@ class Connection
             }
 
             return $json;
-        } catch (\ApiException $e) {
+        } catch (ApiException $e) {
             throw new ApiException($e->getMessage(), $e->getStatusCode());
         }
     }
