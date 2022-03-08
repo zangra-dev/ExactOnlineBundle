@@ -119,16 +119,12 @@ class Connection
     /**
      * Refresh access token (if expired).
      *
-     * @param mixed $count
      *
      * @throws ApiException
      */
-    public static function refreshAccessToken($count = 0)
+    public static function refreshAccessToken()
     {
         if (self::isExpired()) {
-            if ($count >= 10) {
-                return 'Export impossible, Refresh Token Manuel requis';
-            }
             $Exact = self::$em->getRepository(Exact::class)->findLast();
             $url = self::$baseUrl.self::$tokenUrl;
             $client = new Client();
@@ -188,6 +184,7 @@ class Connection
      */
     public static function Request(string $url, string $method, string $body = null)
     {
+        usleep(self::getRateLimitDelay());
         self::refreshAccessToken();
 
         if (self::CONTENT_TYPE_XML === self::$contentType) {
@@ -207,7 +204,7 @@ class Connection
             $request = self::createRequest($method, $url, $body);
             $response = $client->send($request);
 
-            self::$xRateLimits['X-RateLimi-Limit'] = $response->getHeader('X-RateLimit-Limit');
+            self::$xRateLimits['X-RateLimit-Limit'] = $response->getHeader('X-RateLimit-Limit');
             self::$xRateLimits['X-RateLimit-Remaining'] = $response->getHeader('X-RateLimit-Remaining');
             self::$xRateLimits['X-RateLimit-Reset'] = $response->getHeader('X-RateLimit-Reset');
             self::$xRateLimits['X-RateLimit-Minutely-Limit'] = $response->getHeader('X-RateLimit-Minutely-Limit');
