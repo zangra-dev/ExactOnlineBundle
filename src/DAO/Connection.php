@@ -204,7 +204,7 @@ class Connection
             $request = self::createRequest($method, $url, $body);
             $response = $client->send($request);
 
-            self::$xRateLimits['X-RateLimi-Limit'] = $response->getHeader('X-RateLimit-Limit');
+            self::$xRateLimits['X-RateLimit-Limit'] = $response->getHeader('X-RateLimit-Limit');
             self::$xRateLimits['X-RateLimit-Remaining'] = $response->getHeader('X-RateLimit-Remaining');
             self::$xRateLimits['X-RateLimit-Reset'] = $response->getHeader('X-RateLimit-Reset');
             self::$xRateLimits['X-RateLimit-Minutely-Limit'] = $response->getHeader('X-RateLimit-Minutely-Limit');
