@@ -36,7 +36,7 @@ class Connection
     private static $division;
 
     private static $em;
-    private static $instance = null;
+    private static $instance;
     private static $contentType = self::CONTENT_TYPE_JSON;
     private static $accept = self::CONTENT_TYPE_JSON.';odata=verbose,text/plain';
     private static $xRateLimits = [];
@@ -62,7 +62,7 @@ class Connection
      */
     public static function getInstance()
     {
-        if (self::$instance == null) {
+        if (null == self::$instance) {
             self::$instance = new Connection();
         }
 
@@ -119,7 +119,6 @@ class Connection
     /**
      * Refresh access token (if expired).
      *
-     *
      * @throws ApiException
      */
     public static function refreshAccessToken()
@@ -143,6 +142,7 @@ class Connection
                 self::persistExact($obj);
             } catch (BadResponseException $e) {
                 $message = $e->getMessage();
+
                 throw new ApiException($message, $e->getCode());
             }
         }
@@ -180,7 +180,7 @@ class Connection
     /**
      * Execute request.
      *
-     * @return string|array
+     * @return array|string
      */
     public static function Request(string $url, string $method, string $body = null)
     {
@@ -224,12 +224,12 @@ class Connection
                     $exactMsg = $content->error->message->value ?? '';
                 }
 
-                return 'Error ' . $code . '. Reason: "' . $reason . '". Exact says: ' . $exactMsg .' :::: '.$exceptionMsg;
+                return 'Error '.$code.'. Reason: "'.$reason.'". Exact says: '.$exactMsg.' :::: '.$exceptionMsg;
             }
         } catch (ConnectException $ex) {
-            return "Error Exact export with Guzzle client: Connect/Network problem: ".$ex->getCode().' '.$ex->getMessage();
+            return 'Error Exact export with Guzzle client: Connect/Network problem: '.$ex->getCode().' '.$ex->getMessage();
         } catch (TooManyRedirectsException $ex) {
-            return "Error Exact export with Guzzle client: too many redirects".$ex->getCode().' '.$ex->getMessage();
+            return 'Error Exact export with Guzzle client: too many redirects'.$ex->getCode().' '.$ex->getMessage();
         }
 
         try {

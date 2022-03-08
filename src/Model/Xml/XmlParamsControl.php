@@ -12,8 +12,8 @@ use ExactOnlineBundle\DAO\Exception\ApiException;
  */
 class XmlParamsControl
 {
-    const IMPORT = 'Import';
-    const EXPORT = 'Export';
+    public const IMPORT = 'Import';
+    public const EXPORT = 'Export';
 
     private $xmlTopicParameters = '/home/debian/zangra-sylius-v2/public/exact/XMLTopicParameters.xml';
     private $xml;

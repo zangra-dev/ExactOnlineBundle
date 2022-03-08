@@ -6,7 +6,7 @@ use ExactOnlineBundle\Model\Item as BaseItem;
 
 class Item extends BaseItem
 {
-    const TOPIC = 'Items';
+    public const TOPIC = 'Items';
     // protected $container;
     // protected $model;
 

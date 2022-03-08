@@ -15,11 +15,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class XmlImportResponseObject
 {
-    const TYPE_ERROR = 0;
-    const TYPE_WARNING = 1;
-    const TYPE_SUCCES = 2;
-    const TYPE_FATAL = 3;
-    const RESPONSE_TYPES = ['error', 'warning', 'succes', 'fatal'];
+    public const TYPE_ERROR = 0;
+    public const TYPE_WARNING = 1;
+    public const TYPE_SUCCES = 2;
+    public const TYPE_FATAL = 3;
+    public const RESPONSE_TYPES = ['error', 'warning', 'succes', 'fatal'];
 
     /**
      * @ORM\Column(name="message", type="string")
