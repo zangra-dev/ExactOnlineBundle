@@ -184,6 +184,7 @@ class Connection
      */
     public static function Request(string $url, string $method, string $body = null)
     {
+        usleep(self::getRateLimitDelay());
         self::refreshAccessToken();
 
         if (self::CONTENT_TYPE_XML === self::$contentType) {
