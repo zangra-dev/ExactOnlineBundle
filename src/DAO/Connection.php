@@ -119,16 +119,12 @@ class Connection
     /**
      * Refresh access token (if expired).
      *
-     * @param mixed $count
      *
      * @throws ApiException
      */
-    public static function refreshAccessToken($count = 0)
+    public static function refreshAccessToken()
     {
         if (self::isExpired()) {
-            if ($count >= 10) {
-                return 'Export impossible, Refresh Token Manuel requis';
-            }
             $Exact = self::$em->getRepository(Exact::class)->findLast();
             $url = self::$baseUrl.self::$tokenUrl;
             $client = new Client();
