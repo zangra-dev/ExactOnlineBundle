@@ -169,8 +169,8 @@ class Connection
         /** @var int Elapsed time */
         $age = ($now->getTimeStamp()) - ($createAt->getTimeStamp());
 
-        // Lifespan (10min)
-        if ($lifeSpan < $age) {
+        // Lifespan (9min55)
+        if ($lifeSpan - 5 < $age) {
             return true;
         }
 
