@@ -6,5 +6,5 @@ use ExactOnlineBundle\Model\BillOfMaterialMaterial as BaseItem;
 
 class BillOfMaterialMaterial extends BaseItem
 {
-    const TOPIC = 'BillOfMaterials';
+    public const TOPIC = 'BillOfMaterials';
 }
