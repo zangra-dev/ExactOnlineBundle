@@ -31,9 +31,9 @@
     ],
     "require" : {
         "php": "^7.2",
-        "symfony/framework-bundle": "^4.4",
+        "symfony/framework-bundle": "^4.4 || ^5.4",
         "doctrine/doctrine-bundle": "*",
-        "guzzlehttp/guzzle": "^6.2",
+        "guzzlehttp/guzzle": "^6.2 || ^7.2",
         "ext-json": "*"
     },
 
