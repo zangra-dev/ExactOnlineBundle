@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityManager;
 use ExactOnlineBundle\DAO\Exception\ApiExceptionInterface;
 use ExactOnlineBundle\Entity\ExactLogger;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 
 /**
  * Author: Jefferson Bianchi / Maxime Lambot
@@ -21,13 +21,13 @@ class ExceptionListener
         $this->em = $em;
     }
 
-    public function onKernelException(GetResponseForExceptionEvent $event)
+    public function onKernelException(ExceptionEvent $event)
     {
-        if ($event->getException() instanceof ApiExceptionInterface || $event->getException() instanceof GuzzleException) {
-            $response = new JsonResponse($event->getException()->getMessage());
+        if ($event->getThrowable() instanceof ApiExceptionInterface || $event->getThrowable() instanceof GuzzleException) {
+            $response = new JsonResponse($event->getThrowable()->getMessage());
             $event->setResponse($response);
 
-            $this->log($event->getException());
+            $this->log($event->getThrowable());
         }
     }
 
