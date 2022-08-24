@@ -216,6 +216,13 @@ class Connection
             $exceptionMsg = $ex->getMessage() ?? '';
             $exceptionMsg = substr($exceptionMsg, 0, strpos($exceptionMsg, "\n"));
             $exactMsg = 'nothing';
+            
+            // If the method is PUT and the error code is 403, it's mean the code try to update an unexisting item
+            // so return the error code 'ErrorDoPersist' for the ExactJsonApi->update L61, to launch a persist instead 
+            // of update
+            if ('PUT' == $method && 403 == $ex->getResponse()->getStatusCode()) {
+                return 'ErrorDoPersist';
+            }
             if ($ex->hasResponse()) {
                 $response = $ex->getResponse();
                 $code = $response->getStatusCode() ?? $code;
