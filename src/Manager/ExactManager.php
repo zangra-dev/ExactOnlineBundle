@@ -125,7 +125,7 @@ abstract class ExactManager
      */
     public function getKeyField()
     {
-        if (method_exists($this->model, 'getPrimaryKey')) {
+        if (!is_null($this->model) && method_exists($this->model, 'getPrimaryKey')) {
             $primaryKey = $this->model->getPrimaryKey();
         } else {
             $primaryKey = 'ID';

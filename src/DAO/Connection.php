@@ -296,7 +296,7 @@ class Connection
         return self::$xRateLimits;
     }
 
-    public function getRateLimitDelay()
+    static function getRateLimitDelay()
     {
         if (isset(self::$xRateLimits['X-RateLimit-Minutely-Remaining'])) {
             $limit = (self::$xRateLimits['X-RateLimit-Minutely-Remaining'][0]);
