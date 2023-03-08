@@ -34,6 +34,7 @@
         "symfony/framework-bundle": "^4.4 || ^5.4",
         "doctrine/doctrine-bundle": "*",
         "guzzlehttp/guzzle": "^6.2 || ^7.2",
+        "monolog/monolog": "^2.0",
         "ext-json": "*"
     },
 
