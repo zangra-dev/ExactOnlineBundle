@@ -310,7 +310,7 @@ class Connection
         return $me->getCurrentDivision();
     }
 
-    public function getXRateLimits()
+    public static function getXRateLimits()
     {
         return self::$xRateLimits;
     }
