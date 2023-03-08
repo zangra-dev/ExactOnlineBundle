@@ -2,7 +2,7 @@
 
 namespace ExactOnlineBundle\Manager;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use ExactOnlineBundle\DAO\Connection;
 use ExactOnlineBundle\DAO\Exception\ApiException;
 
@@ -13,7 +13,7 @@ use ExactOnlineBundle\DAO\Exception\ApiException;
  */
 class ExactJsonApi extends ExactManager
 {
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManagerInterface $em)
     {
         parent::__construct($em);
     }

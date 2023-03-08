@@ -33,9 +33,12 @@
         "php": "^7.4 || ^8.1",
         "symfony/framework-bundle": "^4.4 || ^5.4",
         "doctrine/doctrine-bundle": "*",
+        "doctrine/orm": "*",
         "guzzlehttp/guzzle": "^6.2 || ^7.2",
         "monolog/monolog": "^2.0",
-        "ext-json": "*"
+        "ext-json": "*",
+        "ext-simplexml": "*",
+        "ext-libxml": "*"
     },
 
     "autoload": {

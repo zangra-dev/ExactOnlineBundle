@@ -2,7 +2,7 @@
 
 namespace ExactOnlineBundle\Manager;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use ExactOnlineBundle\DAO\Connection;
 use ExactOnlineBundle\DAO\Exception\ApiException;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +20,7 @@ abstract class ExactManager
     protected $em;
     protected $logger;
 
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
