@@ -2,7 +2,7 @@
 
 namespace ExactOnlineBundle\DAO;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use ExactOnlineBundle\DAO\Exception\ApiException;
 use ExactOnlineBundle\Entity\Exact;
 use ExactOnlineBundle\Model\Base\Me;
@@ -13,6 +13,8 @@ use GuzzleHttp\Exception\TooManyRedirectsException;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 
 /**
  * Class Connection
@@ -30,18 +32,21 @@ class Connection
     private static $tokenUrl;
     private static $redirectUrl;
 
+    private static $logPath;
+    private static $logger;
+    private static $loggerId;
+
     private static $exactClientId;
     private static $exactClientSecret;
     private static $code;
     private static $division;
-
     private static $em;
     private static $instance;
     private static $contentType = self::CONTENT_TYPE_JSON;
     private static $accept = self::CONTENT_TYPE_JSON.';odata=verbose,text/plain';
     private static $xRateLimits = [];
 
-    public static function setConfig(array $config, EntityManager $em, $contentType = 'json')
+    public static function setConfig(array $config, EntityManagerInterface $em, string $contentType = 'json')
     {
         self::$em = $em;
         self::$baseUrl = $config['baseUrl'];
@@ -52,7 +57,15 @@ class Connection
         self::$exactClientId = $config['clientId'];
         self::$exactClientSecret = $config['clientSecret'];
         self::$division = $config['mainDivision'];
+        self::$logPath = $config['logPath'];
         self::setContentType($contentType);
+
+        if (null !== self::$logPath) {
+            self::$logger = new Logger('exact_api');
+            self::$logger->pushHandler(new StreamHandler(self::$logPath, Logger::DEBUG));
+            self::$loggerId = random_int(100000, 999999);
+        }
+
     }
 
     /**
@@ -142,7 +155,7 @@ class Connection
                 self::persistExact($obj);
             } catch (BadResponseException $e) {
                 $message = $e->getMessage();
-
+                self::$logger->error($e->getMessage());
                 throw new ApiException($message, $e->getCode());
             }
         }
@@ -202,7 +215,10 @@ class Connection
         try {
             $client = new Client();
             $request = self::createRequest($method, $url, $body);
+            self::$logger->debug($method.'|'.$url.'|'.$body, ['ID' => self::$loggerId]);
+
             $response = $client->send($request);
+            self::$logger->debug('Response: '.$response->getStatusCode().'|'.$response->getReasonPhrase().'|'.$response->getBody(), ['ID' => self::$loggerId]);
 
             self::$xRateLimits['X-RateLimit-Limit'] = $response->getHeader('X-RateLimit-Limit');
             self::$xRateLimits['X-RateLimit-Remaining'] = $response->getHeader('X-RateLimit-Remaining');
@@ -216,14 +232,17 @@ class Connection
             $exceptionMsg = $ex->getMessage() ?? '';
             $exceptionMsg = substr($exceptionMsg, 0, strpos($exceptionMsg, "\n"));
             $exactMsg = 'nothing';
-            
+
+            self::$logger->debug('BadResponseException: '.$code.'|'.$exceptionMsg.'|'.$ex->getResponse()->getBody(), ['ID' => self::$loggerId]);
+
             // If the method is PUT and the error code is 403, it's mean the code try to update an unexisting item
-            // so return the error code 'ErrorDoPersist' for the ExactJsonApi->update L61, to launch a persist instead 
+            // so return the error code 'ErrorDoPersist' for the ExactJsonApi->update L61, to launch a persist instead
             // of update
             if ('PUT' == $method && 403 == $ex->getResponse()->getStatusCode()) {
                 return 'ErrorDoPersist';
             }
             if ($ex->hasResponse()) {
+                self::$logger->debug('BREBody: '.$ex->getResponse()->getBody(), ['ID' => self::$loggerId]);
                 $response = $ex->getResponse();
                 $code = $response->getStatusCode() ?? $code;
                 $reason = $response->getReasonPhrase();
@@ -291,7 +310,7 @@ class Connection
         return $me->getCurrentDivision();
     }
 
-    public function getXRateLimits()
+    public static function getXRateLimits()
     {
         return self::$xRateLimits;
     }

@@ -3,7 +3,7 @@
 namespace ExactOnlineBundle\Manager;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use ExactOnlineBundle\DAO\Connection;
 use ExactOnlineBundle\Entity\XmlImportResponse;
 use ExactOnlineBundle\Model\Xml\XmlParamsControl;
@@ -16,7 +16,7 @@ class ExactXmlApi extends ExactManager implements ExactXmlApiInterface
     protected $em;
     protected $files;
     protected $data;
-    protected $exactXmlExportDir = '/home/debian/public/zangra-sylius/web/media/exact/xml/export/';
+    protected $exactXmlExportDir = '/home/debian/zs-v3/public/exact/xml/';
     protected $options = [];
     protected $nbrElements;
     protected $pageSize;
@@ -26,7 +26,7 @@ class ExactXmlApi extends ExactManager implements ExactXmlApiInterface
     protected $xRateLimit;
     protected $errors = false;
 
-    public function __construct(EntityManager $em, $options = [])
+    public function __construct(EntityManagerInterface $em, $options = [])
     {
         parent::__construct($em);
         $this->files = new ArrayCollection();

@@ -15,7 +15,7 @@ class XmlParamsControl
     public const IMPORT = 'Import';
     public const EXPORT = 'Export';
 
-    private $xmlTopicParameters = '/home/debian/zangra-sylius-v2/public/exact/XMLTopicParameters.xml';
+    private $xmlTopicParameters = '/home/debian/zs-v3/public/exact/XMLTopicParameters.xml';
     private $xml;
     private $type;
 
