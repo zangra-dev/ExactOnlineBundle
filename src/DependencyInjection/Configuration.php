@@ -30,6 +30,8 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('clientSecret')->defaultValue('')->end()
             ->scalarNode('mainDivision')->defaultValue('')->end()
             ->scalarNode('webhookSecret')->defaultValue('')->end()
+            ->scalarNode('logPath')->defaultValue('')->end()
+
             ->end()
             ;
 
