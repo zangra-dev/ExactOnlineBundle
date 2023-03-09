@@ -219,6 +219,7 @@ class Connection
 
             $response = $client->send($request);
             self::$logger->debug('Response: '.$response->getStatusCode().'|'.$response->getReasonPhrase().'|'.$response->getBody(), ['ID' => self::$loggerId]);
+            $response->getBody()->rewind();
 
             self::$xRateLimits['X-RateLimit-Limit'] = $response->getHeader('X-RateLimit-Limit');
             self::$xRateLimits['X-RateLimit-Remaining'] = $response->getHeader('X-RateLimit-Remaining');
