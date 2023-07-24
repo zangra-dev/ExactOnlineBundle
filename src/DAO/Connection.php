@@ -235,7 +235,9 @@ class Connection
             $exactMsg = 'nothing';
 
             self::$logger->debug('BadResponseException: '.$code.'|'.$exceptionMsg.'|'.$ex->getResponse()->getBody(), ['ID' => self::$loggerId]);
-
+            if (429 == $code) {
+                throw new ApiException('Exact rate-limit reached for today', 429);
+            }
             // If the method is PUT and the error code is 403, it's mean the code try to update an unexisting item
             // so return the error code 'ErrorDoPersist' for the ExactJsonApi->update L61, to launch a persist instead
             // of update
