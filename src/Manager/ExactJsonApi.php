@@ -150,6 +150,7 @@ class ExactJsonApi extends ExactManager
      */
     public function findBy(array $criteria, array $select = null, array $orderby = null, $limit = 5)
     {
+        dump(__METHOD__);
         // Check if current criteria (value) is a guid
         $guidString = $this->assertGuid(current($criteria)) ? 'guid' : '';
 
