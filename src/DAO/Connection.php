@@ -65,7 +65,6 @@ class Connection
             self::$logger->pushHandler(new StreamHandler(self::$logPath, Logger::DEBUG));
             self::$loggerId = random_int(100000, 999999);
         }
-
     }
 
     /**
@@ -85,8 +84,6 @@ class Connection
     /**
      * Retrieve authorization code from Exact.
      * Exact api will POST on redirect URL and will be treated in our Controller.
-     *
-     * @
      */
     public static function getAuthorization()
     {
@@ -180,7 +177,7 @@ class Connection
         /** @var int Number of seconds the token is valid */
         $lifeSpan = $Exact->getTokenExpires();
         /** @var int Elapsed time */
-        $age = ($now->getTimeStamp()) - ($createAt->getTimeStamp());
+        $age = $now->getTimeStamp() - $createAt->getTimeStamp();
 
         // Lifespan (9min55)
         if ($lifeSpan - 5 < $age) {
@@ -318,10 +315,10 @@ class Connection
         return self::$xRateLimits;
     }
 
-    static function getRateLimitDelay()
+    public static function getRateLimitDelay()
     {
         if (isset(self::$xRateLimits['X-RateLimit-Minutely-Remaining'])) {
-            $limit = (self::$xRateLimits['X-RateLimit-Minutely-Remaining'][0]);
+            $limit = self::$xRateLimits['X-RateLimit-Minutely-Remaining'][0];
         } else {
             $limit = 60;
         }

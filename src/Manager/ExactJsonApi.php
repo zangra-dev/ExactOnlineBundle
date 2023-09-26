@@ -107,10 +107,6 @@ class ExactJsonApi extends ExactManager
      * getList with pagination
      * Warning: Usually this limit, also known as page size, is 60 records but it may vary per end point.
      * https://support.exactonline.com/community/s/knowledge-base#All-All-DNO-Content-resttips.
-     *
-     * @param null|mixed $page
-     * @param mixed      $maxPerPage
-     *
      */
     public function getList(string $select = null, string $orderBy = null, int $page = null, int $maxPerPage = 60)
     {
