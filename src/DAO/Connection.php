@@ -249,7 +249,7 @@ class Connection
                 $response = $ex->getResponse();
                 $code = $response->getStatusCode() ?? $code;
                 $reason = $response->getReasonPhrase();
-                if (null !== $content = json_decode($response->getBody()->getContents())) {
+                if (null !== $content = json_decode($response->getBody())) {
                     $exactMsg = $content->error->message->value ?? '';
                 }
 
