@@ -152,7 +152,7 @@ class ExactJsonApi extends ExactManager
      *
      *    @return array
      */
-    public function findBy(array|string $criteria, string $select = null, array $orderby = null, $limit = 60)
+    public function findBy(array|string $criteria, string $select = null, string $orderBy = null, $limit = 60): array|string
     {
         if (is_array($criteria)) {
             // Check if current criteria (value) is a guid
@@ -167,9 +167,8 @@ class ExactJsonApi extends ExactManager
         if ($limit > 0) {
             $url = $url.'&$top='.$limit;
         }
-
-        if (null != $orderby) {
-            $url = $url.'&$orderby='.key($orderby).' '.current($orderby);
+        if (null !== $orderBy) {
+            $url = $url.'&$orderby='.$orderBy;
         }
 
         $data = $this->request($url, 'GET');
