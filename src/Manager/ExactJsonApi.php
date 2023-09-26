@@ -194,7 +194,7 @@ class ExactJsonApi extends ExactManager
 
         $data = $this->request($url, 'GET');
 
-        return $this->isSingleObject($data);
+        return is_array($data) ? $this->isSingleObject($data) : $data;
     }
 
     private function request($url, $method, $data = null)
