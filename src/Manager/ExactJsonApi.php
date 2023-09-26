@@ -136,7 +136,7 @@ class ExactJsonApi extends ExactManager
 
         $data = $this->request($url, 'GET');
 
-        return $this->isArrayCollection($this->model, $data);
+        return is_array($data) ? $this->isArrayCollection($this->model, $data): $data;
     }
 
     /**
@@ -173,7 +173,7 @@ class ExactJsonApi extends ExactManager
 
         $data = $this->request($url, 'GET');
 
-        return $this->isArrayCollection($this->model, $data);
+        return is_array($data) ? $this->isArrayCollection($this->model, $data): $data;
     }
 
     /**
