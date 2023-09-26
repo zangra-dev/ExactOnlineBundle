@@ -152,21 +152,18 @@ class ExactJsonApi extends ExactManager
      *
      *    @return array
      */
-    public function findBy(array $criteria, array $select = null, array $orderby = null, $limit = 5)
+    public function findBy(array|string $criteria, string $select = null, array $orderby = null, $limit = 60)
     {
-        dump(__METHOD__);
-        // Check if current criteria (value) is a guid
-        $guidString = $this->assertGuid(current($criteria)) ? 'guid' : '';
-
-        $url = $this->model->getUrl().'\\?'.'$filter='.key($criteria).' eq '.$guidString."'".current($criteria)."'";
-
-        if (null != $select) {
-            $url = $url.'&$select=';
-            for ($i = 0; $i < count($select); ++$i) {
-                $url = $url.$select[$i].', ';
-            }
+        if (is_array($criteria)) {
+            // Check if current criteria (value) is a guid
+            $guidString = $this->assertGuid(current($criteria)) ? 'guid' : '';
+            $url = $this->model->getUrl().'\\?'.'$filter='.key($criteria).' eq '.$guidString."'".current($criteria)."'";
+        } else {
+            $url = $this->model->getUrl().'\\?$filter='.$criteria;
         }
-
+        if (null != $select) {
+            $url = $url.'&$select='.$select;
+        }
         if ($limit > 0) {
             $url = $url.'&$top='.$limit;
         }
