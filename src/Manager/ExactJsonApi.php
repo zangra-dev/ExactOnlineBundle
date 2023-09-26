@@ -227,7 +227,7 @@ class ExactJsonApi extends ExactManager
      *
      * @return object collection
      */
-    private function isArrayCollection($entity, $data)
+    private function isArrayCollection($entity, array $data): array
     {
         foreach ($data as $keyD => $item) {
             $object = new $entity();
