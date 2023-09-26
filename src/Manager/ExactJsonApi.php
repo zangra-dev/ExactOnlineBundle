@@ -111,9 +111,8 @@ class ExactJsonApi extends ExactManager
      * @param null|mixed $page
      * @param mixed      $maxPerPage
      *
-     * @return object Collection
      */
-    public function getList($page = null, $maxPerPage = 60)
+    public function getList(string $select = null, string $orderBy = null, int $page = null, int $maxPerPage = 60)
     {
         if (null !== $page) {
             if ($maxPerPage >= 60) {
@@ -133,7 +132,12 @@ class ExactJsonApi extends ExactManager
         } else {
             $url = $this->model->getUrl().'\\?'.'&$top='.$maxPerPage;
         }
-
+        if (null != $select) {
+            $url = $url.'&$select='.$select;
+        }
+        if (null !== $orderBy) {
+            $url = $url.'&$orderby='.$orderBy;
+        }
         $data = $this->request($url, 'GET');
 
         return is_array($data) ? $this->isArrayCollection($this->model, $data): $data;
