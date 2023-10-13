@@ -2,6 +2,7 @@
 
 namespace ExactOnlineBundle\Manager;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use ExactOnlineBundle\DAO\Connection;
 use ExactOnlineBundle\DAO\Exception\ApiException;
@@ -14,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 abstract class ExactManager
 {
-    protected $list = [];
+    protected ArrayCollection $collection;
     protected $model;
     protected $config;
     protected $em;
@@ -23,6 +24,7 @@ abstract class ExactManager
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
+        $this->collection = new ArrayCollection();
     }
 
     public function setConfig($config)
@@ -100,13 +102,13 @@ abstract class ExactManager
      *
      * @return bool
      */
-    public function checkWebhookHash(Request $request)
+    public function checkWebhookHash(Request $request): bool
     {
         if (!empty($request->getContent())) {
             $data = $request->getContent();
             $data = json_decode($data);
 
-            if (!isset($data->HashCode) || empty($data->HashCode)) {
+            if (empty($data->HashCode)) {
                 throw new ApiException('Forbidden, No HashCode', 403);
             }
 
@@ -157,5 +159,10 @@ abstract class ExactManager
         $calculatedHash = hash_hmac('sha256', $data, $this->config['webhookSecret']);
 
         return strtoupper($calculatedHash) === $hashCode;
+    }
+
+    public function getCollection()
+    {
+        return $this->collection;
     }
 }

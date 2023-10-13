@@ -71,7 +71,8 @@ class ExactJsonApi extends ExactManager
         $data = $this->request($url, 'GET');
 
         if ($asObject) {
-            return $this->isArrayCollection($this->model, [$data]);
+            // TODO Is probably not right after refactoring method below
+            return $this->createCollection($data);
         }
 
         return $data;
@@ -136,7 +137,11 @@ class ExactJsonApi extends ExactManager
         }
         $data = $this->request($url, 'GET');
 
-        return is_array($data) ? $this->isArrayCollection($this->model, $data): $data;
+        if (!is_array($data)) {
+            return $data;
+        }
+
+        return $this->createCollection($data);
     }
 
     /**
@@ -148,7 +153,7 @@ class ExactJsonApi extends ExactManager
      *
      *    @return array
      */
-    public function findBy(array|string $criteria, string $select = null, string $orderBy = null, $limit = 60): array|string
+    public function findBy(array|string $criteria, string $select = null, string $orderBy = null, $limit = 60): object|string
     {
         if (is_array($criteria)) {
             // Check if current criteria (value) is a guid
@@ -169,7 +174,11 @@ class ExactJsonApi extends ExactManager
 
         $data = $this->request($url, 'GET');
 
-        return is_array($data) ? $this->isArrayCollection($this->model, $data): $data;
+        if (!is_array($data)) {
+            return $data;
+        }
+
+        return $this->createCollection($data);
     }
 
     /**
@@ -218,24 +227,22 @@ class ExactJsonApi extends ExactManager
     }
 
     /**
-     * @param mixed $entity
-     * @param mixed $data
      *
-     * @return object collection
      */
-    private function isArrayCollection(object $entity, array $data): array
+    private function createCollection(array $data)
     {
+        $this->collection->clear();
         foreach ($data as $keyD => $item) {
-            $object = new $entity();
+            $object = clone $this->model;
             foreach ($item as $key => $value) {
                 $setter = 'set'.$key;
                 if (method_exists($object, $setter)) {
                     $object->{$setter}($value);
                 }
             }
-            array_push($this->list, $object);
+            $this->collection->add($object);
         }
 
-        return $this->list;
+        return $this;
     }
 }
