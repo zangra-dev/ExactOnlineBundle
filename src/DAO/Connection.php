@@ -122,6 +122,7 @@ class Connection
         );
 
         $body = $response->getBody();
+        self::$logger->debug('access: '.(string) $body, ['ID' => self::$loggerId]);
         $obj = json_decode((string) $body);
         self::persistExact($obj);
     }
@@ -148,6 +149,7 @@ class Connection
                     ],
                 ]);
                 $body = $response->getBody();
+                self::$logger->debug((string) $body, ['ID' => self::$loggerId]);
                 $obj = json_decode((string) $body);
                 self::persistExact($obj);
             } catch (BadResponseException $e) {
