@@ -168,7 +168,7 @@ class Connection
         $Exact = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
 
         if (null === $Exact) {
-            throw new ApiException('No access token found.', 499);
+            return true;
         }
 
         $createAt = $Exact->getCreatedAt();
