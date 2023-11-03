@@ -65,7 +65,6 @@ class Connection
             self::$logger->pushHandler(new StreamHandler(self::$logPath, Logger::DEBUG));
             self::$loggerId = random_int(100000, 999999);
         }
-
     }
 
     /**
@@ -85,8 +84,6 @@ class Connection
     /**
      * Retrieve authorization code from Exact.
      * Exact api will POST on redirect URL and will be treated in our Controller.
-     *
-     * @
      */
     public static function getAuthorization()
     {
@@ -125,6 +122,7 @@ class Connection
         );
 
         $body = $response->getBody();
+        self::$logger->debug('access: '.(string) $body, ['ID' => self::$loggerId]);
         $obj = json_decode((string) $body);
         self::persistExact($obj);
     }
@@ -151,6 +149,7 @@ class Connection
                     ],
                 ]);
                 $body = $response->getBody();
+                self::$logger->debug((string) $body, ['ID' => self::$loggerId]);
                 $obj = json_decode((string) $body);
                 self::persistExact($obj);
             } catch (BadResponseException $e) {
@@ -171,7 +170,7 @@ class Connection
         $Exact = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
 
         if (null === $Exact) {
-            throw new ApiException('No access token found.', 499);
+            return true;
         }
 
         $createAt = $Exact->getCreatedAt();
@@ -180,7 +179,7 @@ class Connection
         /** @var int Number of seconds the token is valid */
         $lifeSpan = $Exact->getTokenExpires();
         /** @var int Elapsed time */
-        $age = ($now->getTimeStamp()) - ($createAt->getTimeStamp());
+        $age = $now->getTimeStamp() - $createAt->getTimeStamp();
 
         // Lifespan (9min55)
         if ($lifeSpan - 5 < $age) {
@@ -249,7 +248,7 @@ class Connection
                 $response = $ex->getResponse();
                 $code = $response->getStatusCode() ?? $code;
                 $reason = $response->getReasonPhrase();
-                if (null !== $content = json_decode($response->getBody()->getContents())) {
+                if (null !== $content = json_decode($response->getBody())) {
                     $exactMsg = $content->error->message->value ?? '';
                 }
 
@@ -318,10 +317,10 @@ class Connection
         return self::$xRateLimits;
     }
 
-    static function getRateLimitDelay()
+    public static function getRateLimitDelay()
     {
         if (isset(self::$xRateLimits['X-RateLimit-Minutely-Remaining'])) {
-            $limit = (self::$xRateLimits['X-RateLimit-Minutely-Remaining'][0]);
+            $limit = self::$xRateLimits['X-RateLimit-Minutely-Remaining'][0];
         } else {
             $limit = 60;
         }

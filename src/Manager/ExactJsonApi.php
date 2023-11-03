@@ -5,6 +5,7 @@ namespace ExactOnlineBundle\Manager;
 use Doctrine\ORM\EntityManagerInterface;
 use ExactOnlineBundle\DAO\Connection;
 use ExactOnlineBundle\DAO\Exception\ApiException;
+use ExactOnlineBundle\Model\Base\Model;
 
 /**
  * Author: Jefferson Bianchi <jefferson@zangra.com>
@@ -65,13 +66,19 @@ class ExactJsonApi extends ExactManager
         return $result;
     }
 
-    public function get($asObject = false)
+    public function get($asObject = false, string $_url = '')
     {
-        $url = $this->model->getUrl();
+        if (empty($_url)) {
+            $url = $this->model->getUrl();
+        } else {
+            $url = $_url;
+        }
+
         $data = $this->request($url, 'GET');
 
         if ($asObject) {
-            return $this->isArrayCollection($this->model, [$data]);
+            // TODO Is probably not right after refactoring method below
+            return $this->createCollection($data);
         }
 
         return $data;
@@ -107,13 +114,8 @@ class ExactJsonApi extends ExactManager
      * getList with pagination
      * Warning: Usually this limit, also known as page size, is 60 records but it may vary per end point.
      * https://support.exactonline.com/community/s/knowledge-base#All-All-DNO-Content-resttips.
-     *
-     * @param null|mixed $page
-     * @param mixed      $maxPerPage
-     *
-     * @return object Collection
      */
-    public function getList($page = null, $maxPerPage = 60)
+    public function getList(string $select = null, string $orderBy = null, int $page = null, int $maxPerPage = 60)
     {
         if (null !== $page) {
             if ($maxPerPage >= 60) {
@@ -133,10 +135,19 @@ class ExactJsonApi extends ExactManager
         } else {
             $url = $this->model->getUrl().'\\?'.'&$top='.$maxPerPage;
         }
-
+        if (null != $select) {
+            $url = $url.'&$select='.$select;
+        }
+        if (null !== $orderBy) {
+            $url = $url.'&$orderby='.$orderBy;
+        }
         $data = $this->request($url, 'GET');
 
-        return $this->isArrayCollection($this->model, $data);
+        if (!is_array($data)) {
+            return $data;
+        }
+
+        return $this->createCollection($data);
     }
 
     /**
@@ -148,31 +159,32 @@ class ExactJsonApi extends ExactManager
      *
      *    @return array
      */
-    public function findBy(array $criteria, array $select = null, array $orderby = null, $limit = 5)
+    public function findBy(array|string $criteria, string $select = null, string $orderBy = null, $limit = 60): object|string
     {
-        // Check if current criteria (value) is a guid
-        $guidString = $this->assertGuid(current($criteria)) ? 'guid' : '';
-
-        $url = $this->model->getUrl().'\\?'.'$filter='.key($criteria).' eq '.$guidString."'".current($criteria)."'";
-
-        if (null != $select) {
-            $url = $url.'&$select=';
-            for ($i = 0; $i < count($select); ++$i) {
-                $url = $url.$select[$i].', ';
-            }
+        if (is_array($criteria)) {
+            // Check if current criteria (value) is a guid
+            $guidString = $this->assertGuid(current($criteria)) ? 'guid' : '';
+            $url = $this->model->getUrl().'\\?'.'$filter='.key($criteria).' eq '.$guidString."'".current($criteria)."'";
+        } else {
+            $url = $this->model->getUrl().'\\?$filter='.$criteria;
         }
-
+        if (null != $select) {
+            $url = $url.'&$select='.$select;
+        }
         if ($limit > 0) {
             $url = $url.'&$top='.$limit;
         }
-
-        if (null != $orderby) {
-            $url = $url.'&$orderby='.key($orderby).' '.current($orderby);
+        if (null !== $orderBy) {
+            $url = $url.'&$orderby='.$orderBy;
         }
 
         $data = $this->request($url, 'GET');
 
-        return $this->isArrayCollection($this->model, $data);
+        if (!is_array($data)) {
+            return $data;
+        }
+
+        return $this->createCollection($data);
     }
 
     /**
@@ -184,7 +196,6 @@ class ExactJsonApi extends ExactManager
     public function find($guid, $filter = true)
     {
         $keyField = $this->getKeyField();
-
         if ($filter) {
             $url = $this->model->getUrl().'?'.'$filter='.$keyField.' eq guid'."'".$guid."'";
         } else {
@@ -192,8 +203,9 @@ class ExactJsonApi extends ExactManager
         }
 
         $data = $this->request($url, 'GET');
+//        dump($data);
 
-        return $this->isSingleObject($data);
+        return is_array($data) ? $this->isSingleObject($data) : $data;
     }
 
     private function request($url, $method, $data = null)
@@ -221,24 +233,22 @@ class ExactJsonApi extends ExactManager
     }
 
     /**
-     * @param mixed $entity
-     * @param mixed $data
      *
-     * @return object collection
      */
-    private function isArrayCollection($entity, $data)
+    private function createCollection(array $data): self
     {
+        $this->collection->clear();
         foreach ($data as $keyD => $item) {
-            $object = new $entity();
+            $object = clone $this->model;
             foreach ($item as $key => $value) {
                 $setter = 'set'.$key;
                 if (method_exists($object, $setter)) {
                     $object->{$setter}($value);
                 }
             }
-            array_push($this->list, $object);
+            $this->collection->add($object);
         }
 
-        return $this->list;
+        return $this;
     }
 }
