@@ -94,7 +94,7 @@ abstract class ExactManager
     /**
      * Check hash code from Exact webhook.
      *
-     * "Content":{"Topic":"SalesOrders","ClientId":"63824703-cf5c-4143-be7d-db3113b83b0e","Division":441609,"Action":"Update","Key":"19cee073-095e-46d1-8d2d-f3fc97ba5bc1","ExactOnlineEndpoint":"https://start.exac    tonline.be/api/v1/441609/salesorder/SalesOrders(guid'19cee073-095e-46d1-8d2d-f3fc97ba5bc1')","EventCreatedOn":"2020-01-06T16:26:08.587"},"HashCode":"3ACBC7840E4DD3CA10A1803124DC1D4A04B2CCD18EFB9E9BB666CC4C75876DC5"}
+     * "Content":{"Topic":"SalesOrders","ClientId":"63824703-cf5c-4143-be7d-db3113b83b0e","Division":441609,"Action":"Update","Key":"19cee073-095e-46d1-8d2d-f3fc97ba5bc1","ExactOnlineEndpoint":"https://start.exactonline.be/api/v1/441609/salesorder/SalesOrders(guid'19cee073-095e-46d1-8d2d-f3fc97ba5bc1')","EventCreatedOn":"2020-01-06T16:26:08.587"},"HashCode":"3ACBC7840E4DD3CA10A1803124DC1D4A04B2CCD18EFB9E9BB666CC4C75876DC5"}
      *
      * @param string $data     Content of 'Content' received data from Exact
      *                         including brackets: {"Topic":...589"}

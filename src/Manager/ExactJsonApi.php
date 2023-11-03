@@ -5,6 +5,7 @@ namespace ExactOnlineBundle\Manager;
 use Doctrine\ORM\EntityManagerInterface;
 use ExactOnlineBundle\DAO\Connection;
 use ExactOnlineBundle\DAO\Exception\ApiException;
+use ExactOnlineBundle\Model\Base\Model;
 
 /**
  * Author: Jefferson Bianchi <jefferson@zangra.com>
@@ -65,9 +66,14 @@ class ExactJsonApi extends ExactManager
         return $result;
     }
 
-    public function get($asObject = false)
+    public function get($asObject = false, string $_url = '')
     {
-        $url = $this->model->getUrl();
+        if (empty($_url)) {
+            $url = $this->model->getUrl();
+        } else {
+            $url = $_url;
+        }
+
         $data = $this->request($url, 'GET');
 
         if ($asObject) {
@@ -190,7 +196,6 @@ class ExactJsonApi extends ExactManager
     public function find($guid, $filter = true)
     {
         $keyField = $this->getKeyField();
-
         if ($filter) {
             $url = $this->model->getUrl().'?'.'$filter='.$keyField.' eq guid'."'".$guid."'";
         } else {
@@ -198,6 +203,7 @@ class ExactJsonApi extends ExactManager
         }
 
         $data = $this->request($url, 'GET');
+//        dump($data);
 
         return is_array($data) ? $this->isSingleObject($data) : $data;
     }
@@ -229,7 +235,7 @@ class ExactJsonApi extends ExactManager
     /**
      *
      */
-    private function createCollection(array $data)
+    private function createCollection(array $data): self
     {
         $this->collection->clear();
         foreach ($data as $keyD => $item) {
