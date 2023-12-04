@@ -44,6 +44,11 @@ class ExactJsonApi extends ExactManager
         return $this->request($url, 'DELETE', $json);
     }
 
+    public function delete($_url)
+    {
+        return $this->request($_url, 'DELETE');
+    }
+
     public function update($entity)
     {
         usleep(Connection::getRateLimitDelay());
@@ -84,18 +89,22 @@ class ExactJsonApi extends ExactManager
         return $data;
     }
 
-    public function post($json)
+    public function post($json, string $_url = '')
     {
-        $url = $this->model->getUrl();
+        $url = (empty($_url)) ? $this->model->getUrl() : $_url;
 
         return $this->request($url, 'POST', $json);
     }
 
-    public function put($json)
+    public function put($json, string $_url = '')
     {
-        $data = json_decode($json);
-        $keyField = $this->getKeyField();
-        $url = $this->model->getUrl()."(guid'".$data->{$keyField}."')";
+        if (empty($_url)) {
+            $data = json_decode($json);
+            $keyField = $this->getKeyField();
+            $url = $this->model->getUrl()."(guid'".$data->{$keyField}."')";
+        } else {
+            $url = $_url;
+        }
 
         return $this->request($url, 'PUT', $json);
     }
@@ -203,7 +212,6 @@ class ExactJsonApi extends ExactManager
         }
 
         $data = $this->request($url, 'GET');
-//        dump($data);
 
         return is_array($data) ? $this->isSingleObject($data) : $data;
     }
