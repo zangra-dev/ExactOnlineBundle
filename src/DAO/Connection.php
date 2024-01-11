@@ -167,7 +167,7 @@ class Connection
      */
     public static function isExpired()
     {
-        $Exact = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
+        $Exact = self::$em->getRepository(Exact::class)->findLast();
 
         if (null === $Exact) {
             return true;
@@ -340,7 +340,7 @@ class Connection
      */
     private static function persistExact($obj)
     {
-        $Exact = self::$em->getRepository('ExactOnlineBundle:Exact')->findLast();
+        $Exact = self::$em->getRepository(Exact::class)->findLast();
         if (null != $Exact) {
             $code = $Exact->getCode();
         } else {
