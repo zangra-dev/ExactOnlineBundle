@@ -69,6 +69,7 @@ use ExactOnlineBundle\Model\Base\Model;
  * @property string            $TypeDescription                      Description of the type
  * @property float             $VATAmountDC                          Total VAT amount in the default currency of the company
  * @property float             $VATAmountFC                          Total VAT amount in the currency of the transaction
+ * @property string            $Warehouse                            (GUID) Mandatory for direct sales invoice/credit note, cannot be set for normal sales invoice/credit note.
  * @property float             $WithholdingTaxAmountFC               Withholding tax amount applied to sales invoice
  * @property float             $WithholdingTaxBaseAmount             Withholding tax base amount to calculate withholding amount
  * @property float             $WithholdingTaxPercentage             Withholding tax percentage applied to sales invoice
@@ -137,6 +138,7 @@ class SalesInvoice extends Model
     protected $TypeDescription;
     protected $VATAmountDC;
     protected $VATAmountFC;
+    protected $Warehouse;
     protected $WithholdingTaxAmountFC;
     protected $WithholdingTaxBaseAmount;
     protected $WithholdingTaxPercentage;
@@ -1468,5 +1470,15 @@ class SalesInvoice extends Model
         $this->url = $url;
 
         return $this;
+    }
+
+    public function getWarehouse()
+    {
+        return $this->Warehouse;
+    }
+
+    public function setWarehouse($Warehouse): void
+    {
+        $this->Warehouse = $Warehouse;
     }
 }
