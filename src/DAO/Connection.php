@@ -135,27 +135,41 @@ class Connection
     public static function refreshAccessToken()
     {
         if (self::isExpired()) {
-            $Exact = self::$em->getRepository(Exact::class)->findLast();
-            $url = self::$baseUrl.self::$tokenUrl;
+            // Retrieve the last few (e.g., 3) Exact records
+            $ExactRepository = self::$em->getRepository(Exact::class);
+            $lastRecords = $ExactRepository->findLastFew(3); // Modify the repository to return the last 3 records
+            $url = self::$baseUrl . self::$tokenUrl;
             $client = new Client();
+            $success = false;
 
-            try {
-                $response = $client->post($url, [
-                    'form_params' => [
-                        'refresh_token' => $Exact->getRefreshToken(),
-                        'grant_type' => 'refresh_token',
-                        'client_id' => self::$exactClientId,
-                        'client_secret' => self::$exactClientSecret,
-                    ],
-                ]);
-                $body = $response->getBody();
-                self::$logger->debug((string) $body, ['ID' => self::$loggerId]);
-                $obj = json_decode((string) $body);
-                self::persistExact($obj);
-            } catch (BadResponseException $e) {
-                $message = $e->getMessage();
-                self::$logger->error($e->getMessage());
-                throw new ApiException($message, $e->getCode());
+            foreach ($lastRecords as $Exact) {
+                try {
+                    // Attempt to refresh the token with the current record
+                    $response = $client->post($url, [
+                        'form_params' => [
+                            'refresh_token' => $Exact->getRefreshToken(),
+                            'grant_type' => 'refresh_token',
+                            'client_id' => self::$exactClientId,
+                            'client_secret' => self::$exactClientSecret,
+                        ],
+                    ]);
+                    $body = $response->getBody();
+                    self::$logger->debug((string) $body, ['ID' => self::$loggerId]);
+                    $obj = json_decode((string) $body);
+                    self::persistExact($obj);
+                    $success = true;
+                    break; // Exit loop if successful
+                } catch (BadResponseException $e) {
+                    // Log the failure and continue to the next record
+                    self::$logger->warning("Failed to refresh token with record ID " . $Exact->getId() . ": " . $e->getMessage());
+                }
+            }
+
+            if (!$success) {
+                // If all attempts fail, log an error and throw an exception
+                $message = "Failed to refresh token after attempting all available refresh tokens.";
+                self::$logger->error($message);
+                throw new ApiException($message, 500);
             }
         }
     }
