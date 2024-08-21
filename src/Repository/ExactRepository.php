@@ -18,4 +18,13 @@ final class ExactRepository extends EntityRepository
 
         return $qb->getQuery()->getOneOrNullResult();
     }
+
+    public function findLastFew($count)
+    {
+        $qb = $this->createQueryBuilder('e');
+        $qb->setMaxResults($count);
+        $qb->orderBy('e.id', 'DESC');
+
+        return $qb->getQuery()->getResult();
+    }
 }
