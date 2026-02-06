@@ -35,7 +35,7 @@
         "doctrine/doctrine-bundle": "*",
         "doctrine/orm": "*",
         "guzzlehttp/guzzle": "^6.2 || ^7.2",
-        "monolog/monolog": "^2.0",
+        "monolog/monolog": "*",
         "ext-json": "*",
         "ext-simplexml": "*",
         "ext-libxml": "*"
